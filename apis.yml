@@ -1,0 +1,399 @@
+aid: camara-project
+url: https://raw.githubusercontent.com/api-evangelist/camara-project/refs/heads/main/apis.yml
+apis:
+- aid: camara-project:number-verification
+  name: CAMARA Number Verification API
+  tags:
+  - Authentication
+  - Identity
+  - Number Verification
+  - Phone Number
+  - Silent Auth
+  - Telecom
+  humanURL: https://github.com/camaraproject/NumberVerification
+  properties:
+  - url: https://github.com/camaraproject/NumberVerification
+    type: Documentation
+  - url: openapi/number-verification-openapi.yml
+    type: OpenAPI
+  description: Verify or retrieve the mobile phone number currently allocated by the network operator to the SIM in
+    the end user's device. Uses silent network-based or SIM-based authentication (no SMS OTP, no app download) to
+    confirm possession of a phone number at sign-up, login, or transaction time. Returns true/false on verify or
+    the masked phone number on retrieve.
+- aid: camara-project:sim-swap
+  name: CAMARA SIM Swap API
+  tags:
+  - Anti-Fraud
+  - Fraud Prevention
+  - Identity
+  - SIM Swap
+  - Telecom
+  humanURL: https://github.com/camaraproject/SimSwap
+  properties:
+  - url: https://github.com/camaraproject/SimSwap
+    type: Documentation
+  - url: openapi/sim-swap-openapi.yml
+    type: OpenAPI
+  - url: openapi/sim-swap-subscriptions-openapi.yml
+    type: OpenAPI
+  description: Detect whether the SIM associated with a mobile phone number has recently been swapped to a different
+    SIM. Returns the most recent SIM swap timestamp or a boolean check for a configurable look-back period.
+    Critical fraud signal for banking, fintech, crypto, and any service relying on SMS OTP. Includes both an
+    on-demand query API and an event subscriptions API for CloudEvents push notifications.
+- aid: camara-project:device-location
+  name: CAMARA Device Location API
+  tags:
+  - Device Location
+  - Geofencing
+  - Location
+  - Location Verification
+  - Telecom
+  humanURL: https://github.com/camaraproject/DeviceLocation
+  properties:
+  - url: https://github.com/camaraproject/DeviceLocation
+    type: Documentation
+  - url: openapi/device-location-retrieval-openapi.yml
+    type: OpenAPI
+  - url: openapi/device-location-verification-openapi.yml
+    type: OpenAPI
+  - url: openapi/device-location-geofencing-openapi.yml
+    type: OpenAPI
+  description: Retrieve the network-derived location of a mobile device, verify whether a device is within a given
+    geographic area, or subscribe to geofencing entry/exit events. Location is provided by the mobile operator
+    based on the network's view of the device — not from device GPS — so it works without an app, cannot be spoofed
+    by GPS, and can be used for fraud detection, regulatory verification, and asset tracking.
+- aid: camara-project:quality-on-demand
+  name: CAMARA Quality on Demand API
+  tags:
+  - 5G
+  - Network Slicing
+  - QoS
+  - Quality on Demand
+  - Telecom
+  humanURL: https://github.com/camaraproject/QualityOnDemand
+  properties:
+  - url: https://github.com/camaraproject/QualityOnDemand
+    type: Documentation
+  - url: openapi/quality-on-demand-openapi.yml
+    type: OpenAPI
+  - url: openapi/qos-profiles-openapi.yml
+    type: OpenAPI
+  - url: openapi/qos-provisioning-openapi.yml
+    type: OpenAPI
+  description: Request elevated network Quality of Service for a specific device-application session — committed
+    bandwidth, low latency, or prioritized traffic — for a bounded time window. Includes a profiles catalog
+    (discover available QoS classes), session management (create/get/delete QoS sessions), and a provisioning
+    surface for longer-lived attachments. Foundational 5G monetization API.
+- aid: camara-project:device-status
+  name: CAMARA Device Status API
+  tags:
+  - Connected Network Type
+  - Device Status
+  - Reachability
+  - Roaming
+  - Telecom
+  humanURL: https://github.com/camaraproject/DeviceStatus
+  properties:
+  - url: https://github.com/camaraproject/DeviceStatus
+    type: Documentation
+  - url: openapi/device-status-connected-network-type-openapi.yml
+    type: OpenAPI
+  - url: openapi/device-status-reachability-openapi.yml
+    type: OpenAPI
+  - url: openapi/device-status-roaming-openapi.yml
+    type: OpenAPI
+  description: Query whether a mobile device is reachable on the network, currently roaming, and what type of
+    network it is connected to (2G, 3G, 4G, 5G, NB-IoT). Used by IoT fleet management, customer support
+    diagnostics, and pre-flight checks before invoking other CAMARA APIs.
+- aid: camara-project:know-your-customer
+  name: CAMARA Know Your Customer API
+  tags:
+  - Age Verification
+  - Identity
+  - Identity Verification
+  - KYC
+  - Know Your Customer
+  - Telecom
+  humanURL: https://github.com/camaraproject/KnowYourCustomer
+  properties:
+  - url: https://github.com/camaraproject/KnowYourCustomer
+    type: Documentation
+  - url: openapi/kyc-match-openapi.yml
+    type: OpenAPI
+  - url: openapi/kyc-fill-in-openapi.yml
+    type: OpenAPI
+  - url: openapi/kyc-age-verification-openapi.yml
+    type: OpenAPI
+  description: KYC sub-project bundling three identity APIs. KYC Match scores a supplied set of customer attributes
+    (name, address, DOB, document number, etc.) against the operator's records. KYC Fill-In returns operator-held
+    customer attributes to pre-populate an onboarding form. KYC Age Verification returns whether the subscriber
+    is over a minimum age threshold without disclosing the date of birth.
+- aid: camara-project:one-time-password-sms
+  name: CAMARA One Time Password SMS API
+  tags:
+  - Authentication
+  - OTP
+  - One Time Password
+  - SMS
+  - Telecom
+  humanURL: https://github.com/camaraproject/OTPValidation
+  properties:
+  - url: https://github.com/camaraproject/OTPValidation
+    type: Documentation
+  - url: openapi/one-time-password-sms-openapi.yml
+    type: OpenAPI
+  description: Send a one-time password via SMS to a target phone number and validate the code returned by the user.
+    Operator delivers the SMS through the home network, so messages bypass third-party aggregators and inherit
+    higher deliverability and trust.
+- aid: camara-project:device-swap
+  name: CAMARA Device Swap API
+  tags:
+  - Anti-Fraud
+  - Device
+  - Device Swap
+  - Fraud Prevention
+  - Telecom
+  humanURL: https://github.com/camaraproject/DeviceSwap
+  properties:
+  - url: https://github.com/camaraproject/DeviceSwap
+    type: Documentation
+  - url: openapi/device-swap-openapi.yml
+    type: OpenAPI
+  description: Detect whether the device (IMEI) associated with a phone number has recently changed. Complements
+    SIM Swap as a fraud signal — a fresh device or SIM behind a known phone number can indicate account takeover.
+- aid: camara-project:simple-edge-discovery
+  name: CAMARA Simple Edge Discovery API
+  tags:
+  - Edge Cloud
+  - Edge Computing
+  - MEC
+  - Simple Edge Discovery
+  - Telecom
+  humanURL: https://github.com/camaraproject/SimpleEdgeDiscovery
+  properties:
+  - url: https://github.com/camaraproject/SimpleEdgeDiscovery
+    type: Documentation
+  - url: openapi/simple-edge-discovery-openapi.yml
+    type: OpenAPI
+  description: Discover the optimal Multi-access Edge Computing (MEC) endpoint for a given client device. The
+    operator returns the closest edge data center URL based on the device's current network attachment so
+    latency-sensitive applications (gaming, AR/VR, real-time inference) can route to the nearest compute.
+- aid: camara-project:carrier-billing
+  name: CAMARA Carrier Billing Checkout API
+  tags:
+  - Billing
+  - Carrier Billing
+  - Direct Carrier Billing
+  - Payments
+  - Telecom
+  humanURL: https://github.com/camaraproject/CarrierBillingCheckOut
+  properties:
+  - url: https://github.com/camaraproject/CarrierBillingCheckOut
+    type: Documentation
+  - url: openapi/carrier-billing-openapi.yml
+    type: OpenAPI
+  description: Direct Carrier Billing checkout — initiate a one-time or recurring charge against the subscriber's
+    mobile phone bill, with confirmation and refund flows. Lets merchants accept payment from users without a card
+    or bank account.
+- aid: camara-project:population-density-data
+  name: CAMARA Population Density Data API
+  tags:
+  - Analytics
+  - Network Insights
+  - Population Density
+  - Telecom
+  humanURL: https://github.com/camaraproject/PopulationDensityData
+  properties:
+  - url: https://github.com/camaraproject/PopulationDensityData
+    type: Documentation
+  - url: openapi/population-density-data-openapi.yml
+    type: OpenAPI
+  description: Aggregated, anonymized counts of mobile devices observed in a target geographic area over a time
+    window. Powers smart-city planning, retail footfall analytics, event crowd management, and emergency response
+    — without exposing any individual identifier.
+- aid: camara-project:home-devices-qod
+  name: CAMARA Home Devices Quality on Demand API
+  tags:
+  - Broadband
+  - Home Network
+  - QoS
+  - Quality on Demand
+  - Telecom
+  humanURL: https://github.com/camaraproject/HomeDevicesQoD
+  properties:
+  - url: https://github.com/camaraproject/HomeDevicesQoD
+    type: Documentation
+  - url: openapi/home-devices-qod-openapi.yml
+    type: OpenAPI
+  description: Quality on Demand applied to fixed-broadband home networks — request boosted bandwidth or
+    prioritized traffic for a specific device behind a home gateway for a bounded time window.
+- aid: camara-project:call-forwarding-signal
+  name: CAMARA Call Forwarding Signal API
+  tags:
+  - Anti-Fraud
+  - Call Forwarding
+  - Fraud Prevention
+  - Telecom
+  - Voice
+  humanURL: https://github.com/camaraproject/CallForwardingSignal
+  properties:
+  - url: https://github.com/camaraproject/CallForwardingSignal
+    type: Documentation
+  - url: openapi/call-forwarding-signal-openapi.yml
+    type: OpenAPI
+  description: Detect whether a subscriber currently has unconditional, busy, no-reply, or unreachable call
+    forwarding configured. Fraud signal used in conjunction with SIM Swap and Number Verification to detect
+    account-takeover attempts that re-route voice OTPs.
+- aid: camara-project:sms
+  name: CAMARA Short Message Service API
+  tags:
+  - Messaging
+  - SMS
+  - Short Message Service
+  - Telecom
+  humanURL: https://github.com/camaraproject/ShortMessageService
+  properties:
+  - url: https://github.com/camaraproject/ShortMessageService
+    type: Documentation
+  - url: openapi/sms-openapi.yml
+    type: OpenAPI
+  description: Send SMS messages programmatically with operator-delivered routing. Includes a delivery-notification
+    subscription surface for CloudEvents callbacks on message status (delivered, failed, expired).
+- aid: camara-project:connectivity-insights
+  name: CAMARA Connectivity Insights API
+  tags:
+  - Analytics
+  - Connectivity
+  - Insights
+  - Telecom
+  humanURL: https://github.com/camaraproject/ConnectivityInsights
+  properties:
+  - url: https://github.com/camaraproject/ConnectivityInsights
+    type: Documentation
+  - url: openapi/connectivity-insights-openapi.yml
+    type: OpenAPI
+  description: Real-time connectivity quality insights — measured throughput, latency, jitter, and signal
+    classification — for a target device. Used by applications to adapt quality (bitrate, codec, fallback) to
+    real network conditions, or to trigger a Quality on Demand session when needed.
+name: CAMARA Project
+tags:
+- API Standards
+- CAMARA
+- GSMA
+- Linux Foundation
+- Network APIs
+- Open API
+- Open Gateway
+- Open Source
+- Standards
+- Telco
+- Telco API Alliance
+- Telecom
+- Telecommunications
+kind: standard
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+common:
+- url: https://camaraproject.org
+  type: Portal
+- url: https://camaraproject.org/about-camara/
+  type: AboutUs
+- url: https://github.com/camaraproject
+  type: GitHubOrganization
+- url: https://github.com/camaraproject/Governance
+  name: Governance
+  type: Documentation
+- url: https://github.com/camaraproject/Governance/blob/main/ProjectCharter.md
+  name: Project Charter
+  type: Documentation
+- url: https://github.com/camaraproject/Commonalities
+  name: Commonalities (API Design Guidelines)
+  type: Documentation
+- url: https://github.com/camaraproject/IdentityAndConsentManagement
+  name: Identity And Consent Management
+  type: Documentation
+- url: https://github.com/camaraproject/ReleaseManagement
+  name: Release Management
+  type: Documentation
+- url: https://github.com/camaraproject/APIBacklog
+  name: API Backlog
+  type: Documentation
+- url: https://wiki.camaraproject.org/
+  name: CAMARA Wiki
+  type: Documentation
+- url: https://camaraproject.github.io/
+  name: API Swagger UI
+  type: Documentation
+- url: https://camaraproject.org/contact/
+  type: Contact
+- url: https://github.com/camaraproject/Governance/blob/main/CODE_OF_CONDUCT.md
+  type: CodeOfConduct
+- url: https://github.com/camaraproject/Governance/blob/main/CONTRIBUTING.md
+  type: Documentation
+- url: https://github.com/camaraproject/Governance/blob/main/documentation/LICENSE.APACHE2.0
+  name: Apache 2.0 License
+  type: License
+- url: https://lists.camaraproject.org/g/all
+  name: CAMARA Mailing Lists
+  type: Forum
+- url: https://camaraproject.org/news-and-events/
+  type: Blog
+- url: https://camaraproject.org/events/
+  type: Events
+- url: https://www.linuxfoundation.org/press/announcing-camara-the-telco-global-api-alliance
+  name: Linux Foundation Announcement
+  type: PressRelease
+- url: https://www.gsma.com/solutions-and-impact/connectivity-for-good/external-affairs/wp-content/uploads/2024/02/Open-Gateway-Joint-Statement.pdf
+  name: GSMA Open Gateway
+  type: Partner
+- type: Features
+  data:
+  - 60+ telco network APIs designed as a unified, operator-neutral surface
+  - Hosted by the Linux Foundation as the open governance home for telco network APIs
+  - Joint initiative with GSMA Open Gateway — the carrier commercialization program
+  - OpenAPI 3.0.3 specs for every API, published under Apache 2.0
+  - CloudEvents-based webhook subscriptions for event-driven APIs (sim-swap, geofencing, device-status)
+  - Three-tier repository maturity model — Sandbox, Incubating, Graduated
+  - Centralized Commonalities working group defining cross-API design guidelines and shared models
+  - Centralized Identity And Consent Management working group (OIDC CIBA + purpose-bound consent)
+  - Quarterly coordinated releases via the Release Management working group
+  - Provider Implementation repos (`*_PI*`) demonstrating real operator deployments
+  - Anti-fraud bundle - Number Verification, SIM Swap, Device Swap, Call Forwarding Signal
+  - Network capability bundle - Quality on Demand, QoS Profiles, Simple Edge Discovery, Connectivity Insights
+  - Identity bundle - KYC Match, KYC Fill-In, KYC Age Verification, Tenure
+  - Location bundle - Location Retrieval, Location Verification, Geofencing Subscriptions
+  - Device bundle - Device Status, Device Location, Device Swap, Device Identifier, Device Authenticity
+  - Messaging bundle - SMS, OTP via SMS, Voice Notification, Voice Verification Code, Call Forwarding
+  - Commercial bundle - Carrier Billing Checkout, Sponsored Data
+  - Analytics bundle - Population Density Data, Connectivity Insights, Network Insights, Customer Insights
+  - Edge cloud bundle - Simple Edge Discovery, Optimal Edge Discovery, Application Endpoint Discovery,
+    Application Endpoint Registration, Edge Application Management
+  - IoT bundle - IoT Device Management, IoT SIM Fraud Prevention, IoT Network Optimization, eSIM Remote Management
+  - Powered by major operators - Deutsche Telekom, Orange, Telefonica, Vodafone, T-Mobile, Verizon, AT&T, KDDI,
+    SK Telecom, China Mobile, Telenor, TIM, BT, Singtel, and others
+  - Cross-operator aggregator integrations through GSMA Open Gateway (Vonage, Infobip, Aduna, others)
+  sources:
+  - https://camaraproject.org
+  - https://github.com/camaraproject
+  - https://github.com/camaraproject/Governance
+  - https://github.com/camaraproject/Commonalities
+  updated: '2026-05-25'
+created: '2026-05-25T00:00:00.000Z'
+modified: '2026-05-25'
+position: Producing
+description: CAMARA is the Telco Global API Alliance — an open-source project hosted by the Linux Foundation that
+  defines, builds, and tests a unified set of network APIs across the world's mobile operators. Working alongside
+  the GSMA Open Gateway commercialization initiative, CAMARA produces operator-neutral OpenAPI 3.0 specifications
+  for 60+ telco network capabilities including Number Verification, SIM Swap, Device Location, Quality on Demand,
+  KYC, Carrier Billing, Edge Discovery, Device Status, SMS, and more — all published under Apache 2.0. The
+  project is organized into Sandbox, Incubating, and Graduated sub-projects with cross-cutting Commonalities,
+  Identity and Consent Management, and Release Management working groups. Major contributors include Deutsche
+  Telekom, Orange, Telefonica, Vodafone, T-Mobile, Verizon, AT&T, KDDI, SK Telecom, China Mobile, and dozens of
+  other operators and vendors.
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
+specificationVersion: '0.16'
+x-type: standard
