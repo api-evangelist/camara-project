@@ -1,204 +1,404 @@
 # CAMARA Project (camara-project)
-CAMARA is the Telco Global API Alliance — an open-source project hosted by the Linux Foundation that defines, builds, and tests a unified set of network APIs across the world's mobile operators. Working alongside the GSMA Open Gateway commercialization initiative, CAMARA produces operator-neutral OpenAPI 3.0 specifications for 60+ telco network capabilities including Number Verification, SIM Swap, Device Location, Quality on Demand, KYC, Carrier Billing, Edge Discovery, Device Status, SMS, and more — all published under Apache 2.0.
 
-**URL:** [Visit APIs.json](https://raw.githubusercontent.com/api-evangelist/camara-project/refs/heads/main/apis.yml)
+CAMARA is the Telco Global API Alliance — an open-source project hosted by the Linux Foundation that defines, builds, and tests a unified set of network APIs across the world's mobile operators. Working alongside the GSMA Open Gateway commercialization initiative, CAMARA produces operator-neutral OpenAPI 3.0 specifications for 60+ telco network capabilities including Number Verification, SIM Swap, Device Location, Quality on Demand, KYC, Carrier Billing, Edge Discovery, Device Status, SMS, and more — all published under Apache 2.0. The project is organized into Sandbox, Incubating, and Graduated sub-projects with cross-cutting Commonalities, Identity and Consent Management, and Release Management working groups. Major contributors include Deutsche Telekom, Orange, Telefonica, Vodafone, T-Mobile, Verizon, AT&T, KDDI, SK Telecom, China Mobile, and dozens of other operators and vendors.
 
-**Type:** `standard` (open-source spec project under the Linux Foundation)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/camara-project/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/camara-project/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Position:** Producing
+- **Access:** 3rd-Party
 
 ## Tags
 
-API Standards, CAMARA, GSMA, Linux Foundation, Network APIs, Open API, Open Gateway, Open Source, Standards, Telco, Telco API Alliance, Telecom, Telecommunications
+- API Standards
+- CAMARA
+- GSMA
+- Linux Foundation
+- Network APIs
+- Open API
+- Open Gateway
+- Open Source
+- Standards
+- Telco
+- Telco API Alliance
+- Telecom
+- Telecommunications
 
 ## Timestamps
 
-- **Created:** 2026-05-25
+- **Created:** 2026-05-25T00:00:00.000Z
 - **Modified:** 2026-05-25
 
-## Governance and Structure
-
-CAMARA is governed by:
-
-- **Technical Steering Committee** — oversight body for the technical CAMARA Project
-- **Governing Board** — manages the Directed Fund (budget, outreach, officer elections)
-- **End User Council** — composed of API end users
-- **Working Groups and Sub-Projects** — each API or cross-cutting concern lives in its own repo
-
-Repositories progress through three maturity levels:
-
-1. **Sandbox** — initial proposal, exploratory work
-2. **Incubating** — actively developed, draft OpenAPI in place
-3. **Graduated** — stable, released, multi-operator implementations
-
-Cross-cutting working groups define shared rules:
-
-- **[Commonalities](https://github.com/camaraproject/Commonalities)** — API design guide, error model, shared data types
-- **[Identity And Consent Management](https://github.com/camaraproject/IdentityAndConsentManagement)** — OIDC CIBA flow, purpose-bound consent scopes
-- **[Release Management](https://github.com/camaraproject/ReleaseManagement)** — coordinated quarterly Meta-Releases (e.g. Spring25, Fall25)
-- **[APIBacklog](https://github.com/camaraproject/APIBacklog)** — central pipeline of proposed APIs
-
-## Profiled APIs
-
-This catalog profiles 15 of the most-mature CAMARA APIs in detail. The full CAMARA portfolio covers 60+ APIs; see the [GitHub organization](https://github.com/camaraproject) for the complete list.
+## APIs
 
 ### CAMARA Number Verification API
-Verify or retrieve the mobile phone number currently allocated by the network to the SIM in the user's device, using silent network/SIM-based authentication (no SMS OTP). Used at sign-up, login, or transaction time.
 
-- [Repository](https://github.com/camaraproject/NumberVerification)
-- [OpenAPI](openapi/number-verification-openapi.yml)
+Verify or retrieve the mobile phone number currently allocated by the network operator to the SIM in the end user's device. Uses silent network-based or SIM-based authentication (no SMS OTP, no app download) to confirm possession of a phone number at sign-up, login, or transaction time. Returns true/false on verify or the masked phone number on retrieve.
+
+- **Human URL:** [https://github.com/camaraproject/NumberVerification](https://github.com/camaraproject/NumberVerification)
+
+#### Tags
+
+- Authentication
+- Identity
+- Number Verification
+- Phone Number
+- Silent Auth
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/NumberVerification)
+- [OpenAPI](openapi/number-verification-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/number-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/number-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA SIM Swap API
-Detect whether the SIM behind a phone number was recently swapped — a key anti-fraud signal for banking, fintech, and any SMS-OTP-based flow. Includes an on-demand query endpoint and a CloudEvents subscription endpoint.
 
-- [Repository](https://github.com/camaraproject/SimSwap)
-- [OpenAPI — sim-swap](openapi/sim-swap-openapi.yml)
-- [OpenAPI — sim-swap-subscriptions](openapi/sim-swap-subscriptions-openapi.yml)
+Detect whether the SIM associated with a mobile phone number has recently been swapped to a different SIM. Returns the most recent SIM swap timestamp or a boolean check for a configurable look-back period. Critical fraud signal for banking, fintech, crypto, and any service relying on SMS OTP. Includes both an on-demand query API and an event subscriptions API for CloudEvents push notifications.
+
+- **Human URL:** [https://github.com/camaraproject/SimSwap](https://github.com/camaraproject/SimSwap)
+
+#### Tags
+
+- Anti-Fraud
+- Fraud Prevention
+- Identity
+- SIM Swap
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/SimSwap)
+- [OpenAPI](openapi/sim-swap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/sim-swap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sim-swap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/sim-swap-subscriptions-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/sim-swap-subscriptions.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sim-swap-subscriptions.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Device Location API
-Network-derived device location (not GPS), location verification against a target area, and geofencing event subscriptions.
 
-- [Repository](https://github.com/camaraproject/DeviceLocation)
-- [OpenAPI — Location Retrieval](openapi/device-location-retrieval-openapi.yml)
-- [OpenAPI — Location Verification](openapi/device-location-verification-openapi.yml)
-- [OpenAPI — Geofencing Subscriptions](openapi/device-location-geofencing-openapi.yml)
+Retrieve the network-derived location of a mobile device, verify whether a device is within a given geographic area, or subscribe to geofencing entry/exit events. Location is provided by the mobile operator based on the network's view of the device — not from device GPS — so it works without an app, cannot be spoofed by GPS, and can be used for fraud detection, regulatory verification, and asset tracking.
+
+- **Human URL:** [https://github.com/camaraproject/DeviceLocation](https://github.com/camaraproject/DeviceLocation)
+
+#### Tags
+
+- Device Location
+- Geofencing
+- Location
+- Location Verification
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/DeviceLocation)
+- [OpenAPI](openapi/device-location-retrieval-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/device-location-retrieval.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/device-location-retrieval.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/device-location-verification-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/device-location-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/device-location-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/device-location-geofencing-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/device-location-geofencing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/device-location-geofencing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Quality on Demand API
-Request boosted QoS (committed bandwidth, low latency, priority) for a specific device-application session — the foundational 5G monetization API.
 
-- [Repository](https://github.com/camaraproject/QualityOnDemand)
-- [OpenAPI — Quality on Demand](openapi/quality-on-demand-openapi.yml)
-- [OpenAPI — QoS Profiles](openapi/qos-profiles-openapi.yml)
-- [OpenAPI — QoS Provisioning](openapi/qos-provisioning-openapi.yml)
+Request elevated network Quality of Service for a specific device-application session — committed bandwidth, low latency, or prioritized traffic — for a bounded time window. Includes a profiles catalog (discover available QoS classes), session management (create/get/delete QoS sessions), and a provisioning surface for longer-lived attachments. Foundational 5G monetization API.
+
+- **Human URL:** [https://github.com/camaraproject/QualityOnDemand](https://github.com/camaraproject/QualityOnDemand)
+
+#### Tags
+
+- 5G
+- Network Slicing
+- QoS
+- Quality on Demand
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/QualityOnDemand)
+- [OpenAPI](openapi/quality-on-demand-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/quality-on-demand.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/quality-on-demand.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/qos-profiles-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/qos-profiles.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/qos-profiles.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/qos-provisioning-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/qos-provisioning.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/qos-provisioning.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Device Status API
-Device reachability, roaming state, and connected network type (2G/3G/4G/5G/NB-IoT).
 
-- [Repository](https://github.com/camaraproject/DeviceStatus)
-- [OpenAPI — Connected Network Type](openapi/device-status-connected-network-type-openapi.yml)
-- [OpenAPI — Reachability](openapi/device-status-reachability-openapi.yml)
-- [OpenAPI — Roaming](openapi/device-status-roaming-openapi.yml)
+Query whether a mobile device is reachable on the network, currently roaming, and what type of network it is connected to (2G, 3G, 4G, 5G, NB-IoT). Used by IoT fleet management, customer support diagnostics, and pre-flight checks before invoking other CAMARA APIs.
+
+- **Human URL:** [https://github.com/camaraproject/DeviceStatus](https://github.com/camaraproject/DeviceStatus)
+
+#### Tags
+
+- Connected Network Type
+- Device Status
+- Reachability
+- Roaming
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/DeviceStatus)
+- [OpenAPI](openapi/device-status-connected-network-type-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/device-status-connected-network-type.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/device-status-connected-network-type.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/device-status-reachability-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/device-status-reachability.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/device-status-reachability.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/device-status-roaming-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/device-status-roaming.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/device-status-roaming.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Know Your Customer API
-Three KYC surfaces — KYC Match (score supplied attributes against operator records), KYC Fill-In (operator pre-populates onboarding fields), KYC Age Verification (over-N check without revealing DOB).
 
-- [Repository](https://github.com/camaraproject/KnowYourCustomer)
-- [OpenAPI — KYC Match](openapi/kyc-match-openapi.yml)
-- [OpenAPI — KYC Fill-In](openapi/kyc-fill-in-openapi.yml)
-- [OpenAPI — KYC Age Verification](openapi/kyc-age-verification-openapi.yml)
+KYC sub-project bundling three identity APIs. KYC Match scores a supplied set of customer attributes (name, address, DOB, document number, etc.) against the operator's records. KYC Fill-In returns operator-held customer attributes to pre-populate an onboarding form. KYC Age Verification returns whether the subscriber is over a minimum age threshold without disclosing the date of birth.
+
+- **Human URL:** [https://github.com/camaraproject/KnowYourCustomer](https://github.com/camaraproject/KnowYourCustomer)
+
+#### Tags
+
+- Age Verification
+- Identity
+- Identity Verification
+- KYC
+- Know Your Customer
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/KnowYourCustomer)
+- [OpenAPI](openapi/kyc-match-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/kyc-match.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/kyc-match.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/kyc-fill-in-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/kyc-fill-in.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/kyc-fill-in.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/kyc-age-verification-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/kyc-age-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/kyc-age-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA One Time Password SMS API
-Operator-delivered OTP send + validate. Higher deliverability and trust than third-party SMS aggregators.
 
-- [Repository](https://github.com/camaraproject/OTPValidation)
-- [OpenAPI](openapi/one-time-password-sms-openapi.yml)
+Send a one-time password via SMS to a target phone number and validate the code returned by the user. Operator delivers the SMS through the home network, so messages bypass third-party aggregators and inherit higher deliverability and trust.
+
+- **Human URL:** [https://github.com/camaraproject/OTPValidation](https://github.com/camaraproject/OTPValidation)
+
+#### Tags
+
+- Authentication
+- OTP
+- One Time Password
+- SMS
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/OTPValidation)
+- [OpenAPI](openapi/one-time-password-sms-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/one-time-password-sms.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/one-time-password-sms.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Device Swap API
-Detect whether the device (IMEI) behind a phone number has recently changed. Complements SIM Swap as an account-takeover signal.
 
-- [Repository](https://github.com/camaraproject/DeviceSwap)
-- [OpenAPI](openapi/device-swap-openapi.yml)
+Detect whether the device (IMEI) associated with a phone number has recently changed. Complements SIM Swap as a fraud signal — a fresh device or SIM behind a known phone number can indicate account takeover.
+
+- **Human URL:** [https://github.com/camaraproject/DeviceSwap](https://github.com/camaraproject/DeviceSwap)
+
+#### Tags
+
+- Anti-Fraud
+- Device
+- Device Swap
+- Fraud Prevention
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/DeviceSwap)
+- [OpenAPI](openapi/device-swap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/device-swap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/device-swap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Simple Edge Discovery API
-Discover the optimal Multi-access Edge Computing (MEC) endpoint for a given device based on its current network attachment.
 
-- [Repository](https://github.com/camaraproject/SimpleEdgeDiscovery)
-- [OpenAPI](openapi/simple-edge-discovery-openapi.yml)
+Discover the optimal Multi-access Edge Computing (MEC) endpoint for a given client device. The operator returns the closest edge data center URL based on the device's current network attachment so latency-sensitive applications (gaming, AR/VR, real-time inference) can route to the nearest compute.
+
+- **Human URL:** [https://github.com/camaraproject/SimpleEdgeDiscovery](https://github.com/camaraproject/SimpleEdgeDiscovery)
+
+#### Tags
+
+- Edge Cloud
+- Edge Computing
+- MEC
+- Simple Edge Discovery
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/SimpleEdgeDiscovery)
+- [OpenAPI](openapi/simple-edge-discovery-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/simple-edge-discovery.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/simple-edge-discovery.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Carrier Billing Checkout API
-Direct Carrier Billing — charge against the subscriber's mobile bill, with refund support.
 
-- [Repository](https://github.com/camaraproject/CarrierBillingCheckOut)
-- [OpenAPI](openapi/carrier-billing-openapi.yml)
+Direct Carrier Billing checkout — initiate a one-time or recurring charge against the subscriber's mobile phone bill, with confirmation and refund flows. Lets merchants accept payment from users without a card or bank account.
+
+- **Human URL:** [https://github.com/camaraproject/CarrierBillingCheckOut](https://github.com/camaraproject/CarrierBillingCheckOut)
+
+#### Tags
+
+- Billing
+- Carrier Billing
+- Direct Carrier Billing
+- Payments
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/CarrierBillingCheckOut)
+- [OpenAPI](openapi/carrier-billing-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/carrier-billing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/carrier-billing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Population Density Data API
-Aggregated, anonymized device counts in a geographic area over a time window. Smart-city, retail, event, and emergency-response use cases.
 
-- [Repository](https://github.com/camaraproject/PopulationDensityData)
-- [OpenAPI](openapi/population-density-data-openapi.yml)
+Aggregated, anonymized counts of mobile devices observed in a target geographic area over a time window. Powers smart-city planning, retail footfall analytics, event crowd management, and emergency response — without exposing any individual identifier.
+
+- **Human URL:** [https://github.com/camaraproject/PopulationDensityData](https://github.com/camaraproject/PopulationDensityData)
+
+#### Tags
+
+- Analytics
+- Network Insights
+- Population Density
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/PopulationDensityData)
+- [OpenAPI](openapi/population-density-data-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/population-density-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/population-density-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Home Devices Quality on Demand API
-Quality on Demand for fixed-broadband home networks — boost a device behind a home gateway for a bounded window.
 
-- [Repository](https://github.com/camaraproject/HomeDevicesQoD)
-- [OpenAPI](openapi/home-devices-qod-openapi.yml)
+Quality on Demand applied to fixed-broadband home networks — request boosted bandwidth or prioritized traffic for a specific device behind a home gateway for a bounded time window.
+
+- **Human URL:** [https://github.com/camaraproject/HomeDevicesQoD](https://github.com/camaraproject/HomeDevicesQoD)
+
+#### Tags
+
+- Broadband
+- Home Network
+- QoS
+- Quality on Demand
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/HomeDevicesQoD)
+- [OpenAPI](openapi/home-devices-qod-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/home-devices-qod.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/home-devices-qod.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Call Forwarding Signal API
-Detect whether a subscriber currently has call forwarding configured (unconditional, busy, no-reply, unreachable). Anti-fraud signal for voice OTP flows.
 
-- [Repository](https://github.com/camaraproject/CallForwardingSignal)
-- [OpenAPI](openapi/call-forwarding-signal-openapi.yml)
+Detect whether a subscriber currently has unconditional, busy, no-reply, or unreachable call forwarding configured. Fraud signal used in conjunction with SIM Swap and Number Verification to detect account-takeover attempts that re-route voice OTPs.
+
+- **Human URL:** [https://github.com/camaraproject/CallForwardingSignal](https://github.com/camaraproject/CallForwardingSignal)
+
+#### Tags
+
+- Anti-Fraud
+- Call Forwarding
+- Fraud Prevention
+- Telecom
+- Voice
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/CallForwardingSignal)
+- [OpenAPI](openapi/call-forwarding-signal-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/call-forwarding-signal.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/call-forwarding-signal.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Short Message Service API
-Programmatic SMS send with CloudEvents delivery-status callbacks.
 
-- [Repository](https://github.com/camaraproject/ShortMessageService)
-- [OpenAPI](openapi/sms-openapi.yml)
+Send SMS messages programmatically with operator-delivered routing. Includes a delivery-notification subscription surface for CloudEvents callbacks on message status (delivered, failed, expired).
+
+- **Human URL:** [https://github.com/camaraproject/ShortMessageService](https://github.com/camaraproject/ShortMessageService)
+
+#### Tags
+
+- Messaging
+- SMS
+- Short Message Service
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/ShortMessageService)
+- [OpenAPI](openapi/sms-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/sms.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sms.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### CAMARA Connectivity Insights API
-Real-time throughput, latency, jitter, and signal-quality insights for adaptive applications.
 
-- [Repository](https://github.com/camaraproject/ConnectivityInsights)
-- [OpenAPI](openapi/connectivity-insights-openapi.yml)
+Real-time connectivity quality insights — measured throughput, latency, jitter, and signal classification — for a target device. Used by applications to adapt quality (bitrate, codec, fallback) to real network conditions, or to trigger a Quality on Demand session when needed.
 
-## Additional CAMARA APIs
+- **Human URL:** [https://github.com/camaraproject/ConnectivityInsights](https://github.com/camaraproject/ConnectivityInsights)
 
-CAMARA's full portfolio also includes (sample): Edge Cloud, Optimal Edge Discovery, Application Endpoint Discovery / Registration, Edge Application Management, Device Identifier, Device Authenticity, eSIM Remote Management, IoT Device Management, IoT SIM Fraud Prevention, IoT Network Optimization, Network Slice Booking, Dedicated Networks, Multi-Point VPN, Site-to-Cloud VPN, Region Device Count, Most Frequent Location, Device Visit Location, Predictive Connectivity Data, Network Insights, Customer Insights, Session Insights, Subscription Status, Verified Caller, Number Recycling, Tenure, Click to Dial, WebRTC, Voice Notification, Voice Verification Code, Sponsored Data, Consent Info / Consent Management, Blockchain Public Address, Energy Footprint Notification, Traffic Influence, QoS Booking, Model as a Service, Rainfall Intensity, Connected Network Type, Device Reachability Status, Device Roaming Status, Capabilities and Runtime Restrictions, In-Home Device Management, High-Throughput Elastic Networks, and more. Each lives in its own repo at [github.com/camaraproject](https://github.com/camaraproject).
+#### Tags
+
+- Analytics
+- Connectivity
+- Insights
+- Telecom
+
+#### Properties
+
+- [Documentation](https://github.com/camaraproject/ConnectivityInsights)
+- [OpenAPI](openapi/connectivity-insights-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/connectivity-insights.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/connectivity-insights.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
-- [Portal — camaraproject.org](https://camaraproject.org)
-- [About — CAMARA](https://camaraproject.org/about-camara/)
+- [Portal](https://camaraproject.org)
+- [About Us](https://camaraproject.org/about-camara/)
 - [GitHub Organization](https://github.com/camaraproject)
-- [Governance](https://github.com/camaraproject/Governance)
-- [Project Charter](https://github.com/camaraproject/Governance/blob/main/ProjectCharter.md)
-- [Commonalities (API Design Guidelines)](https://github.com/camaraproject/Commonalities)
-- [Identity And Consent Management](https://github.com/camaraproject/IdentityAndConsentManagement)
-- [Release Management](https://github.com/camaraproject/ReleaseManagement)
-- [API Backlog](https://github.com/camaraproject/APIBacklog)
-- [Wiki](https://wiki.camaraproject.org/)
-- [Swagger UI for all APIs](https://camaraproject.github.io/)
-- [Code of Conduct](https://github.com/camaraproject/Governance/blob/main/CODE_OF_CONDUCT.md)
-- [Contributing](https://github.com/camaraproject/Governance/blob/main/CONTRIBUTING.md)
-- [License (Apache 2.0)](https://github.com/camaraproject/Governance/blob/main/documentation/LICENSE.APACHE2.0)
-- [Mailing Lists](https://lists.camaraproject.org/g/all)
-- [News and Events](https://camaraproject.org/news-and-events/)
-- [Linux Foundation Announcement](https://www.linuxfoundation.org/press/announcing-camara-the-telco-global-api-alliance)
-- [GSMA Open Gateway (commercialization partner)](https://www.gsma.com/solutions-and-impact/connectivity-for-good/external-affairs/wp-content/uploads/2024/02/Open-Gateway-Joint-Statement.pdf)
-
-## Artifacts
-
-Machine-readable API specifications organized by format.
-
-### OpenAPI
-
-- [Number Verification](openapi/number-verification-openapi.yml)
-- [SIM Swap](openapi/sim-swap-openapi.yml)
-- [SIM Swap Subscriptions](openapi/sim-swap-subscriptions-openapi.yml)
-- [Device Location — Retrieval](openapi/device-location-retrieval-openapi.yml)
-- [Device Location — Verification](openapi/device-location-verification-openapi.yml)
-- [Device Location — Geofencing Subscriptions](openapi/device-location-geofencing-openapi.yml)
-- [Quality on Demand](openapi/quality-on-demand-openapi.yml)
-- [QoS Profiles](openapi/qos-profiles-openapi.yml)
-- [QoS Provisioning](openapi/qos-provisioning-openapi.yml)
-- [Device Status — Connected Network Type](openapi/device-status-connected-network-type-openapi.yml)
-- [Device Status — Reachability](openapi/device-status-reachability-openapi.yml)
-- [Device Status — Roaming](openapi/device-status-roaming-openapi.yml)
-- [KYC — Match](openapi/kyc-match-openapi.yml)
-- [KYC — Fill-In](openapi/kyc-fill-in-openapi.yml)
-- [KYC — Age Verification](openapi/kyc-age-verification-openapi.yml)
-- [One Time Password SMS](openapi/one-time-password-sms-openapi.yml)
-- [Device Swap](openapi/device-swap-openapi.yml)
-- [Simple Edge Discovery](openapi/simple-edge-discovery-openapi.yml)
-- [Carrier Billing](openapi/carrier-billing-openapi.yml)
-- [Population Density Data](openapi/population-density-data-openapi.yml)
-- [Home Devices QoD](openapi/home-devices-qod-openapi.yml)
-- [Call Forwarding Signal](openapi/call-forwarding-signal-openapi.yml)
-- [SMS](openapi/sms-openapi.yml)
-- [Connectivity Insights](openapi/connectivity-insights-openapi.yml)
-
-All specifications are mirrored verbatim from each working group's canonical `code/API_definitions/*.yaml` at the time of capture.
+- [Documentation](https://github.com/camaraproject/Governance)
+- [Documentation](https://github.com/camaraproject/Governance/blob/main/ProjectCharter.md)
+- [Documentation](https://github.com/camaraproject/Commonalities)
+- [Documentation](https://github.com/camaraproject/IdentityAndConsentManagement)
+- [Documentation](https://github.com/camaraproject/ReleaseManagement)
+- [Documentation](https://github.com/camaraproject/APIBacklog)
+- [Documentation](https://wiki.camaraproject.org/)
+- [Documentation](https://camaraproject.github.io/)
+- [Contact](https://camaraproject.org/contact/)
+- [Code Of Conduct](https://github.com/camaraproject/Governance/blob/main/CODE_OF_CONDUCT.md)
+- [Documentation](https://github.com/camaraproject/Governance/blob/main/CONTRIBUTING.md)
+- [License](https://github.com/camaraproject/Governance/blob/main/documentation/LICENSE.APACHE2.0)
+- [Forum](https://lists.camaraproject.org/g/all)
+- [Blog](https://camaraproject.org/news-and-events/)
+- [Events](https://camaraproject.org/events/)
+- [Press Release](https://www.linuxfoundation.org/press/announcing-camara-the-telco-global-api-alliance)
+- [Partner](https://www.gsma.com/solutions-and-impact/connectivity-for-good/external-affairs/wp-content/uploads/2024/02/Open-Gateway-Joint-Statement.pdf)
+- [Features](undefined)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** info@apievangelist.com
+**URL:** https://apievangelist.com
