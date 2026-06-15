@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SMS API",
+    "version": "0.1.0-alpha.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Send SMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/{basePath}/short-message",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The customer application server makes a request to the SMS API to send SMS message to the destination address.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

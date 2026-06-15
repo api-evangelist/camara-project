@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sim Swap Subscriptions",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sim Swap Subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a list of sim swap event subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{apiRoot}/sim-swap-subscriptions/vwip/subscriptions",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieve a list of sim swap event subscription(s)"
+        },
+        {
+          "info": {
+            "name": "Create a sim swap event subscription for a phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/sim-swap-subscriptions/vwip/subscriptions",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a sim swap event subscription for a phone number"
+        },
+        {
+          "info": {
+            "name": "Retrieve a sim swap event subscription for a phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{apiRoot}/sim-swap-subscriptions/vwip/subscriptions/:subscriptionId",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription identifier that was obtained from the create event subscription operation"
+              }
+            ]
+          },
+          "docs": "retrieve event subscription information for a given subscription."
+        },
+        {
+          "info": {
+            "name": "Delete a sim swap event subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{apiRoot}/sim-swap-subscriptions/vwip/subscriptions/:subscriptionId",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription identifier that was obtained from the create event subscription operation"
+              }
+            ]
+          },
+          "docs": "delete a  given event subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Connectivity Insights",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Network Quality",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check the network quality.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/connectivity-insights/vwip/check-network-quality",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check the network quality. The response shows the network's current\n level of confidence that it can meet an application profile's quality\n thresholds for a given end user device.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

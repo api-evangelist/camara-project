@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "QoS Provisioning",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "QoS Assignment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Triggers the provisioning process for the assignment of a QoS profile to a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/qos-provisioning/vwip/qos-assignments",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates the assignment of a specific QoS profile to a given device when connected to the operator's network.\n\n- If the QoS profile assignment is completed synchronously, the response will be 201 with `status` = `AVAILABLE`.\n- If the QoS profile assignment request is accepted but not yet completed, the response will be 201 with `status` = `REQUESTED`.\n- If the operator determines synchronously that the QoS profile assignment request cannot be fulfilled, the response will be 201 with `status` = "
+        },
+        {
+          "info": {
+            "name": "Get the QoS profile assignment information identified by an assignment record ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{apiRoot}/qos-provisioning/vwip/qos-assignments/:assignmentId",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assignmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the assignment record for the QoS profile assignment, that was created by the `createQosAssignment` operation"
+              }
+            ]
+          },
+          "docs": "Querying for details about the QoS profile assignment\n\n**NOTES:**\n- The access token may be either 2-legged or 3-legged.\n- If a 3-legged access token is used, the subject associated with the QoS profile assignment must also be associated with the access token.\n- The QoS profile assignment must have been created by the same API consumer given in the access token.\n"
+        },
+        {
+          "info": {
+            "name": "Revokes a QoS profile assignment identified by an assignment record ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{apiRoot}/qos-provisioning/vwip/qos-assignments/:assignmentId",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assignmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the assignment record for the QoS profile assignment, that was created by the `createQosAssignment` operation"
+              }
+            ]
+          },
+          "docs": "Revokes the assignment of a QoS profile to a device performed by a previous assignment operation.\n\nIf the notification callback is provided and the assignment status was `AVAILABLE`, when the process is completed, the API consumer will receive in addition to the response a `ASSIGNMENT_STATUS_CHANGED` event with\n- `status` as `UNAVAILABLE` and\n- `statusInfo` as `DELETE_REQUESTED`\nThere will be no notification event if the `status` was already `UNAVAILABLE`.\n\n**NOTES:**\n- The access token may be e"
+        },
+        {
+          "info": {
+            "name": "Returns the assignment record details of the QoS profile assignment for a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/qos-provisioning/vwip/retrieve-qos-assignment",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the details of the record for the assignment of a QoS profile to a device, if any.\n\n**NOTES:**\n- The access token may be either 2-legged or 3-legged. See \"Identifying the device from the access token\" for further information\n  - When the API is invoked using a two-legged access token, the subject will be identified from the optional `device` object, which therefore MUST be provided.\n  - When a three-legged access token is used however, this optional identifier MUST NOT be provided, as th"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

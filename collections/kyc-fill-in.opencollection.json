@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Know Your Customer Fill-in",
+    "version": "0.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fill-in",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Providing information related to a customer identity stored the account data bound to the customer's phone number.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/kyc-fill-in/v0.3/fill-in",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Providing information related to a customer identity stored the account data bound to the customer's phone number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
