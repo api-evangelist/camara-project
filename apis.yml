@@ -335,7 +335,7 @@ common:
   type: License
 - url: https://lists.camaraproject.org/g/all
   name: CAMARA Mailing Lists
-  type: Forum
+  type: Forums
 - url: https://camaraproject.org/news-and-events/
   type: Blog
 - url: https://camaraproject.org/events/
