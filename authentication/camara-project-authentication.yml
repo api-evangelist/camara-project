@@ -1,0 +1,53 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/call-forwarding-signal-openapi.yml, openapi/carrier-billing-openapi.yml, openapi/connectivity-insights-openapi.yml,
+  openapi/device-location-geofencing-openapi.yml, openapi/device-location-retrieval-openapi.yml,
+  openapi/device-location-verification-openapi.yml, openapi/device-status-connected-network-type-openapi.yml,
+  openapi/device-status-reachability-openapi.yml, openapi/device-status-roaming-openapi.yml,
+  openapi/device-swap-openapi.yml, openapi/home-devices-qod-openapi.yml, openapi/kyc-age-verification-openapi.yml
+  ...
+summary:
+  types:
+  - http
+  - openIdConnect
+schemes:
+- name: openId
+  type: openIdConnect
+  openIdConnectUrl: https://example.com/.well-known/openid-configuration
+  description: to support Consent Management
+  sources:
+  - openapi/call-forwarding-signal-openapi.yml
+  - openapi/carrier-billing-openapi.yml
+  - openapi/connectivity-insights-openapi.yml
+  - openapi/device-location-geofencing-openapi.yml
+  - openapi/device-location-retrieval-openapi.yml
+  - openapi/device-location-verification-openapi.yml
+  - openapi/device-status-connected-network-type-openapi.yml
+  - openapi/device-status-reachability-openapi.yml
+  - openapi/device-status-roaming-openapi.yml
+  - openapi/device-swap-openapi.yml
+  - openapi/home-devices-qod-openapi.yml
+  - openapi/kyc-age-verification-openapi.yml
+  - openapi/kyc-fill-in-openapi.yml
+  - openapi/kyc-match-openapi.yml
+  - openapi/number-verification-openapi.yml
+  - openapi/one-time-password-sms-openapi.yml
+  - openapi/population-density-data-openapi.yml
+  - openapi/qos-profiles-openapi.yml
+  - openapi/qos-provisioning-openapi.yml
+  - openapi/quality-on-demand-openapi.yml
+  - openapi/sim-swap-openapi.yml
+  - openapi/sim-swap-subscriptions-openapi.yml
+  - openapi/simple-edge-discovery-openapi.yml
+  - openapi/sms-openapi.yml
+- name: notificationsBearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: '{$request.body#/sinkCredential.credentialType}'
+  sources:
+  - openapi/carrier-billing-openapi.yml
+  - openapi/device-location-geofencing-openapi.yml
+  - openapi/population-density-data-openapi.yml
+  - openapi/qos-provisioning-openapi.yml
+  - openapi/quality-on-demand-openapi.yml
+  - openapi/sim-swap-subscriptions-openapi.yml
