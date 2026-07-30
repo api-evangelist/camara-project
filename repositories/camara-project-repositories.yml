@@ -1,0 +1,1240 @@
+generated: '2026-07-30'
+method: searched
+source: https://github.com/camaraproject
+type: Repositories
+organization: camaraproject
+summary:
+  total: 93
+  archived: 5
+  by_maturity:
+    sandbox: 57
+    incubating: 15
+    unclassified: 9
+    provider-implementation: 7
+    governance: 3
+    subproject: 1
+    working-group: 1
+repositories:
+- name: .github
+  url: https://github.com/camaraproject/.github
+  description: Home for the CAMARA GitHub organization profile & more
+  maturity: governance
+  stars: 0
+  forks: 5
+  open_issues: 0
+  archived: false
+  created: '2024-09-10'
+  updated: '2026-02-12'
+  license: Apache-2.0
+  topics: []
+- name: APIBacklog
+  url: https://github.com/camaraproject/APIBacklog
+  description: Repository to maintain the API Backlog for CAMARA.
+  maturity: unclassified
+  stars: 15
+  forks: 53
+  open_issues: 20
+  archived: false
+  created: '2024-04-22'
+  updated: '2026-07-22'
+  license: Apache-2.0
+  topics:
+  - workinggroup
+- name: ApplicationEndpointDiscovery
+  url: https://github.com/camaraproject/ApplicationEndpointDiscovery
+  description: Sandbox API Repository for ApplicationEndpointDiscovery API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 4
+  open_issues: 5
+  archived: false
+  created: '2025-06-09'
+  updated: '2026-07-21'
+  license: Apache-2.0
+  topics:
+  - camara-sp-edge-cloud
+  - sandbox-api-repository
+- name: ApplicationEndpointRegistration
+  url: https://github.com/camaraproject/ApplicationEndpointRegistration
+  description: Sandbox API Repository for ApplicationEndpointRegistration API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 4
+  open_issues: 5
+  archived: false
+  created: '2025-06-09'
+  updated: '2026-07-22'
+  license: Apache-2.0
+  topics:
+  - camara-sp-edge-cloud
+  - sandbox-api-repository
+- name: ApplicationProfiles
+  url: https://github.com/camaraproject/ApplicationProfiles
+  description: Sandbox API repository for the ApplicationProfiles API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 3
+  open_issues: 7
+  archived: false
+  created: '2025-03-16'
+  updated: '2026-07-21'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: BlockchainPublicAddress
+  url: https://github.com/camaraproject/BlockchainPublicAddress
+  description: Sandbox API repository for BlockchainPublicAddress API(s)
+  maturity: sandbox
+  stars: 7
+  forks: 6
+  open_issues: 6
+  archived: false
+  created: '2023-06-19'
+  updated: '2026-05-11'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: CallForwardingSignal
+  url: https://github.com/camaraproject/CallForwardingSignal
+  description: Incubating API repository for the Call Forwarding Signal API
+  maturity: incubating
+  stars: 5
+  forks: 9
+  open_issues: 5
+  archived: false
+  created: '2024-02-03'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics:
+  - camara-sp-forwarding-signal
+  - incubating-api-repository
+- name: camara-landscape
+  url: https://github.com/camaraproject/camara-landscape
+  description: null
+  maturity: unclassified
+  stars: 4
+  forks: 12
+  open_issues: 9
+  archived: false
+  created: '2023-10-20'
+  updated: '2026-07-28'
+  license: Apache-2.0
+  topics: []
+- name: camaraproject.github.io
+  url: https://github.com/camaraproject/camaraproject.github.io
+  description: Repository to host Swagger UI to display API definitions in readable form
+  maturity: unclassified
+  stars: 0
+  forks: 3
+  open_issues: 0
+  archived: false
+  created: '2025-05-22'
+  updated: '2026-07-25'
+  license: Apache-2.0
+  topics: []
+- name: CapabilitiesAndRuntimeRestrictions
+  url: https://github.com/camaraproject/CapabilitiesAndRuntimeRestrictions
+  description: Sandbox Repository to develop the concept and APIs for Capabilities and Runtime Restriction
+    synchronization.
+  maturity: sandbox
+  stars: 3
+  forks: 2
+  open_issues: 4
+  archived: false
+  created: '2024-11-22'
+  updated: '2026-06-18'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: CarrierBillingCheckOut
+  url: https://github.com/camaraproject/CarrierBillingCheckOut
+  description: Sandbox API repository for CarrierBillingCheckOut API(s)
+  maturity: sandbox
+  stars: 14
+  forks: 11
+  open_issues: 4
+  archived: false
+  created: '2022-10-18'
+  updated: '2026-05-11'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: ClickToDial
+  url: https://github.com/camaraproject/ClickToDial
+  description: Sandbox API repository for ClickToDial API(s)
+  maturity: sandbox
+  stars: 3
+  forks: 10
+  open_issues: 2
+  archived: false
+  created: '2023-09-28'
+  updated: '2026-07-15'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: Commonalities
+  url: https://github.com/camaraproject/Commonalities
+  description: Repository to describe, develop, document and test the common guidelines and assets for
+    CAMARA APIs
+  maturity: unclassified
+  stars: 19
+  forks: 34
+  open_issues: 50
+  archived: false
+  created: '2023-06-23'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics:
+  - workinggroup
+- name: ConnectedNetworkType
+  url: https://github.com/camaraproject/ConnectedNetworkType
+  description: Sandbox API Repository for ConnectedNetworkType API(s)
+  maturity: sandbox
+  stars: 1
+  forks: 5
+  open_issues: 6
+  archived: false
+  created: '2025-05-07'
+  updated: '2026-07-10'
+  license: Apache-2.0
+  topics:
+  - camara-sp-device-status
+  - sandbox-api-repository
+- name: ConnectivityInsights
+  url: https://github.com/camaraproject/ConnectivityInsights
+  description: Sandbox API repository for ConnectivityInsights API(s)
+  maturity: sandbox
+  stars: 9
+  forks: 13
+  open_issues: 13
+  archived: false
+  created: '2023-11-03'
+  updated: '2026-07-21'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: ConnectivityQualityManagement
+  url: https://github.com/camaraproject/ConnectivityQualityManagement
+  description: Sub Project working repository for ConnectivityQualityManagement
+  maturity: subproject
+  stars: 0
+  forks: 5
+  open_issues: 3
+  archived: false
+  created: '2026-05-13'
+  updated: '2026-07-08'
+  license: Apache-2.0
+  topics: []
+- name: ConsentInfo
+  url: https://github.com/camaraproject/ConsentInfo
+  description: 'Sandbox API Repository for the ConsentInfo API(s) - part of IdentityAndConsentManagement
+    working group '
+  maturity: sandbox
+  stars: 3
+  forks: 3
+  open_issues: 2
+  archived: false
+  created: '2025-03-15'
+  updated: '2026-05-11'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: ConsentManagement
+  url: https://github.com/camaraproject/ConsentManagement
+  description: Sandbox API Repository for ConsentManagement API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 1
+  open_issues: 4
+  archived: false
+  created: '2025-12-19'
+  updated: '2026-07-23'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: CustomerInsights
+  url: https://github.com/camaraproject/CustomerInsights
+  description: Sandbox API repository for CustomerInsights APIs
+  maturity: sandbox
+  stars: 1
+  forks: 4
+  open_issues: 6
+  archived: false
+  created: '2024-10-10'
+  updated: '2026-07-24'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: DedicatedNetworks
+  url: https://github.com/camaraproject/DedicatedNetworks
+  description: Sandbox API repository for DedicatedNetworks APIs
+  maturity: sandbox
+  stars: 1
+  forks: 7
+  open_issues: 20
+  archived: false
+  created: '2024-10-01'
+  updated: '2026-07-29'
+  license: Apache-2.0
+  topics:
+  - camara-sp-connectivity-quality-management
+  - sandbox-api-repository
+- name: DeviceAuthenticity
+  url: https://github.com/camaraproject/DeviceAuthenticity
+  description: Sandbox API Repository for DeviceAuthenticity API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 3
+  open_issues: 2
+  archived: false
+  created: '2025-12-02'
+  updated: '2026-06-22'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: DeviceDataVolume
+  url: https://github.com/camaraproject/DeviceDataVolume
+  description: Sandbox API repository for DeviceDataVolume API(s)
+  maturity: sandbox
+  stars: 2
+  forks: 8
+  open_issues: 11
+  archived: false
+  created: '2024-08-29'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics:
+  - camara-sp-device-status
+  - sandbox-api-repository
+- name: DeviceIdentifier
+  url: https://github.com/camaraproject/DeviceIdentifier
+  description: Sandbox API repository for Device Identifier API(s)
+  maturity: sandbox
+  stars: 3
+  forks: 10
+  open_issues: 4
+  archived: false
+  created: '2022-10-18'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: DeviceLocation
+  url: https://github.com/camaraproject/DeviceLocation
+  description: Incubating API repository for DeviceLocation API(s)
+  maturity: incubating
+  stars: 38
+  forks: 39
+  open_issues: 14
+  archived: false
+  created: '2022-07-25'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics:
+  - camara-sp-device-location
+  - incubating-api-repository
+- name: DeviceMediaStreamingRate
+  url: https://github.com/camaraproject/DeviceMediaStreamingRate
+  description: Sandbox API repository for the DeviceMediaStreamingRate API(s)
+  maturity: sandbox
+  stars: 1
+  forks: 6
+  open_issues: 6
+  archived: false
+  created: '2024-08-29'
+  updated: '2026-07-17'
+  license: Apache-2.0
+  topics:
+  - camara-sp-device-status
+  - sandbox-api-repository
+- name: DeviceReachabilityStatus
+  url: https://github.com/camaraproject/DeviceReachabilityStatus
+  description: Incubating API Repository for DeviceReachabilityStatus API(s)
+  maturity: incubating
+  stars: 0
+  forks: 5
+  open_issues: 8
+  archived: false
+  created: '2025-05-07'
+  updated: '2026-07-17'
+  license: Apache-2.0
+  topics:
+  - camara-sp-device-status
+  - incubating-api-repository
+- name: DeviceRoamingStatus
+  url: https://github.com/camaraproject/DeviceRoamingStatus
+  description: Incubating API Repository for DeviceRoamingStatus API(s)
+  maturity: incubating
+  stars: 0
+  forks: 7
+  open_issues: 10
+  archived: false
+  created: '2025-05-07'
+  updated: '2026-07-08'
+  license: Apache-2.0
+  topics:
+  - camara-sp-device-status
+  - incubating-api-repository
+- name: DeviceStatus
+  url: https://github.com/camaraproject/DeviceStatus
+  description: Incubating API repository for DeviceStatus API(s)
+  maturity: incubating
+  stars: 14
+  forks: 37
+  open_issues: 1
+  archived: false
+  created: '2022-07-25'
+  updated: '2025-12-16'
+  license: Apache-2.0
+  topics:
+  - camara-sp-device-status
+  - incubating-api-repository
+- name: DeviceSwap
+  url: https://github.com/camaraproject/DeviceSwap
+  description: Incubating API repository for DeviceSwap API(s)
+  maturity: incubating
+  stars: 6
+  forks: 8
+  open_issues: 12
+  archived: false
+  created: '2023-10-30'
+  updated: '2026-07-16'
+  license: Apache-2.0
+  topics:
+  - camara-sp-number-insights
+  - incubating-api-repository
+- name: DeviceVisitLocation
+  url: https://github.com/camaraproject/DeviceVisitLocation
+  description: Sandbox API Repository for DeviceVisitLocation API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 2
+  open_issues: 2
+  archived: false
+  created: '2025-07-01'
+  updated: '2026-05-13'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: EasyCLA
+  url: https://github.com/camaraproject/EasyCLA
+  description: Repository for Contributors to test/initiate the EasyCLA signing process
+  maturity: governance
+  stars: 2
+  forks: 74
+  open_issues: 5
+  archived: false
+  created: '2024-07-03'
+  updated: '2025-05-28'
+  license: Apache-2.0
+  topics: []
+- name: EdgeApplicationManagement
+  url: https://github.com/camaraproject/EdgeApplicationManagement
+  description: Sandbox API Repository for EdgeApplicationManagement API(s)
+  maturity: sandbox
+  stars: 1
+  forks: 2
+  open_issues: 9
+  archived: false
+  created: '2026-04-07'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: EdgeCloud
+  url: https://github.com/camaraproject/EdgeCloud
+  description: Sandbox API repository for EdgeCloud API(s)
+  maturity: sandbox
+  stars: 23
+  forks: 52
+  open_issues: 19
+  archived: false
+  created: '2022-04-21'
+  updated: '2026-04-28'
+  license: Apache-2.0
+  topics:
+  - camara-sp-edge-cloud
+- name: EnergyFootprintNotification
+  url: https://github.com/camaraproject/EnergyFootprintNotification
+  description: Sandbox API Repository for EnergyFootprintNotification API(s).
+  maturity: sandbox
+  stars: 2
+  forks: 3
+  open_issues: 5
+  archived: false
+  created: '2025-01-20'
+  updated: '2026-06-18'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: EnergyFootprintNotification_PI
+  url: https://github.com/camaraproject/EnergyFootprintNotification_PI
+  description: Repository to contain a provider implementation of the EnergyFootprintNotification API(s)
+  maturity: provider-implementation
+  stars: 0
+  forks: 1
+  open_issues: 0
+  archived: false
+  created: '2025-11-01'
+  updated: '2025-12-15'
+  license: Apache-2.0
+  topics: []
+- name: eSimRemoteManagement
+  url: https://github.com/camaraproject/eSimRemoteManagement
+  description: Sandbox API Repository for eSimRemoteManagement API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 2
+  open_issues: 4
+  archived: false
+  created: '2025-12-03'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: Governance
+  url: https://github.com/camaraproject/Governance
+  description: Telco network capabilities exposed through APIs provide a large benefit for customers.
+    By simplifying telco network complexity with APIs and making the APIs available across telco networks
+    and countries, CAMARA enables easy and seamless access.
+  maturity: governance
+  stars: 66
+  forks: 47
+  open_issues: 14
+  archived: false
+  created: '2021-06-28'
+  updated: '2026-07-29'
+  license: null
+  topics: []
+- name: HighThroughputElasticNetworks
+  url: https://github.com/camaraproject/HighThroughputElasticNetworks
+  description: Sandbox Repository to develop the service APIs for High Throughput Elastic Networks
+  maturity: sandbox
+  stars: 1
+  forks: 1
+  open_issues: 2
+  archived: false
+  created: '2024-11-25'
+  updated: '2026-07-29'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: HomeDevicesQoD
+  url: https://github.com/camaraproject/HomeDevicesQoD
+  description: Sandbox API repository for HomeDevicesQoD API(s)
+  maturity: sandbox
+  stars: 3
+  forks: 9
+  open_issues: 0
+  archived: true
+  created: '2022-10-18'
+  updated: '2026-02-20'
+  license: Apache-2.0
+  topics:
+  - archived-api-repository
+- name: IdentityAndConsentManagement
+  url: https://github.com/camaraproject/IdentityAndConsentManagement
+  description: Repository to describe, develop, document and test the Identity And Consent Management
+    for CAMARA APIs
+  maturity: unclassified
+  stars: 30
+  forks: 43
+  open_issues: 20
+  archived: false
+  created: '2023-02-17'
+  updated: '2026-05-19'
+  license: Apache-2.0
+  topics:
+  - workinggroup
+- name: InHomeDeviceManagement
+  url: https://github.com/camaraproject/InHomeDeviceManagement
+  description: Sandbox API Repository for InHomeDeviceManagement API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 2
+  open_issues: 2
+  archived: false
+  created: '2026-01-13'
+  updated: '2026-06-15'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: IoTDeviceManagement
+  url: https://github.com/camaraproject/IoTDeviceManagement
+  description: Sandbox API Repository for IoT Device Management APIs
+  maturity: sandbox
+  stars: 1
+  forks: 8
+  open_issues: 7
+  archived: false
+  created: '2025-03-16'
+  updated: '2026-07-28'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: IoTNetworkOptimization
+  url: https://github.com/camaraproject/IoTNetworkOptimization
+  description: Sandbox API Repository for IoTNetworkOptimization API(s)
+  maturity: sandbox
+  stars: 2
+  forks: 4
+  open_issues: 5
+  archived: false
+  created: '2025-04-15'
+  updated: '2026-06-18'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: IoTNetworkOptimization_PI
+  url: https://github.com/camaraproject/IoTNetworkOptimization_PI
+  description: Provider Implementation repository for IoTNetworkOptimization APIs
+  maturity: provider-implementation
+  stars: 1
+  forks: 2
+  open_issues: 0
+  archived: false
+  created: '2025-12-03'
+  updated: '2025-12-15'
+  license: Apache-2.0
+  topics: []
+- name: IoTSIMFraudPrevention
+  url: https://github.com/camaraproject/IoTSIMFraudPrevention
+  description: Sandbox API Repository for IoTSIMFraudPrevention API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 6
+  open_issues: 6
+  archived: false
+  created: '2025-03-16'
+  updated: '2026-07-14'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: KnowYourCustomer
+  url: https://github.com/camaraproject/KnowYourCustomer
+  description: Incubating API Repository for KnowYourCustomer API(s)
+  maturity: incubating
+  stars: 13
+  forks: 16
+  open_issues: 0
+  archived: false
+  created: '2023-09-26'
+  updated: '2025-12-12'
+  license: Apache-2.0
+  topics:
+  - camara-sp-know-your-customer
+  - incubating-api-repository
+- name: KnowYourCustomerAgeVerification
+  url: https://github.com/camaraproject/KnowYourCustomerAgeVerification
+  description: Sandbox API Repository for KnowYourCustomerAgeVerification API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 3
+  open_issues: 6
+  archived: false
+  created: '2025-05-28'
+  updated: '2026-07-23'
+  license: Apache-2.0
+  topics:
+  - camara-sp-know-your-customer
+  - sandbox-api-repository
+- name: KnowYourCustomerFill-in
+  url: https://github.com/camaraproject/KnowYourCustomerFill-in
+  description: Incubating API Repository for KnowYourCustomerFill-in API(s)
+  maturity: incubating
+  stars: 0
+  forks: 2
+  open_issues: 14
+  archived: false
+  created: '2025-05-28'
+  updated: '2026-07-23'
+  license: Apache-2.0
+  topics:
+  - camara-sp-know-your-customer
+  - incubating-api-repository
+- name: KnowYourCustomerMatch
+  url: https://github.com/camaraproject/KnowYourCustomerMatch
+  description: Incubating API repository for KnowYourCustomerMatch API(s)
+  maturity: incubating
+  stars: 0
+  forks: 8
+  open_issues: 17
+  archived: false
+  created: '2025-05-28'
+  updated: '2026-07-29'
+  license: Apache-2.0
+  topics:
+  - camara-sp-know-your-customer
+  - incubating-api-repository
+- name: Marketing
+  url: https://github.com/camaraproject/Marketing
+  description: Repository for the CAMARA Marketing Working Group
+  maturity: working-group
+  stars: 2
+  forks: 1
+  open_issues: 7
+  archived: false
+  created: '2024-04-18'
+  updated: '2026-05-19'
+  license: null
+  topics:
+  - workinggroup
+- name: MCPEnablement_PI1
+  url: https://github.com/camaraproject/MCPEnablement_PI1
+  description: Repository to contain a provider implementation for MCP Enablement
+  maturity: provider-implementation
+  stars: 1
+  forks: 0
+  open_issues: 1
+  archived: false
+  created: '2026-06-15'
+  updated: '2026-07-08'
+  license: Apache-2.0
+  topics: []
+- name: ModelAsAService
+  url: https://github.com/camaraproject/ModelAsAService
+  description: Sandbox API Repository for ModelAsAService APIs
+  maturity: sandbox
+  stars: 5
+  forks: 2
+  open_issues: 8
+  archived: false
+  created: '2024-11-04'
+  updated: '2026-07-28'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: MostFrequentLocation
+  url: https://github.com/camaraproject/MostFrequentLocation
+  description: Sandbox API Repository for MostFrequentLocation API(s)
+  maturity: sandbox
+  stars: 2
+  forks: 7
+  open_issues: 6
+  archived: false
+  created: '2024-05-05'
+  updated: '2026-06-08'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: MultiPointVPN
+  url: https://github.com/camaraproject/MultiPointVPN
+  description: Sandbox API Repository for MultiPointVPN API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 5
+  open_issues: 5
+  archived: false
+  created: '2025-06-14'
+  updated: '2026-06-17'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: NetworkAccessManagement
+  url: https://github.com/camaraproject/NetworkAccessManagement
+  description: Sandbox API Repository for NetworkAccessManagement API(s)
+  maturity: sandbox
+  stars: 3
+  forks: 4
+  open_issues: 28
+  archived: false
+  created: '2024-05-05'
+  updated: '2026-07-27'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: NetworkInsights
+  url: https://github.com/camaraproject/NetworkInsights
+  description: Sandbox API Repository for NetworkInsights API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 4
+  open_issues: 8
+  archived: false
+  created: '2025-05-07'
+  updated: '2026-07-27'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: NetworkSliceBooking
+  url: https://github.com/camaraproject/NetworkSliceBooking
+  description: Sandbox API Repository for NetworkSliceBooking API(s)
+  maturity: sandbox
+  stars: 3
+  forks: 7
+  open_issues: 18
+  archived: false
+  created: '2024-01-29'
+  updated: '2026-06-04'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: NumberRecycling
+  url: https://github.com/camaraproject/NumberRecycling
+  description: Sandbox API Repository for the NumberRecycling API - part of Sub Project Know Your Customer
+  maturity: sandbox
+  stars: 5
+  forks: 8
+  open_issues: 9
+  archived: false
+  created: '2024-07-31'
+  updated: '2026-07-08'
+  license: Apache-2.0
+  topics:
+  - camara-sp-know-your-customer
+  - sandbox-api-repository
+- name: NumberVerification
+  url: https://github.com/camaraproject/NumberVerification
+  description: Incubating API Repository for the NumberVerification API
+  maturity: incubating
+  stars: 22
+  forks: 26
+  open_issues: 8
+  archived: false
+  created: '2022-10-18'
+  updated: '2026-07-17'
+  license: Apache-2.0
+  topics:
+  - camara-sp-number-insights
+  - incubating-api-repository
+- name: OptimalEdgeDiscovery
+  url: https://github.com/camaraproject/OptimalEdgeDiscovery
+  description: Sandbox API Repository for OptimalEdgeDiscovery API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 5
+  open_issues: 6
+  archived: false
+  created: '2025-06-09'
+  updated: '2026-07-21'
+  license: Apache-2.0
+  topics:
+  - camara-sp-edge-cloud
+  - sandbox-api-repository
+- name: OTPValidation
+  url: https://github.com/camaraproject/OTPValidation
+  description: Incubating API repository for the OTPValidation API
+  maturity: incubating
+  stars: 14
+  forks: 16
+  open_issues: 7
+  archived: false
+  created: '2022-10-18'
+  updated: '2026-07-21'
+  license: Apache-2.0
+  topics:
+  - camara-sp-number-insights
+  - incubating-api-repository
+- name: PopulationDensityData
+  url: https://github.com/camaraproject/PopulationDensityData
+  description: Incubating API repository for Population Density Data API(s)
+  maturity: incubating
+  stars: 5
+  forks: 9
+  open_issues: 7
+  archived: false
+  created: '2023-12-21'
+  updated: '2026-07-29'
+  license: Apache-2.0
+  topics:
+  - camara-sp-population-density-data
+  - incubating-api-repository
+- name: PredictiveConnectivityData
+  url: https://github.com/camaraproject/PredictiveConnectivityData
+  description: Sandbox API Repository for PredictiveConnectivityData API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 3
+  open_issues: 7
+  archived: false
+  created: '2025-04-15'
+  updated: '2026-07-28'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: project-administration
+  url: https://github.com/camaraproject/project-administration
+  description: Repository for project-administration tooling
+  maturity: unclassified
+  stars: 0
+  forks: 1
+  open_issues: 12
+  archived: false
+  created: '2025-06-10'
+  updated: '2026-07-28'
+  license: Apache-2.0
+  topics: []
+- name: QoSBooking
+  url: https://github.com/camaraproject/QoSBooking
+  description: Sandbox API Repository for QoSBooking API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 4
+  open_issues: 19
+  archived: false
+  created: '2025-01-24'
+  updated: '2026-07-08'
+  license: Apache-2.0
+  topics:
+  - camara-sp-connectivity-quality-management
+  - sandbox-api-repository
+- name: QualityOnDemand
+  url: https://github.com/camaraproject/QualityOnDemand
+  description: Incubating API Repository for QualityOnDemand API(s)
+  maturity: incubating
+  stars: 55
+  forks: 64
+  open_issues: 23
+  archived: false
+  created: '2022-02-22'
+  updated: '2026-07-24'
+  license: Apache-2.0
+  topics:
+  - camara-sp-connectivity-quality-management
+  - incubating-api-repository
+- name: QualityOnDemand_PI1
+  url: https://github.com/camaraproject/QualityOnDemand_PI1
+  description: Provider Implementation of QualityOnDemand by Deutsche Telekom
+  maturity: provider-implementation
+  stars: 10
+  forks: 12
+  open_issues: 0
+  archived: false
+  created: '2022-12-09'
+  updated: '2025-05-28'
+  license: Apache-2.0
+  topics: []
+- name: QualityOnDemand_PI2
+  url: https://github.com/camaraproject/QualityOnDemand_PI2
+  description: Provider Implementation of QualityOnDemand by Orange
+  maturity: provider-implementation
+  stars: 1
+  forks: 1
+  open_issues: 1
+  archived: false
+  created: '2023-01-13'
+  updated: '2025-05-28'
+  license: Apache-2.0
+  topics: []
+- name: QualityOnDemand_PI3
+  url: https://github.com/camaraproject/QualityOnDemand_PI3
+  description: Provider Implementation of QualityOnDemand by Spry Fox Networks
+  maturity: provider-implementation
+  stars: 2
+  forks: 1
+  open_issues: 0
+  archived: false
+  created: '2023-01-27'
+  updated: '2025-05-28'
+  license: Apache-2.0
+  topics: []
+- name: RainfallIntensity
+  url: https://github.com/camaraproject/RainfallIntensity
+  description: Sandbox API Repository for RainfallIntensity API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 1
+  open_issues: 4
+  archived: false
+  created: '2026-01-13'
+  updated: '2026-06-18'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: RegionDeviceCount
+  url: https://github.com/camaraproject/RegionDeviceCount
+  description: Sandbox API repository to describe, develop, document and test the RegionDeviceCount API(s)
+  maturity: sandbox
+  stars: 2
+  forks: 3
+  open_issues: 3
+  archived: false
+  created: '2023-12-19'
+  updated: '2026-06-18'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: ReleaseManagement
+  url: https://github.com/camaraproject/ReleaseManagement
+  description: Repository to describe, develop, document and test the Release Management process
+  maturity: unclassified
+  stars: 5
+  forks: 9
+  open_issues: 5
+  archived: false
+  created: '2023-11-14'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics:
+  - workinggroup
+- name: ReleaseTest
+  url: https://github.com/camaraproject/ReleaseTest
+  description: Sandbox API Repository for ReleaseTest API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 2
+  open_issues: 1
+  archived: false
+  created: '2026-02-19'
+  updated: '2026-07-23'
+  license: Apache-2.0
+  topics: []
+- name: SessionInsights
+  url: https://github.com/camaraproject/SessionInsights
+  description: Sandbox API Repository for SessionInsights API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 5
+  open_issues: 7
+  archived: false
+  created: '2024-09-15'
+  updated: '2026-07-29'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: ShortMessageService
+  url: https://github.com/camaraproject/ShortMessageService
+  description: Sandbox API Repository for Short Message API(s)
+  maturity: sandbox
+  stars: 2
+  forks: 6
+  open_issues: 0
+  archived: true
+  created: '2023-12-21'
+  updated: '2026-02-20'
+  license: Apache-2.0
+  topics:
+  - archived-api-repository
+- name: SimpleEdgeDiscovery
+  url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  description: Incubating API Repository for the SimpleEdgeDiscovery API (part of EdgeCloud Sub Project)
+  maturity: incubating
+  stars: 8
+  forks: 6
+  open_issues: 8
+  archived: false
+  created: '2024-05-05'
+  updated: '2026-07-29'
+  license: Apache-2.0
+  topics:
+  - camara-sp-edge-cloud
+  - incubating-api-repository
+- name: SimSwap
+  url: https://github.com/camaraproject/SimSwap
+  description: Incubating API repository for the SimSwap API(s)
+  maturity: incubating
+  stars: 46
+  forks: 34
+  open_issues: 15
+  archived: false
+  created: '2022-10-18'
+  updated: '2026-07-13'
+  license: Apache-2.0
+  topics:
+  - camara-sp-number-insights
+  - incubating-api-repository
+- name: SiteToCloudVPN
+  url: https://github.com/camaraproject/SiteToCloudVPN
+  description: Sandbox API Repository to describe, develop, document and test the SiteToCloudVPN API(s)
+  maturity: sandbox
+  stars: 6
+  forks: 6
+  open_issues: 0
+  archived: true
+  created: '2023-12-09'
+  updated: '2026-02-20'
+  license: Apache-2.0
+  topics:
+  - archived-api-repository
+- name: SponsoredData
+  url: https://github.com/camaraproject/SponsoredData
+  description: Sandbox API Repository for SponsoredData API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 1
+  open_issues: 4
+  archived: false
+  created: '2025-09-26'
+  updated: '2026-06-18'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: SubscriptionStatus
+  url: https://github.com/camaraproject/SubscriptionStatus
+  description: Sandbox API repository for the SubscriptionStatus API(s)
+  maturity: sandbox
+  stars: 2
+  forks: 5
+  open_issues: 5
+  archived: false
+  created: '2024-08-29'
+  updated: '2026-06-30'
+  license: Apache-2.0
+  topics:
+  - camara-sp-know-your-customer
+  - sandbox-api-repository
+- name: Template_API_Repository
+  url: https://github.com/camaraproject/Template_API_Repository
+  description: Sandbox API repository for {{repo_name}} API(s)
+  maturity: sandbox
+  stars: 2
+  forks: 5
+  open_issues: 0
+  archived: false
+  created: '2022-11-27'
+  updated: '2026-05-14'
+  license: Apache-2.0
+  topics: []
+- name: Template_PI_Repository
+  url: https://github.com/camaraproject/Template_PI_Repository
+  description: Repository to contain the provider implementation of the §repo_name§ API(s)
+  maturity: provider-implementation
+  stars: 0
+  forks: 0
+  open_issues: 0
+  archived: false
+  created: '2022-11-27'
+  updated: '2025-05-28'
+  license: Apache-2.0
+  topics: []
+- name: Tenure
+  url: https://github.com/camaraproject/Tenure
+  description: Sandbox API repository for the Tenure API (part of Sub Project Know Your Customer)
+  maturity: sandbox
+  stars: 2
+  forks: 7
+  open_issues: 8
+  archived: false
+  created: '2024-05-20'
+  updated: '2026-07-30'
+  license: Apache-2.0
+  topics:
+  - camara-sp-know-your-customer
+  - sandbox-api-repository
+- name: test-repo-w-linting
+  url: https://github.com/camaraproject/test-repo-w-linting
+  description: Sandbox API Repository for test-repo-w-linting API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 1
+  open_issues: 0
+  archived: false
+  created: '2025-07-26'
+  updated: '2025-09-08'
+  license: Apache-2.0
+  topics: []
+- name: test-repo-wo-linting
+  url: https://github.com/camaraproject/test-repo-wo-linting
+  description: Sandbox API Repository for test-repo-wo-linting API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 2
+  open_issues: 3
+  archived: false
+  created: '2025-07-26'
+  updated: '2025-10-15'
+  license: Apache-2.0
+  topics: []
+- name: TestRepo
+  url: https://github.com/camaraproject/TestRepo
+  description: Sandbox API Repository for TestRepo API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 1
+  open_issues: 0
+  archived: true
+  created: '2026-02-18'
+  updated: '2026-02-19'
+  license: Apache-2.0
+  topics: []
+- name: tooling
+  url: https://github.com/camaraproject/tooling
+  description: Repository for organization wide tooling in CAMARA, supporting Commonalities, e.g. reusable
+    linting workflows
+  maturity: unclassified
+  stars: 0
+  forks: 5
+  open_issues: 15
+  archived: false
+  created: '2025-02-19'
+  updated: '2026-07-28'
+  license: Apache-2.0
+  topics: []
+- name: TrafficInfluence
+  url: https://github.com/camaraproject/TrafficInfluence
+  description: Sandbox API Repository for Traffic Influence API(s)
+  maturity: sandbox
+  stars: 2
+  forks: 4
+  open_issues: 3
+  archived: false
+  created: '2025-02-14'
+  updated: '2026-05-14'
+  license: Apache-2.0
+  topics:
+  - camara-sp-edge-cloud
+  - sandbox-api-repository
+- name: VerifiedCaller
+  url: https://github.com/camaraproject/VerifiedCaller
+  description: Sandbox API repository for the Verified Caller API(s)
+  maturity: sandbox
+  stars: 6
+  forks: 11
+  open_issues: 9
+  archived: false
+  created: '2024-05-20'
+  updated: '2026-07-23'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: VoiceNotification
+  url: https://github.com/camaraproject/VoiceNotification
+  description: Sandbox API Repository for VoiceNotification API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 2
+  open_issues: 5
+  archived: false
+  created: '2025-05-13'
+  updated: '2026-06-18'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: VoiceVerificationCode
+  url: https://github.com/camaraproject/VoiceVerificationCode
+  description: Sandbox API Repository for VoiceVerificationCode API(s)
+  maturity: sandbox
+  stars: 0
+  forks: 1
+  open_issues: 4
+  archived: false
+  created: '2025-06-14'
+  updated: '2026-06-18'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: WebRTC
+  url: https://github.com/camaraproject/WebRTC
+  description: Sandbox API repository to describe, develop, document and test the WebRTC Service API(s)
+  maturity: sandbox
+  stars: 10
+  forks: 13
+  open_issues: 12
+  archived: false
+  created: '2023-09-28'
+  updated: '2026-07-19'
+  license: Apache-2.0
+  topics:
+  - sandbox-api-repository
+- name: WorkingGroups
+  url: https://github.com/camaraproject/WorkingGroups
+  description: Archived repository used previously by CAMARA Working Groups.
+  maturity: unclassified
+  stars: 43
+  forks: 58
+  open_issues: 0
+  archived: true
+  created: '2022-02-22'
+  updated: '2024-09-02'
+  license: null
+  topics: []

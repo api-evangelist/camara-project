@@ -1,0 +1,17 @@
+generated: '2026-07-30'
+method: searched
+source: https://camaraproject.org/
+type: WorkingGroups
+summary:
+  working_groups: 5
+working_groups:
+- name: API Backlog
+  url: https://camaraproject.org/api-backlog/
+- name: Commonalities
+  url: https://camaraproject.org/commonalities/
+- name: Identity and Consent Management
+  url: https://camaraproject.org/identity-and-consent-management/
+- name: Marketing
+  url: https://camaraproject.org/marketing/
+- name: Release Management
+  url: https://camaraproject.org/release-management/

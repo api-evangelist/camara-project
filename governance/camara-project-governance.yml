@@ -1,0 +1,141 @@
+generated: '2026-07-30'
+method: searched
+source:
+- https://camaraproject.org/governing-board/
+- https://camaraproject.org/steering-committee/
+- https://camaraproject.org/end-user-council/
+- https://github.com/camaraproject/Governance/blob/main/ProjectCharter.md
+- https://github.com/camaraproject/Governance/blob/main/ProjectStructureAndRoles.md
+- https://github.com/camaraproject/Governance/blob/main/documentation/API-Onboarding-and-Lifecycle.md
+type: Governance
+name: CAMARA Project
+host: Linux Foundation
+host_structure: LF Directed Fund
+founded: 2021
+launched: MWC 2022
+note: >-
+  CAMARA separates the technical project from the money. The Technical Steering Committee governs the
+  specifications and is elected from active maintainers; the Governing Board manages the Directed Fund,
+  the budget and outreach. That split is deliberate and is the reason a company can contribute
+  technically without buying a board seat — and, read the other way, why board seats concentrate among
+  the operators who fund it.
+
+bodies:
+- name: Governing Board
+  url: https://camaraproject.org/governing-board/
+  remit: >-
+    Manages the CAMARA Directed Fund. Responsible for budget approvals, nomination and election of
+    Officers of the Directed Fund, and outreach activities.
+  seats_captured: 14
+  officers:
+  - name: Nathan Rader
+    role: Chair
+    title: VP Service and Capability Exposure
+    org: Deutsche Telekom
+  - name: Dennis Wukovits
+    role: Treasurer
+    title: Director Network API and Platforms
+    org: Verizon
+  - name: Herbert Damker
+    role: Technical Lead
+    title: Lead Architect
+    org: Deutsche Telekom
+  - name: Markus Kümmerle
+    role: Outreach Committee
+    title: Tribe Lead MACE Engineering & Production Interface (CAMARA)
+    org: Deutsche Telekom
+
+- name: Technical Steering Committee
+  url: https://camaraproject.org/steering-committee/
+  aka: TSC
+  remit: The oversight body for the technical CAMARA Project.
+  seats_captured: 15
+  github_team: '@camaraproject/tsc-participants'
+  wiki: https://lf-camaraproject.atlassian.net/wiki/x/0zbe
+  officers:
+  - name: Herbert Damker
+    role: TSC chair, Active Maintainer
+    org: Deutsche Telekom
+  - name: Eric Murray
+    role: TSC deputy chair, Active Maintainer
+    org: Vodafone
+  - name: Ludovic Robert
+    role: TSC deputy chair, Active Maintainer
+    org: Orange
+  composition: >-
+    Active Maintainers, plus named End User Council representatives. Maintainership of the Governance
+    repository is held by the TSC participants collectively.
+
+- name: End User Council
+  url: https://camaraproject.org/end-user-council/
+  remit: Represents the API consumer side; seats representatives onto the TSC.
+  seats_captured: 13
+
+api_lifecycle:
+  stages:
+  - Sandbox
+  - Incubating
+  - Graduated
+  - Archived
+  source: https://github.com/camaraproject/Governance/blob/main/documentation/API-Onboarding-and-Lifecycle.md
+  definition: >-
+    All new APIs begin in a Sandbox repository and evolve through Sandbox → Incubating → Graduated
+    (→ Archived). Sandbox is the entry point for experimentation with no strict requirements. Moving to
+    Incubating requires maintainers to apply via an issue in the API Backlog working group, which
+    pre-checks on behalf of the TSC, which then confirms inclusion in an existing or new Sub Project.
+  onboarding: >-
+    New API proposals are submitted and evaluated by the API Backlog working group codeowners, who bring
+    agreed proposals to the TSC. Approved proposals get a dedicated Sandbox repository derived from
+    Template_API_Repository, a mailing list, and assigned maintainership.
+  frozen_proposals: >-
+    Proposals approved by the TSC with no onboarding progress can be frozen, and frozen proposals can be
+    reactivated or archived.
+  observed:
+    method: derived from repository descriptions in the GitHub org, 2026-07-30
+    sandbox: 57
+    incubating: 15
+    graduated: 0
+    archived_flag_set: 1
+    finding: >-
+      No repository in the organization describes itself as Graduated. The flagship APIs the industry
+      markets — Number Verification, SIM Swap, Quality on Demand, Device Location — are all still
+      Incubating, four years after the project was founded. Read carefully: maturity here is taken from
+      each repository's own description, which is CAMARA's stated convention but may lag an actual
+      graduation decision. Worth confirming against TSC minutes before publishing as fact.
+
+documents:
+- type: Charter
+  url: https://github.com/camaraproject/Governance/blob/main/ProjectCharter.md
+- type: Governance
+  url: https://github.com/camaraproject/Governance/blob/main/ProjectStructureAndRoles.md
+- type: CodeOfConduct
+  url: https://github.com/camaraproject/Governance/blob/main/CODE_OF_CONDUCT.md
+- type: Contributing
+  url: https://github.com/camaraproject/Governance/blob/main/CONTRIBUTING.md
+- type: Participants
+  url: https://github.com/camaraproject/Governance/blob/main/PARTICIPANTS.MD
+- type: Maintainers
+  url: https://github.com/camaraproject/Governance/blob/main/MAINTAINERS.MD
+- type: CodeOwners
+  url: https://github.com/camaraproject/Governance/blob/main/CODEOWNERS
+- type: CLA
+  url: https://github.com/camaraproject/EasyCLA
+  note: EasyCLA — contributors sign via the Linux Foundation CLA tooling.
+- type: FundingCharter
+  url: https://github.com/camaraproject/Governance/blob/main/CAMARA%20Fund%20Participation%20Agreement%20and%20Funding%20Charter.pdf
+- type: MeetingMinutes
+  url: https://github.com/camaraproject/Governance/tree/main/documentation/MeetingMinutes
+  note: >-
+    Steering Committee minutes published as PDFs from 2021-12 onward, plus AHC minutes. A long,
+    continuous public record — unusual, and a genuine transparency strength.
+
+concentration:
+  note: >-
+    Derived from the governance seats captured in people/camara-project-people.yml. Useful as a read on
+    who actually steers the standard, not just who participates in it.
+  deutsche_telekom: 'Chair of the Governing Board, Technical Lead, Outreach Committee, and TSC chair'
+  observed: >-
+    Deutsche Telekom holds the Governing Board chair, the Board Technical Lead seat, the Outreach
+    Committee seat and the TSC chair. Vodafone and Orange hold the two TSC deputy chairs. Verizon holds
+    the Board treasurer seat. The standard is steered by European incumbent operators, with US carriers
+    on the board and the aggregator layer (Aduna, Nokia, Ericsson) present but not chairing.

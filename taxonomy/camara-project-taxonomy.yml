@@ -1,0 +1,179 @@
+generated: '2026-07-30'
+method: searched
+source: https://camaraproject.org/
+type: Taxonomy
+note: The standards body's own categorisation of its specifications, captured as published. Not an API
+  Evangelist classification.
+summary:
+  categories: 8
+  apis_listed: 64
+  by_category:
+    Authentication and Fraud Prevention: 16
+    Location Services: 7
+    Communication Services: 3
+    Communication Quality: 13
+    Device Information: 11
+    Computing Services: 8
+    Payments and Charging: 4
+    Service Management: 2
+categories:
+- category: Authentication and Fraud Prevention
+  url: null
+  api_count: 16
+  apis:
+  - name: Brand Registration
+    url: https://camaraproject.org/brand-registration/
+  - name: Call Forwarding Signal
+    url: https://camaraproject.org/call-forwarding-signal/
+  - name: Customer Insights
+    url: https://camaraproject.org/customer-insights/
+  - name: Device Swap
+    url: https://camaraproject.org/device-swap/
+  - name: IoT SIM Fraud Prevention
+    url: https://camaraproject.org/iot-sim-fraud-prevention/
+  - name: IoT SIM Fraud Prevention Subscriptions
+    url: https://camaraproject.org/iot-sim-fraud-prevention-subscriptions/
+  - name: Know Your Customer Age Verification
+    url: https://camaraproject.org/know-your-customer-age-verification/
+  - name: Know Your Customer Fill In
+    url: https://camaraproject.org/know-your-customer-fill-in/
+  - name: Know Your Customer Match
+    url: https://camaraproject.org/know-your-customer-match/
+  - name: Know Your Customer Tenure
+    url: https://camaraproject.org/know-your-customer-tenure/
+  - name: Number Recycling
+    url: https://camaraproject.org/number-recycling/
+  - name: Number Verification
+    url: https://camaraproject.org/number-verification/
+  - name: One Time Password SMS
+    url: https://camaraproject.org/one-time-password-sms/
+  - name: Sim Swap
+    url: https://camaraproject.org/sim-swap/
+  - name: Sim Swap Subscriptions
+    url: https://camaraproject.org/sim-swap-subscriptions/
+  - name: Verified Caller
+    url: https://camaraproject.org/verified-caller/
+- category: Location Services
+  url: null
+  api_count: 7
+  apis:
+  - name: Device Visit Location
+    url: https://camaraproject.org/device-visit-location/
+  - name: Geofencing Subscriptions
+    url: https://camaraproject.org/geofencing-subscriptions/
+  - name: Location Retrieval
+    url: https://camaraproject.org/location-retrieval/
+  - name: Location Verification
+    url: https://camaraproject.org/location-verification/
+  - name: Most Frequent Location
+    url: https://camaraproject.org/most-frequent-location/
+  - name: Population Density Data
+    url: https://camaraproject.org/population-density-data/
+  - name: Region Device Count
+    url: https://camaraproject.org/region-user-count/
+- category: Communication Services
+  url: null
+  api_count: 3
+  apis:
+  - name: Click To Dial
+    url: https://camaraproject.org/click-to-dial/
+  - name: Multi Point VPN
+    url: https://camaraproject.org/multi-point-vpn/
+  - name: WebRTC
+    url: https://camaraproject.org/webrtc-apis/
+- category: Communication Quality
+  url: null
+  api_count: 13
+  apis:
+  - name: Application Profiles
+    url: https://camaraproject.org/application-profiles/
+  - name: Connectivity Insights
+    url: https://camaraproject.org/connectivity-insights/
+  - name: Connectivity Insights Subscriptions
+    url: https://camaraproject.org/connectivity-insights-subscriptions/
+  - name: Dedicated Networks
+    url: https://camaraproject.org/dedicated-networks/
+  - name: Network Slice Assignment
+    url: https://camaraproject.org/network-slice-assignment/
+  - name: Network Slice Booking
+    url: https://camaraproject.org/network-slice-booking/
+  - name: Predictive Connectivity Data
+    url: https://camaraproject.org/predictive-connectivity-data/
+  - name: QoS Booking
+    url: https://camaraproject.org/qos-booking/
+  - name: QoS Booking and Assignment
+    url: https://camaraproject.org/qos-booking-and-assignment/
+  - name: QoS Profiles
+    url: https://camaraproject.org/qos-profiles/
+  - name: QoS Provisioning
+    url: https://camaraproject.org/qod-provisioning/
+  - name: Quality on Demand
+    url: https://camaraproject.org/quality-on-demand/
+  - name: Session Insights
+    url: https://camaraproject.org/session-insights/
+- category: Device Information
+  url: null
+  api_count: 11
+  apis:
+  - name: Connected Network Type
+    url: https://camaraproject.org/connected-network-type/
+  - name: Connected Network Type Subscriptions
+    url: https://camaraproject.org/connected-network-type-subscriptions/
+  - name: Device Data Volume
+    url: https://camaraproject.org/device-data-volume/
+  - name: Device Data Volume Subscriptions
+    url: https://camaraproject.org/device-data-volume-subscriptions/
+  - name: Device Identifier
+    url: https://camaraproject.org/device-identifier/
+  - name: Device Reachability Status
+    url: https://camaraproject.org/device-reachability-status/
+  - name: Device Reachability Status Subscriptions
+    url: https://camaraproject.org/device-reachability-status-subscriptions/
+  - name: Device Roaming Status
+    url: https://camaraproject.org/device-roaming-status/
+  - name: Device Roaming Status Subscriptions
+    url: https://camaraproject.org/device-roaming-status-subscriptions/
+  - name: Network Access Management
+    url: https://camaraproject.org/network-access-management/
+  - name: Subscription Status
+    url: https://camaraproject.org/subscription-status/
+- category: Computing Services
+  url: null
+  api_count: 8
+  apis:
+  - name: Application Endpoint Discovery
+    url: https://camaraproject.org/application-endpoint-discovery/
+  - name: Application Endpoint Registration
+    url: https://camaraproject.org/application-endpoint-registration/
+  - name: Edge Application Management
+    url: https://camaraproject.org/edge-application-management/
+  - name: Energy Footprint Notification
+    url: https://camaraproject.org/energy-footprint-notification/
+  - name: Model As A Service
+    url: https://camaraproject.org/model-as-a-service/
+  - name: Optimal Edge Discovery
+    url: https://camaraproject.org/optimal-edge-discovery/
+  - name: Simple Edge Discovery
+    url: https://camaraproject.org/simple-edge-discovery/
+  - name: Traffic Influence
+    url: https://camaraproject.org/traffic-influence/
+- category: Payments and Charging
+  url: null
+  api_count: 4
+  apis:
+  - name: Blockchain Public Address
+    url: https://camaraproject.org/blockchain-public-address/
+  - name: Blockchain Public Address Validation
+    url: https://camaraproject.org/blockchain-public-address-validation/
+  - name: Carrier Billing
+    url: https://camaraproject.org/carrier-billing/
+  - name: Carrier Billing Refund
+    url: https://camaraproject.org/carrier-billing-refund/
+- category: Service Management
+  url: null
+  api_count: 2
+  apis:
+  - name: Capabilities And Runtime Restrictions
+    url: https://camaraproject.org/capabilities-and-runtime-restrictions/
+  - name: Consent Info
+    url: https://camaraproject.org/consent-info/

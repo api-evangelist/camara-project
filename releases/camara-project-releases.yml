@@ -1,0 +1,823 @@
+generated: '2026-07-30'
+method: searched
+source: https://github.com/camaraproject
+type: Releases
+organization: camaraproject
+summary:
+  repositories_with_releases: 60
+  repositories_checked: 88
+  total_releases: 273
+releases:
+- repository: ApplicationEndpointDiscovery
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-24'
+    prerelease: true
+    url: https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: ApplicationEndpointRegistration
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-31'
+    prerelease: true
+    url: https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: ApplicationProfiles
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-29'
+    prerelease: true
+    url: https://github.com/camaraproject/ApplicationProfiles/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: BlockchainPublicAddress
+  release_count: 5
+  latest:
+    tag: r2.2
+    name: r2.2
+    published: '2025-09-11'
+    prerelease: false
+    url: https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r2.2
+  tags:
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+  - v0.1.0
+- repository: CallForwardingSignal
+  release_count: 8
+  latest:
+    tag: r3.3
+    name: r3.3
+    published: '2025-09-16'
+    prerelease: false
+    url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r3.3
+  tags:
+  - r3.3
+  - r3.2
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: CarrierBillingCheckOut
+  release_count: 9
+  latest:
+    tag: r3.2
+    name: r3.2
+    published: '2025-09-11'
+    prerelease: false
+    url: https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r3.2
+  tags:
+  - r3.2
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+  - v0.2.1
+  - v0.2.0
+- repository: ClickToDial
+  release_count: 5
+  latest:
+    tag: r2.1
+    name: r2.1
+    published: '2026-07-15'
+    prerelease: true
+    url: https://github.com/camaraproject/ClickToDial/releases/tag/r2.1
+  tags:
+  - r2.1
+  - r1.4
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: Commonalities
+  release_count: 17
+  latest:
+    tag: r4.3
+    name: r4.3
+    published: '2026-05-22'
+    prerelease: false
+    url: https://github.com/camaraproject/Commonalities/releases/tag/r4.3
+  tags:
+  - r4.3
+  - r4.2
+  - r4.1
+  - r3.4
+  - r3.3
+  - r3.2
+  - r3.1
+  - r2.3
+  - r2.2
+  - r2.1
+  - r0.4.0
+  - r0.4.0-rc.2
+  - r0.4.0-rc.1
+  - r0.4.0-alpha.1
+  - v0.3.0
+  - v0.2.0
+  - v0.1.0
+- repository: ConnectedNetworkType
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-18'
+    prerelease: true
+    url: https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: ConnectivityInsights
+  release_count: 6
+  latest:
+    tag: r3.2
+    name: r3.2
+    published: '2025-09-17'
+    prerelease: false
+    url: https://github.com/camaraproject/ConnectivityInsights/releases/tag/r3.2
+  tags:
+  - r3.2
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+- repository: ConsentInfo
+  release_count: 5
+  latest:
+    tag: r2.3
+    name: r2.3
+    published: '2026-03-23'
+    prerelease: false
+    url: https://github.com/camaraproject/ConsentInfo/releases/tag/r2.3
+  tags:
+  - r2.3
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+- repository: ConsentManagement
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2026-06-03'
+    prerelease: true
+    url: https://github.com/camaraproject/ConsentManagement/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: CustomerInsights
+  release_count: 6
+  latest:
+    tag: r3.1
+    name: r3.1
+    published: '2026-07-23'
+    prerelease: true
+    url: https://github.com/camaraproject/CustomerInsights/releases/tag/r3.1
+  tags:
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: DedicatedNetworks
+  release_count: 3
+  latest:
+    tag: r2.1
+    name: r2.1
+    published: '2026-05-26'
+    prerelease: true
+    url: https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.1
+  tags:
+  - r2.1
+  - r1.2
+  - r1.1
+- repository: DeviceDataVolume
+  release_count: 3
+  latest:
+    tag: r1.3
+    name: r1.3
+    published: '2025-09-12'
+    prerelease: false
+    url: https://github.com/camaraproject/DeviceDataVolume/releases/tag/r1.3
+  tags:
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: DeviceIdentifier
+  release_count: 7
+  latest:
+    tag: r3.1
+    name: r3.1
+    published: '2026-06-11'
+    prerelease: true
+    url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.1
+  tags:
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+  - device-identifier-0.1.0
+- repository: DeviceLocation
+  release_count: 8
+  latest:
+    tag: r3.2
+    name: r3.2
+    published: '2025-09-16'
+    prerelease: false
+    url: https://github.com/camaraproject/DeviceLocation/releases/tag/r3.2
+  tags:
+  - r3.2
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+  - v0.2.0
+  - v0.1.0
+- repository: DeviceReachabilityStatus
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-18'
+    prerelease: true
+    url: https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: DeviceRoamingStatus
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-17'
+    prerelease: true
+    url: https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: DeviceStatus
+  release_count: 11
+  latest:
+    tag: r2.2
+    name: r2.2
+    published: '2025-03-14'
+    prerelease: false
+    url: https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2
+  tags:
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+  - r0.6
+  - v0.5.1
+  - v0.5.0
+  - v0.5.0-rc
+  - v0.4.1
+  - v0.2.0
+- repository: DeviceSwap
+  release_count: 6
+  latest:
+    tag: r3.2
+    name: r3.2
+    published: '2025-09-18'
+    prerelease: false
+    url: https://github.com/camaraproject/DeviceSwap/releases/tag/r3.2
+  tags:
+  - r3.2
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+- repository: EdgeApplicationManagement
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2026-06-02'
+    prerelease: true
+    url: https://github.com/camaraproject/EdgeApplicationManagement/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: EdgeCloud
+  release_count: 1
+  latest:
+    tag: v0.8.1
+    name: v0.8.1
+    published: '2023-05-26'
+    prerelease: true
+    url: https://github.com/camaraproject/EdgeCloud/releases/tag/v0.8.1
+  tags:
+  - v0.8.1
+- repository: EnergyFootprintNotification
+  release_count: 3
+  latest:
+    tag: r1.3
+    name: r1.3
+    published: '2025-09-15'
+    prerelease: false
+    url: https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.3
+  tags:
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: HighThroughputElasticNetworks
+  release_count: 1
+  latest:
+    tag: v0.1.0-alpha
+    name: v0.1.0-alpha
+    published: '2026-07-29'
+    prerelease: false
+    url: https://github.com/camaraproject/HighThroughputElasticNetworks/releases/tag/v0.1.0-alpha
+  tags:
+  - v0.1.0-alpha
+- repository: IdentityAndConsentManagement
+  release_count: 13
+  latest:
+    tag: r4.2
+    name: r4.2
+    published: '2026-03-23'
+    prerelease: false
+    url: https://github.com/camaraproject/IdentityAndConsentManagement/releases/tag/r4.2
+  tags:
+  - r4.2
+  - r4.1
+  - r3.3
+  - r3.2
+  - r3.1
+  - r2.3
+  - r2.2
+  - r2.1
+  - r0.2.1
+  - r0.2.0
+  - r0.2.0-rc.2
+  - v0.2.0-rc.1
+  - v0.1.0
+- repository: IoTDeviceManagement
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2026-06-30'
+    prerelease: true
+    url: https://github.com/camaraproject/IoTDeviceManagement/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: IoTNetworkOptimization
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-12-11'
+    prerelease: true
+    url: https://github.com/camaraproject/IoTNetworkOptimization/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: IoTSIMFraudPrevention
+  release_count: 2
+  latest:
+    tag: r1.2
+    name: r1.2
+    published: '2026-05-28'
+    prerelease: false
+    url: https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r1.2
+  tags:
+  - r1.2
+  - r1.1
+- repository: KnowYourCustomer
+  release_count: 7
+  latest:
+    tag: r2.2
+    name: r2.2
+    published: '2025-03-10'
+    prerelease: false
+    url: https://github.com/camaraproject/KnowYourCustomer/releases/tag/r2.2
+  tags:
+  - r2.2
+  - r2.1
+  - r1.4
+  - r1.3
+  - r1.1
+  - v0.1.1
+  - v0.1.0
+- repository: KnowYourCustomerAgeVerification
+  release_count: 1
+  latest:
+    tag: r1.2
+    name: r1.2
+    published: '2025-08-12'
+    prerelease: true
+    url: https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r1.2
+  tags:
+  - r1.2
+- repository: KnowYourCustomerFill-in
+  release_count: 3
+  latest:
+    tag: r1.3
+    name: r1.3
+    published: '2025-12-15'
+    prerelease: false
+    url: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r1.3
+  tags:
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: KnowYourCustomerMatch
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-22'
+    prerelease: true
+    url: https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: ModelAsAService
+  release_count: 3
+  latest:
+    tag: r2.1
+    name: r2.1
+    published: '2026-07-28'
+    prerelease: true
+    url: https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1
+  tags:
+  - r2.1
+  - r1.2
+  - r1.1
+- repository: MostFrequentLocation
+  release_count: 4
+  latest:
+    tag: r2.2
+    name: r2.2
+    published: '2025-09-16'
+    prerelease: false
+    url: https://github.com/camaraproject/MostFrequentLocation/releases/tag/r2.2
+  tags:
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+- repository: NetworkAccessManagement
+  release_count: 2
+  latest:
+    tag: r3.1
+    name: r3.1
+    published: '2026-07-24'
+    prerelease: true
+    url: https://github.com/camaraproject/NetworkAccessManagement/releases/tag/r3.1
+  tags:
+  - r3.1
+  - r2.1
+- repository: NetworkInsights
+  release_count: 3
+  latest:
+    tag: r1.3
+    name: r1.3
+    published: '2026-06-25'
+    prerelease: false
+    url: https://github.com/camaraproject/NetworkInsights/releases/tag/r1.3
+  tags:
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: NetworkSliceBooking
+  release_count: 5
+  latest:
+    tag: r2.3
+    name: r2.3
+    published: '2026-06-04'
+    prerelease: false
+    url: https://github.com/camaraproject/NetworkSliceBooking/releases/tag/r2.3
+  tags:
+  - r2.3
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+- repository: NumberRecycling
+  release_count: 5
+  latest:
+    tag: r2.2
+    name: r2.2
+    published: '2025-09-11'
+    prerelease: false
+    url: https://github.com/camaraproject/NumberRecycling/releases/tag/r2.2
+  tags:
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: NumberVerification
+  release_count: 9
+  latest:
+    tag: r3.2
+    name: r3.2
+    published: '2025-09-12'
+    prerelease: false
+    url: https://github.com/camaraproject/NumberVerification/releases/tag/r3.2
+  tags:
+  - r3.2
+  - r3.1
+  - r2.4
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+  - v0.3.1
+- repository: OptimalEdgeDiscovery
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-30'
+    prerelease: true
+    url: https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: OTPValidation
+  release_count: 8
+  latest:
+    tag: r3.2
+    name: r3.2
+    published: '2025-09-16'
+    prerelease: false
+    url: https://github.com/camaraproject/OTPValidation/releases/tag/r3.2
+  tags:
+  - r3.2
+  - r3.1
+  - r2.3
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+  - v0.5.0
+- repository: PopulationDensityData
+  release_count: 7
+  latest:
+    tag: r3.2
+    name: r3.2
+    published: '2025-09-10'
+    prerelease: false
+    url: https://github.com/camaraproject/PopulationDensityData/releases/tag/r3.2
+  tags:
+  - r3.2
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+  - v0.1.0
+- repository: PredictiveConnectivityData
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-24'
+    prerelease: true
+    url: https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: project-administration
+  release_count: 4
+  latest:
+    tag: r1.4
+    name: r1.4
+    published: '2026-02-20'
+    prerelease: false
+    url: https://github.com/camaraproject/project-administration/releases/tag/r1.4
+  tags:
+  - r1.4
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: QoSBooking
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-17'
+    prerelease: true
+    url: https://github.com/camaraproject/QoSBooking/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: QualityOnDemand
+  release_count: 16
+  latest:
+    tag: r3.2
+    name: r3.2
+    published: '2025-09-16'
+    prerelease: false
+    url: https://github.com/camaraproject/QualityOnDemand/releases/tag/r3.2
+  tags:
+  - r3.2
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+  - v0.10.1
+  - v0.10.0
+  - v0.10.0-rc2
+  - v0.10.0-rc
+  - v0.9.0
+  - v0.9.0-rc
+  - v0.8.1
+  - v0.8.0
+  - v0.1.0
+- repository: RegionDeviceCount
+  release_count: 5
+  latest:
+    tag: r2.2
+    name: r2.2
+    published: '2025-09-15'
+    prerelease: false
+    url: https://github.com/camaraproject/RegionDeviceCount/releases/tag/r2.2
+  tags:
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: ReleaseManagement
+  release_count: 6
+  latest:
+    tag: r4.1
+    name: r4.1
+    published: '2026-06-19'
+    prerelease: false
+    url: https://github.com/camaraproject/ReleaseManagement/releases/tag/r4.1
+  tags:
+  - r4.1
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+- repository: ReleaseTest
+  release_count: 3
+  latest:
+    tag: r1.3
+    name: r1.3
+    published: '2026-06-19'
+    prerelease: true
+    url: https://github.com/camaraproject/ReleaseTest/releases/tag/r1.3
+  tags:
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: SessionInsights
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2026-05-07'
+    prerelease: true
+    url: https://github.com/camaraproject/SessionInsights/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: SimpleEdgeDiscovery
+  release_count: 6
+  latest:
+    tag: r2.3
+    name: r2.3
+    published: '2026-04-23'
+    prerelease: false
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r2.3
+  tags:
+  - r2.3
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: SimSwap
+  release_count: 10
+  latest:
+    tag: r3.3
+    name: r3.3
+    published: '2025-12-01'
+    prerelease: false
+    url: https://github.com/camaraproject/SimSwap/releases/tag/r3.3
+  tags:
+  - r3.3
+  - r3.2
+  - r3.1
+  - r1.4
+  - r2.2
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+  - v0.4.0
+- repository: SubscriptionStatus
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-07-24'
+    prerelease: true
+    url: https://github.com/camaraproject/SubscriptionStatus/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: Tenure
+  release_count: 5
+  latest:
+    tag: r3.1
+    name: r3.1
+    published: '2026-06-23'
+    prerelease: true
+    url: https://github.com/camaraproject/Tenure/releases/tag/r3.1
+  tags:
+  - r3.1
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+- repository: test-repo-w-linting
+  release_count: 1
+  latest:
+    tag: r1.1
+    name: r1.1
+    published: '2025-09-07'
+    prerelease: true
+    url: https://github.com/camaraproject/test-repo-w-linting/releases/tag/r1.1
+  tags:
+  - r1.1
+- repository: tooling
+  release_count: 12
+  latest:
+    tag: v0.8.1
+    name: v0.8.1
+    published: '2026-07-24'
+    prerelease: false
+    url: https://github.com/camaraproject/tooling/releases/tag/v0.8.1
+  tags:
+  - v0.8.1
+  - v0.8.0
+  - v0.7.1
+  - v0.7.0
+  - v0.6.0
+  - v0.5.0
+  - v0.4.0
+  - v0.3.0
+  - v0.2.3
+  - v0.2.2
+  - v0.2.1
+  - v0.2.0
+- repository: TrafficInfluence
+  release_count: 3
+  latest:
+    tag: r1.3
+    name: r1.3
+    published: '2025-09-16'
+    prerelease: false
+    url: https://github.com/camaraproject/TrafficInfluence/releases/tag/r1.3
+  tags:
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: VerifiedCaller
+  release_count: 4
+  latest:
+    tag: r2.1
+    name: r2.1
+    published: '2026-06-30'
+    prerelease: true
+    url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1
+  tags:
+  - r2.1
+  - r1.3
+  - r1.2
+  - r1.1
+- repository: WebRTC
+  release_count: 6
+  latest:
+    tag: r2.2
+    name: r2.2
+    published: '2025-09-23'
+    prerelease: false
+    url: https://github.com/camaraproject/WebRTC/releases/tag/r2.2
+  tags:
+  - r2.2
+  - r2.1
+  - r1.2
+  - r1.1
+  - v0.1.1
+  - v0.1.0

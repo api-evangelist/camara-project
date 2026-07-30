@@ -42,8 +42,7 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-call-forwarding-information-retrieval-api
   name: CAMARA Project Call Forwarding information retrieval API
-  description: >-
-    Provides information on Call Forwarding settings for the provided phone number (PhoneNumber).
+  description: Provides information on Call Forwarding settings for the provided phone number (PhoneNumber).
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Call Forwarding information retrieval
@@ -82,8 +81,8 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-check-device-swap-api
   name: CAMARA Project Check Device Swap API
-  description: >-
-    Validate if the SIM of the end-user has been installed in a different device during a past period
+  description: Validate if the SIM of the end-user has been installed in a different device during a past
+    period
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Check Device Swap
@@ -278,9 +277,8 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-fill-in-api
   name: CAMARA Project Fill-in API
-  description: >-
-    Operations to provide information related to a customer identity stored the account data bound to
-    the customer's phone number.
+  description: Operations to provide information related to a customer identity stored the account data
+    bound to the customer's phone number.
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Fill-in
@@ -319,8 +317,8 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-geofencing-subscriptions-api
   name: CAMARA Project Geofencing subscriptions API
-  description: >-
-    Operations to manage event subscriptions on geofencing events for leaving and entering an area.
+  description: Operations to manage event subscriptions on geofencing events for leaving and entering
+    an area.
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Geofencing subscriptions
@@ -476,8 +474,7 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-match-api
   name: CAMARA Project Match API
-  description: >-
-    Operations to match a customer identity against the account data bound to their phone number.
+  description: Operations to match a customer identity against the account data bound to their phone number.
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Match
@@ -516,10 +513,9 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-network-quality-api
   name: CAMARA Project Network Quality API
-  description: >-
-    Read the network's level of confidence that it can meet the quality
+  description: 'Read the network''s level of confidence that it can meet the quality
 
-    thresholds for a given application profile and end user device.
+    thresholds for a given application profile and end user device.'
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Network Quality
@@ -714,9 +710,8 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-phone-number-verify-api
   name: CAMARA Project Phone number verify API
-  description: >-
-    API operation to verify a phone number received as input. It can be received either in plain text
-    or hashed format.
+  description: API operation to verify a phone number received as input. It can be received either in
+    plain text or hashed format.
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Phone number verify
@@ -950,8 +945,8 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-retrieve-sim-swap-date-api
   name: CAMARA Project Retrieve SIM swap date API
-  description: >-
-    The Retrieve SIM swap date API from CAMARA Project — 1 operation(s) for retrieve sim swap date.
+  description: The Retrieve SIM swap date API from CAMARA Project — 1 operation(s) for retrieve sim swap
+    date.
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Retrieve SIM swap date
@@ -990,8 +985,7 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-roaming-status-retrieval-api
   name: CAMARA Project Roaming status retrieval API
-  description: >-
-    Operation to get device roaming status and country information (if roaming) synchronously
+  description: Operation to get device roaming status and country information (if roaming) synchronously
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Roaming status retrieval
@@ -1147,15 +1141,14 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 - aid: camara-project:camara-project-unconditional-call-forwarding-information-retrieval-api
   name: CAMARA Project Unconditional Call Forwarding information retrieval API
-  description: >-
-    Provides information on Unconditional Call Forwarding settings for the provided phone number (PhoneNumber)
+  description: Provides information on Unconditional Call Forwarding settings for the provided phone number
+    (PhoneNumber)
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
   - Unconditional Call Forwarding information retrieval
   properties:
   - type: OpenAPI
-    url: >-
-      openapi/camara-project-unconditional-call-forwarding-information-retrieval-api-openapi.yml
+    url: openapi/camara-project-unconditional-call-forwarding-information-retrieval-api-openapi.yml
   - type: Documentation
     url: https://github.com/camaraproject/NumberVerification
   - type: Documentation
@@ -1191,12 +1184,15 @@ tags:
 - API Standards
 - CAMARA
 - GSMA
+- GSMA Open Gateway
 - Linux Foundation
 - Network APIs
 - Open API
 - Open Gateway
 - Open Source
+- OpenAPI
 - Standards
+- Standards Body
 - Telco
 - Telco API Alliance
 - Telecom
@@ -1275,54 +1271,86 @@ common:
 - url: https://www.gsma.com/solutions-and-impact/connectivity-for-good/external-affairs/wp-content/uploads/2024/02/Open-Gateway-Joint-Statement.pdf
   name: GSMA Open Gateway
   type: Partner
+- type: Website
+  url: https://camaraproject.org
+- type: Specification
+  url: https://github.com/camaraproject
+- type: SourceCode
+  url: https://github.com/camaraproject
+- type: Charter
+  url: https://github.com/camaraproject/Governance/blob/main/ProjectCharter.md
+- type: Governance
+  url: https://github.com/camaraproject/Governance/blob/main/ProjectStructureAndRoles.md
+- type: Contributing
+  url: https://github.com/camaraproject/Governance/blob/main/CONTRIBUTING.md
+- type: CLA
+  url: https://github.com/camaraproject/EasyCLA
+- type: Participants
+  url: https://github.com/camaraproject/Governance/blob/main/PARTICIPANTS.MD
+- type: Maintainers
+  url: https://github.com/camaraproject/Governance/blob/main/MAINTAINERS.MD
+- type: MeetingMinutes
+  url: https://github.com/camaraproject/Governance/tree/main/documentation/MeetingMinutes
+- type: ReleaseProcess
+  url: https://camaraproject.org/release-management-process/
+- type: Backlog
+  url: https://github.com/camaraproject/APIBacklog
+- type: Roadmap
+  url: https://github.com/camaraproject/APIBacklog
+- type: WorkingGroups
+  url: https://camaraproject.org/working-groups/
+- type: Membership
+  url: https://camaraproject.org/join/
+- type: Wiki
+  url: https://lf-camaraproject.atlassian.net/wiki/
+- type: Landscape
+  url: https://github.com/camaraproject/camara-landscape
+- type: Calendar
+  url: https://camaraproject.org/all-hands-calls/
+- type: Scope
+  url: https://camaraproject.org/scope/
+- type: History
+  url: https://camaraproject.org/history/
+- type: News
+  url: https://camaraproject.org/camara-in-the-news/
+- type: ReferenceImplementation
+  url: https://github.com/camaraproject/camaraproject.github.io
+  name: Swagger UI for CAMARA API definitions
 - type: Features
   data:
-  - 60+ telco network APIs designed as a unified, operator-neutral surface
-  - Hosted by the Linux Foundation as the open governance home for telco network APIs
-  - Joint initiative with GSMA Open Gateway — the carrier commercialization program
-  - OpenAPI 3.0.3 specs for every API, published under Apache 2.0
-  - CloudEvents-based webhook subscriptions for event-driven APIs (sim-swap, geofencing, device-status)
-  - Three-tier repository maturity model — Sandbox, Incubating, Graduated
-  - Centralized Commonalities working group defining cross-API design guidelines and shared models
-  - Centralized Identity And Consent Management working group (OIDC CIBA + purpose-bound consent)
-  - Quarterly coordinated releases via the Release Management working group
-  - Provider Implementation repos (`*_PI*`) demonstrating real operator deployments
-  - Anti-fraud bundle - Number Verification, SIM Swap, Device Swap, Call Forwarding Signal
-  - Network capability bundle - Quality on Demand, QoS Profiles, Simple Edge Discovery, Connectivity Insights
-  - Identity bundle - KYC Match, KYC Fill-In, KYC Age Verification, Tenure
-  - Location bundle - Location Retrieval, Location Verification, Geofencing Subscriptions
-  - Device bundle - Device Status, Device Location, Device Swap, Device Identifier, Device Authenticity
-  - Messaging bundle - SMS, OTP via SMS, Voice Notification, Voice Verification Code, Call Forwarding
-  - Commercial bundle - Carrier Billing Checkout, Sponsored Data
-  - Analytics bundle - Population Density Data, Connectivity Insights, Network Insights, Customer Insights
-  - Edge cloud bundle - Simple Edge Discovery, Optimal Edge Discovery, Application Endpoint Discovery,
-    Application Endpoint Registration, Edge Application Management
-  - IoT bundle - IoT Device Management, IoT SIM Fraud Prevention, IoT Network Optimization, eSIM Remote Management
-  - Powered by major operators - Deutsche Telekom, Orange, Telefonica, Vodafone, T-Mobile, Verizon, AT&T, KDDI,
-    SK Telecom, China Mobile, Telenor, TIM, BT, Singtel, and others
-  - Cross-operator aggregator integrations through GSMA Open Gateway (Vonage, Infobip, Aduna, others)
+  - 'Host: Linux Foundation (LF Directed Fund)'
+  - 'Founded: 2021, launched at MWC 2022'
+  - 'GitHub repositories: 93'
+  - 'API lifecycle: Sandbox 57 / Incubating 15 / Graduated 0'
+  - 'API categories published: 8 covering 64 APIs'
+  - 'Working groups: API Backlog, Commonalities, Identity and Consent Management, Marketing, Release Management'
+  - 'Named participants: 1369'
+  - 'Participating organizations: 487'
+  - 'Organizations already in the API Evangelist network: 130'
+  - 'Governance bodies: Governing Board, Technical Steering Committee, End User Council'
   sources:
   - https://camaraproject.org
   - https://github.com/camaraproject
-  - https://github.com/camaraproject/Governance
-  - https://github.com/camaraproject/Commonalities
-  updated: '2026-05-25'
+  updated: '2026-07-30'
 created: '2026-05-25T00:00:00.000Z'
-modified: '2026-05-25'
+modified: '2026-07-30'
 position: Producing
-description: CAMARA is the Telco Global API Alliance — an open-source project hosted by the Linux Foundation that
-  defines, builds, and tests a unified set of network APIs across the world's mobile operators. Working alongside
-  the GSMA Open Gateway commercialization initiative, CAMARA produces operator-neutral OpenAPI 3.0 specifications
-  for 60+ telco network capabilities including Number Verification, SIM Swap, Device Location, Quality on Demand,
-  KYC, Carrier Billing, Edge Discovery, Device Status, SMS, and more — all published under Apache 2.0. The
-  project is organized into Sandbox, Incubating, and Graduated sub-projects with cross-cutting Commonalities,
-  Identity and Consent Management, and Release Management working groups. Major contributors include Deutsche
-  Telekom, Orange, Telefonica, Vodafone, T-Mobile, Verizon, AT&T, KDDI, SK Telecom, China Mobile, and dozens of
-  other operators and vendors.
+description: CAMARA is the Telco Global API Alliance — an open-source project hosted by the Linux Foundation
+  that defines, builds, and tests a unified set of network APIs across the world's mobile operators. Working
+  alongside the GSMA Open Gateway commercialization initiative, CAMARA produces operator-neutral OpenAPI
+  3.0 specifications for 60+ telco network capabilities including Number Verification, SIM Swap, Device
+  Location, Quality on Demand, KYC, Carrier Billing, Edge Discovery, Device Status, SMS, and more — all
+  published under Apache 2.0. The project is organized into Sandbox, Incubating, and Graduated sub-projects
+  with cross-cutting Commonalities, Identity and Consent Management, and Release Management working groups.
+  Major contributors include Deutsche Telekom, Orange, Telefonica, Vodafone, T-Mobile, Verizon, AT&T,
+  KDDI, SK Telecom, China Mobile, and dozens of other operators and vendors.
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
   X: apievangelist
   url: https://apievangelist.com
-specificationVersion: '0.16'
-x-type: standard
+specificationVersion: '0.20'
+x-type: standards-body
+x-category: Specification
+x-host: Linux Foundation
+x-host-structure: LF Directed Fund
