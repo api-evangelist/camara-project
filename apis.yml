@@ -1,280 +1,1191 @@
 aid: camara-project
 url: https://raw.githubusercontent.com/api-evangelist/camara-project/refs/heads/main/apis.yml
 apis:
-- aid: camara-project:number-verification
-  name: CAMARA Number Verification API
-  tags:
-  - Authentication
-  - Identity
-  - Number Verification
-  - Phone Number
-  - Silent Auth
-  - Telecom
+- aid: camara-project:camara-project-age-verification-api
+  name: CAMARA Project Age Verification API
+  description: Operations to verify the age of a user.
   humanURL: https://github.com/camaraproject/NumberVerification
-  properties:
-  - url: https://github.com/camaraproject/NumberVerification
-    type: Documentation
-  - url: openapi/number-verification-openapi.yml
-    type: OpenAPI
-  description: Verify or retrieve the mobile phone number currently allocated by the network operator to the SIM in
-    the end user's device. Uses silent network-based or SIM-based authentication (no SMS OTP, no app download) to
-    confirm possession of a phone number at sign-up, login, or transaction time. Returns true/false on verify or
-    the masked phone number on retrieve.
-- aid: camara-project:sim-swap
-  name: CAMARA SIM Swap API
-  tags:
-  - Anti-Fraud
-  - Fraud Prevention
-  - Identity
-  - SIM Swap
-  - Telecom
-  humanURL: https://github.com/camaraproject/SimSwap
-  properties:
-  - url: https://github.com/camaraproject/SimSwap
-    type: Documentation
-  - url: openapi/sim-swap-openapi.yml
-    type: OpenAPI
-  - url: openapi/sim-swap-subscriptions-openapi.yml
-    type: OpenAPI
-  description: Detect whether the SIM associated with a mobile phone number has recently been swapped to a different
-    SIM. Returns the most recent SIM swap timestamp or a boolean check for a configurable look-back period.
-    Critical fraud signal for banking, fintech, crypto, and any service relying on SMS OTP. Includes both an
-    on-demand query API and an event subscriptions API for CloudEvents push notifications.
-- aid: camara-project:device-location
-  name: CAMARA Device Location API
-  tags:
-  - Device Location
-  - Geofencing
-  - Location
-  - Location Verification
-  - Telecom
-  humanURL: https://github.com/camaraproject/DeviceLocation
-  properties:
-  - url: https://github.com/camaraproject/DeviceLocation
-    type: Documentation
-  - url: openapi/device-location-retrieval-openapi.yml
-    type: OpenAPI
-  - url: openapi/device-location-verification-openapi.yml
-    type: OpenAPI
-  - url: openapi/device-location-geofencing-openapi.yml
-    type: OpenAPI
-  description: Retrieve the network-derived location of a mobile device, verify whether a device is within a given
-    geographic area, or subscribe to geofencing entry/exit events. Location is provided by the mobile operator
-    based on the network's view of the device — not from device GPS — so it works without an app, cannot be spoofed
-    by GPS, and can be used for fraud detection, regulatory verification, and asset tracking.
-- aid: camara-project:quality-on-demand
-  name: CAMARA Quality on Demand API
-  tags:
-  - 5G
-  - Network Slicing
-  - QoS
-  - Quality on Demand
-  - Telecom
-  humanURL: https://github.com/camaraproject/QualityOnDemand
-  properties:
-  - url: https://github.com/camaraproject/QualityOnDemand
-    type: Documentation
-  - url: openapi/quality-on-demand-openapi.yml
-    type: OpenAPI
-  - url: openapi/qos-profiles-openapi.yml
-    type: OpenAPI
-  - url: openapi/qos-provisioning-openapi.yml
-    type: OpenAPI
-  description: Request elevated network Quality of Service for a specific device-application session — committed
-    bandwidth, low latency, or prioritized traffic — for a bounded time window. Includes a profiles catalog
-    (discover available QoS classes), session management (create/get/delete QoS sessions), and a provisioning
-    surface for longer-lived attachments. Foundational 5G monetization API.
-- aid: camara-project:device-status
-  name: CAMARA Device Status API
-  tags:
-  - Connected Network Type
-  - Device Status
-  - Reachability
-  - Roaming
-  - Telecom
-  humanURL: https://github.com/camaraproject/DeviceStatus
-  properties:
-  - url: https://github.com/camaraproject/DeviceStatus
-    type: Documentation
-  - url: openapi/device-status-connected-network-type-openapi.yml
-    type: OpenAPI
-  - url: openapi/device-status-reachability-openapi.yml
-    type: OpenAPI
-  - url: openapi/device-status-roaming-openapi.yml
-    type: OpenAPI
-  description: Query whether a mobile device is reachable on the network, currently roaming, and what type of
-    network it is connected to (2G, 3G, 4G, 5G, NB-IoT). Used by IoT fleet management, customer support
-    diagnostics, and pre-flight checks before invoking other CAMARA APIs.
-- aid: camara-project:know-your-customer
-  name: CAMARA Know Your Customer API
   tags:
   - Age Verification
-  - Identity
-  - Identity Verification
-  - KYC
-  - Know Your Customer
-  - Telecom
-  humanURL: https://github.com/camaraproject/KnowYourCustomer
   properties:
-  - url: https://github.com/camaraproject/KnowYourCustomer
-    type: Documentation
-  - url: openapi/kyc-match-openapi.yml
-    type: OpenAPI
-  - url: openapi/kyc-fill-in-openapi.yml
-    type: OpenAPI
-  - url: openapi/kyc-age-verification-openapi.yml
-    type: OpenAPI
-  description: KYC sub-project bundling three identity APIs. KYC Match scores a supplied set of customer attributes
-    (name, address, DOB, document number, etc.) against the operator's records. KYC Fill-In returns operator-held
-    customer attributes to pre-populate an onboarding form. KYC Age Verification returns whether the subscriber
-    is over a minimum age threshold without disclosing the date of birth.
-- aid: camara-project:one-time-password-sms
-  name: CAMARA One Time Password SMS API
+  - type: OpenAPI
+    url: openapi/camara-project-age-verification-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-call-forwarding-information-retrieval-api
+  name: CAMARA Project Call Forwarding information retrieval API
+  description: >-
+    Provides information on Call Forwarding settings for the provided phone number (PhoneNumber).
+  humanURL: https://github.com/camaraproject/NumberVerification
   tags:
-  - Authentication
-  - OTP
-  - One Time Password
-  - SMS
-  - Telecom
-  humanURL: https://github.com/camaraproject/OTPValidation
+  - Call Forwarding information retrieval
   properties:
-  - url: https://github.com/camaraproject/OTPValidation
-    type: Documentation
-  - url: openapi/one-time-password-sms-openapi.yml
-    type: OpenAPI
-  description: Send a one-time password via SMS to a target phone number and validate the code returned by the user.
-    Operator delivers the SMS through the home network, so messages bypass third-party aggregators and inherit
-    higher deliverability and trust.
-- aid: camara-project:device-swap
-  name: CAMARA Device Swap API
+  - type: OpenAPI
+    url: openapi/camara-project-call-forwarding-information-retrieval-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-check-device-swap-api
+  name: CAMARA Project Check Device Swap API
+  description: >-
+    Validate if the SIM of the end-user has been installed in a different device during a past period
+  humanURL: https://github.com/camaraproject/NumberVerification
   tags:
-  - Anti-Fraud
-  - Device
-  - Device Swap
-  - Fraud Prevention
-  - Telecom
-  humanURL: https://github.com/camaraproject/DeviceSwap
+  - Check Device Swap
   properties:
-  - url: https://github.com/camaraproject/DeviceSwap
-    type: Documentation
-  - url: openapi/device-swap-openapi.yml
-    type: OpenAPI
-  description: Detect whether the device (IMEI) associated with a phone number has recently changed. Complements
-    SIM Swap as a fraud signal — a fresh device or SIM behind a known phone number can indicate account takeover.
-- aid: camara-project:simple-edge-discovery
-  name: CAMARA Simple Edge Discovery API
+  - type: OpenAPI
+    url: openapi/camara-project-check-device-swap-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-check-sim-swap-api
+  name: CAMARA Project Check SIM swap API
+  description: The Check SIM swap API from CAMARA Project — 1 operation(s) for check sim swap.
+  humanURL: https://github.com/camaraproject/NumberVerification
   tags:
-  - Edge Cloud
-  - Edge Computing
-  - MEC
-  - Simple Edge Discovery
-  - Telecom
-  humanURL: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - Check SIM swap
   properties:
-  - url: https://github.com/camaraproject/SimpleEdgeDiscovery
-    type: Documentation
-  - url: openapi/simple-edge-discovery-openapi.yml
-    type: OpenAPI
-  description: Discover the optimal Multi-access Edge Computing (MEC) endpoint for a given client device. The
-    operator returns the closest edge data center URL based on the device's current network attachment so
-    latency-sensitive applications (gaming, AR/VR, real-time inference) can route to the nearest compute.
-- aid: camara-project:carrier-billing
-  name: CAMARA Carrier Billing Checkout API
+  - type: OpenAPI
+    url: openapi/camara-project-check-sim-swap-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-connected-network-type-api
+  name: CAMARA Project Connected Network Type API
+  description: Operations to get the network type device is connected to
+  humanURL: https://github.com/camaraproject/NumberVerification
   tags:
-  - Billing
-  - Carrier Billing
-  - Direct Carrier Billing
-  - Payments
-  - Telecom
-  humanURL: https://github.com/camaraproject/CarrierBillingCheckOut
+  - Connected Network Type
   properties:
-  - url: https://github.com/camaraproject/CarrierBillingCheckOut
-    type: Documentation
-  - url: openapi/carrier-billing-openapi.yml
-    type: OpenAPI
-  description: Direct Carrier Billing checkout — initiate a one-time or recurring charge against the subscriber's
-    mobile phone bill, with confirmation and refund flows. Lets merchants accept payment from users without a card
-    or bank account.
-- aid: camara-project:population-density-data
-  name: CAMARA Population Density Data API
+  - type: OpenAPI
+    url: openapi/camara-project-connected-network-type-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-device-reachability-status-api
+  name: CAMARA Project Device reachability status API
+  description: Operations to get the current reachability status of a device
+  humanURL: https://github.com/camaraproject/NumberVerification
   tags:
-  - Analytics
-  - Network Insights
-  - Population Density
-  - Telecom
-  humanURL: https://github.com/camaraproject/PopulationDensityData
+  - Device reachability status
   properties:
-  - url: https://github.com/camaraproject/PopulationDensityData
-    type: Documentation
-  - url: openapi/population-density-data-openapi.yml
-    type: OpenAPI
-  description: Aggregated, anonymized counts of mobile devices observed in a target geographic area over a time
-    window. Powers smart-city planning, retail footfall analytics, event crowd management, and emergency response
-    — without exposing any individual identifier.
-- aid: camara-project:home-devices-qod
-  name: CAMARA Home Devices Quality on Demand API
+  - type: OpenAPI
+    url: openapi/camara-project-device-reachability-status-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-discovery-api
+  name: CAMARA Project Discovery API
+  description: Find the closest Edge Cloud Zone to the user device.
+  humanURL: https://github.com/camaraproject/NumberVerification
   tags:
-  - Broadband
-  - Home Network
-  - QoS
-  - Quality on Demand
-  - Telecom
-  humanURL: https://github.com/camaraproject/HomeDevicesQoD
+  - Discovery
   properties:
-  - url: https://github.com/camaraproject/HomeDevicesQoD
-    type: Documentation
-  - url: openapi/home-devices-qod-openapi.yml
-    type: OpenAPI
-  description: Quality on Demand applied to fixed-broadband home networks — request boosted bandwidth or
-    prioritized traffic for a specific device behind a home gateway for a bounded time window.
-- aid: camara-project:call-forwarding-signal
-  name: CAMARA Call Forwarding Signal API
+  - type: OpenAPI
+    url: openapi/camara-project-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-fill-in-api
+  name: CAMARA Project Fill-in API
+  description: >-
+    Operations to provide information related to a customer identity stored the account data bound to
+    the customer's phone number.
+  humanURL: https://github.com/camaraproject/NumberVerification
   tags:
-  - Anti-Fraud
-  - Call Forwarding
-  - Fraud Prevention
-  - Telecom
-  - Voice
-  humanURL: https://github.com/camaraproject/CallForwardingSignal
+  - Fill-in
   properties:
-  - url: https://github.com/camaraproject/CallForwardingSignal
-    type: Documentation
-  - url: openapi/call-forwarding-signal-openapi.yml
-    type: OpenAPI
-  description: Detect whether a subscriber currently has unconditional, busy, no-reply, or unreachable call
-    forwarding configured. Fraud signal used in conjunction with SIM Swap and Number Verification to detect
-    account-takeover attempts that re-route voice OTPs.
-- aid: camara-project:sms
-  name: CAMARA Short Message Service API
+  - type: OpenAPI
+    url: openapi/camara-project-fill-in-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-geofencing-subscriptions-api
+  name: CAMARA Project Geofencing subscriptions API
+  description: >-
+    Operations to manage event subscriptions on geofencing events for leaving and entering an area.
+  humanURL: https://github.com/camaraproject/NumberVerification
   tags:
-  - Messaging
-  - SMS
-  - Short Message Service
-  - Telecom
-  humanURL: https://github.com/camaraproject/ShortMessageService
+  - Geofencing subscriptions
   properties:
-  - url: https://github.com/camaraproject/ShortMessageService
-    type: Documentation
-  - url: openapi/sms-openapi.yml
-    type: OpenAPI
-  description: Send SMS messages programmatically with operator-delivered routing. Includes a delivery-notification
-    subscription surface for CloudEvents callbacks on message status (delivered, failed, expired).
-- aid: camara-project:connectivity-insights
-  name: CAMARA Connectivity Insights API
+  - type: OpenAPI
+    url: openapi/camara-project-geofencing-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-home-devices-qod-api
+  name: CAMARA Project Home Devices QoD API
+  description: QoD control operations for home devices
+  humanURL: https://github.com/camaraproject/NumberVerification
   tags:
-  - Analytics
-  - Connectivity
-  - Insights
-  - Telecom
-  humanURL: https://github.com/camaraproject/ConnectivityInsights
+  - Home Devices QoD
   properties:
-  - url: https://github.com/camaraproject/ConnectivityInsights
-    type: Documentation
-  - url: openapi/connectivity-insights-openapi.yml
-    type: OpenAPI
-  description: Real-time connectivity quality insights — measured throughput, latency, jitter, and signal
-    classification — for a target device. Used by applications to adapt quality (bitrate, codec, fallback) to
-    real network conditions, or to trigger a Quality on Demand session when needed.
+  - type: OpenAPI
+    url: openapi/camara-project-home-devices-qod-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-location-retrieval-api
+  name: CAMARA Project Location retrieval API
+  description: Retrieve the location of a device
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Location retrieval
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-location-retrieval-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-location-verification-api
+  name: CAMARA Project Location verification API
+  description: Verification of the location of a device
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Location verification
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-location-verification-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-match-api
+  name: CAMARA Project Match API
+  description: >-
+    Operations to match a customer identity against the account data bound to their phone number.
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Match
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-match-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-network-quality-api
+  name: CAMARA Project Network Quality API
+  description: >-
+    Read the network's level of confidence that it can meet the quality
+
+    thresholds for a given application profile and end user device.
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Network Quality
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-network-quality-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-one-step-payment-api
+  name: CAMARA Project One Step Payment API
+  description: Operations to manage One Step Payment procedure
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - One Step Payment
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-one-step-payment-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-otp-management-api
+  name: CAMARA Project OTP Management API
+  description: API operations to manage OTP codes
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - OTP Management
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-otp-management-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-payment-api
+  name: CAMARA Project Payment API
+  description: Operations to obtain information about payments
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Payment
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-payment-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-phone-number-share-api
+  name: CAMARA Project Phone number share API
+  description: API operation to return the phone number associated to the access token.
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Phone number share
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-phone-number-share-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-phone-number-verify-api
+  name: CAMARA Project Phone number verify API
+  description: >-
+    API operation to verify a phone number received as input. It can be received either in plain text
+    or hashed format.
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Phone number verify
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-phone-number-verify-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-population-density-data-api
+  name: CAMARA Project Population Density Data API
+  description: Operations to retrieve population density information.
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Population Density Data
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-population-density-data-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-qos-assignment-api
+  name: CAMARA Project QoS Assignment API
+  description: Manage the permanent assignment of a QoS profile to a device
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - QoS Assignment
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-qos-assignment-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-qos-profiles-api
+  name: CAMARA Project QoS Profiles API
+  description: Manage QoS Profiles
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - QoS Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-qos-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-qos-sessions-api
+  name: CAMARA Project QoS Sessions API
+  description: Manage QoS sessions
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - QoS Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-qos-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-retrieve-device-swap-date-api
+  name: CAMARA Project Retrieve Device Swap Date API
+  description: Receive the last date in which the device of the end-user was swapped
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Retrieve Device Swap Date
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-retrieve-device-swap-date-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-retrieve-sim-swap-date-api
+  name: CAMARA Project Retrieve SIM swap date API
+  description: >-
+    The Retrieve SIM swap date API from CAMARA Project — 1 operation(s) for retrieve sim swap date.
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Retrieve SIM swap date
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-retrieve-sim-swap-date-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-roaming-status-retrieval-api
+  name: CAMARA Project Roaming status retrieval API
+  description: >-
+    Operation to get device roaming status and country information (if roaming) synchronously
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Roaming status retrieval
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-roaming-status-retrieval-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-send-sms-api
+  name: CAMARA Project Send SMS API
+  description: The Send SMS API from CAMARA Project — 1 operation(s) for send sms.
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Send SMS
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-send-sms-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-sim-swap-subscription-api
+  name: CAMARA Project Sim Swap Subscription API
+  description: Operation to manage event subscription on sim swap event (swapped)
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Sim Swap Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-sim-swap-subscription-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-two-step-payment-api
+  name: CAMARA Project Two Step Payment API
+  description: Operations to manage Two Step Payment procedure
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Two Step Payment
+  properties:
+  - type: OpenAPI
+    url: openapi/camara-project-two-step-payment-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
+- aid: camara-project:camara-project-unconditional-call-forwarding-information-retrieval-api
+  name: CAMARA Project Unconditional Call Forwarding information retrieval API
+  description: >-
+    Provides information on Unconditional Call Forwarding settings for the provided phone number (PhoneNumber)
+  humanURL: https://github.com/camaraproject/NumberVerification
+  tags:
+  - Unconditional Call Forwarding information retrieval
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/camara-project-unconditional-call-forwarding-information-retrieval-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/camaraproject/NumberVerification
+  - type: Documentation
+    url: https://github.com/camaraproject/SimSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceLocation
+  - type: Documentation
+    url: https://github.com/camaraproject/QualityOnDemand
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceStatus
+  - type: Documentation
+    url: https://github.com/camaraproject/KnowYourCustomer
+  - type: Documentation
+    url: https://github.com/camaraproject/OTPValidation
+  - type: Documentation
+    url: https://github.com/camaraproject/DeviceSwap
+  - type: Documentation
+    url: https://github.com/camaraproject/SimpleEdgeDiscovery
+  - type: Documentation
+    url: https://github.com/camaraproject/CarrierBillingCheckOut
+  - type: Documentation
+    url: https://github.com/camaraproject/PopulationDensityData
+  - type: Documentation
+    url: https://github.com/camaraproject/HomeDevicesQoD
+  - type: Documentation
+    url: https://github.com/camaraproject/CallForwardingSignal
+  - type: Documentation
+    url: https://github.com/camaraproject/ShortMessageService
+  - type: Documentation
+    url: https://github.com/camaraproject/ConnectivityInsights
 name: CAMARA Project
 tags:
 - API Standards
@@ -291,7 +1202,19 @@ tags:
 - Telecom
 - Telecommunications
 kind: standard
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/camara-project.png
 access: 3rd-Party
 common:
 - type: AgenticAccess
