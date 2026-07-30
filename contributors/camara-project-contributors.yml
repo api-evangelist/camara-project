@@ -1,0 +1,2242 @@
+generated: '2026-07-30'
+method: searched
+source: https://github.com/camaraproject
+type: Contributors
+organization: camaraproject
+summary:
+  contributors: 202
+  repositories_checked: 88
+  total_contributions: 24627
+  resolved_to_people: 85
+  unresolved: 117
+  linked: '2026-07-30'
+contributors:
+- github_id: hdamker
+  contributions: 3866
+  repositories:
+  - .github
+  - APIBacklog
+  - ApplicationEndpointDiscovery
+  - ApplicationEndpointRegistration
+  - ApplicationProfiles
+  - BlockchainPublicAddress
+  - CallForwardingSignal
+  - CapabilitiesAndRuntimeRestrictions
+  - CarrierBillingCheckOut
+  - ClickToDial
+  - Commonalities
+  - ConnectedNetworkType
+  - ConnectivityInsights
+  - ConnectivityQualityManagement
+  - ConsentInfo
+  - ConsentManagement
+  - CustomerInsights
+  - DedicatedNetworks
+  - DeviceAuthenticity
+  - DeviceDataVolume
+  - DeviceIdentifier
+  - DeviceLocation
+  - DeviceMediaStreamingRate
+  - DeviceReachabilityStatus
+  - DeviceRoamingStatus
+  - DeviceStatus
+  - DeviceSwap
+  - DeviceVisitLocation
+  - EasyCLA
+  - EdgeApplicationManagement
+  - EdgeCloud
+  - EnergyFootprintNotification
+  - EnergyFootprintNotification_PI
+  - Governance
+  - HighThroughputElasticNetworks
+  - IdentityAndConsentManagement
+  - InHomeDeviceManagement
+  - IoTDeviceManagement
+  - IoTNetworkOptimization
+  - IoTNetworkOptimization_PI
+  - IoTSIMFraudPrevention
+  - KnowYourCustomer
+  - KnowYourCustomerAgeVerification
+  - KnowYourCustomerFill-in
+  - KnowYourCustomerMatch
+  - MCPEnablement_PI1
+  - Marketing
+  - ModelAsAService
+  - MostFrequentLocation
+  - MultiPointVPN
+  - NetworkAccessManagement
+  - NetworkInsights
+  - NetworkSliceBooking
+  - NumberRecycling
+  - NumberVerification
+  - OTPValidation
+  - OptimalEdgeDiscovery
+  - PopulationDensityData
+  - PredictiveConnectivityData
+  - QoSBooking
+  - QualityOnDemand
+  - QualityOnDemand_PI1
+  - QualityOnDemand_PI2
+  - QualityOnDemand_PI3
+  - RainfallIntensity
+  - RegionDeviceCount
+  - ReleaseManagement
+  - ReleaseTest
+  - SessionInsights
+  - SimSwap
+  - SimpleEdgeDiscovery
+  - SponsoredData
+  - SubscriptionStatus
+  - Template_API_Repository
+  - Template_PI_Repository
+  - Tenure
+  - TrafficInfluence
+  - VerifiedCaller
+  - VoiceNotification
+  - VoiceVerificationCode
+  - WebRTC
+  - camara-landscape
+  - camaraproject.github.io
+  - eSimRemoteManagement
+  - project-administration
+  - test-repo-w-linting
+  - test-repo-wo-linting
+  - tooling
+  repository_count: 88
+  person: Herbert Damker
+  org: Deutsche Telekom
+  matched_by: github_id
+- github_id: MarkusKuemmerle
+  contributions: 2482
+  repositories:
+  - APIBacklog
+  - BlockchainPublicAddress
+  - CarrierBillingCheckOut
+  - ClickToDial
+  - Commonalities
+  - ConnectivityInsights
+  - DeviceDataVolume
+  - DeviceIdentifier
+  - DeviceLocation
+  - DeviceMediaStreamingRate
+  - DeviceStatus
+  - DeviceSwap
+  - EasyCLA
+  - EdgeCloud
+  - Governance
+  - IdentityAndConsentManagement
+  - KnowYourCustomer
+  - Marketing
+  - NetworkAccessManagement
+  - NumberVerification
+  - OTPValidation
+  - PopulationDensityData
+  - QualityOnDemand
+  - QualityOnDemand_PI1
+  - QualityOnDemand_PI2
+  - RegionDeviceCount
+  - ReleaseManagement
+  - SimSwap
+  - SimpleEdgeDiscovery
+  - Template_API_Repository
+  - Template_PI_Repository
+  - Tenure
+  - WebRTC
+  - camara-landscape
+  repository_count: 34
+  person: Markus Kümmerle
+  org: Deutsche Telekom
+  matched_by: profile-name
+- github_id: eric-murray
+  contributions: 1766
+  repositories:
+  - .github
+  - APIBacklog
+  - Commonalities
+  - ConnectedNetworkType
+  - DedicatedNetworks
+  - DeviceDataVolume
+  - DeviceIdentifier
+  - DeviceLocation
+  - DeviceMediaStreamingRate
+  - DeviceReachabilityStatus
+  - DeviceRoamingStatus
+  - DeviceStatus
+  - EdgeCloud
+  - Governance
+  - IdentityAndConsentManagement
+  - NumberRecycling
+  - NumberVerification
+  - PopulationDensityData
+  - PredictiveConnectivityData
+  - QualityOnDemand
+  - Tenure
+  - VerifiedCaller
+  repository_count: 22
+  person: Eric Murray
+  org: Vodafone
+  matched_by: github_id
+- github_id: bigludo7
+  contributions: 1600
+  repositories:
+  - .github
+  - CallForwardingSignal
+  - CarrierBillingCheckOut
+  - Commonalities
+  - ConnectedNetworkType
+  - DeviceLocation
+  - DeviceReachabilityStatus
+  - DeviceRoamingStatus
+  - DeviceStatus
+  - DeviceSwap
+  - Governance
+  - NumberVerification
+  - OTPValidation
+  - PopulationDensityData
+  - PredictiveConnectivityData
+  - SimSwap
+  - VerifiedCaller
+  repository_count: 17
+  person: Ludovic Robert
+  org: ORANGE
+  matched_by: profile-name
+- github_id: FabrizioMoggio
+  contributions: 1019
+  repositories:
+  - APIBacklog
+  - CallForwardingSignal
+  - Commonalities
+  - EdgeCloud
+  - EnergyFootprintNotification
+  - EnergyFootprintNotification_PI
+  - Governance
+  - IoTNetworkOptimization
+  - IoTNetworkOptimization_PI
+  - KnowYourCustomerMatch
+  - TrafficInfluence
+  repository_count: 11
+  person: Fabrizio Moggio
+  org: TIM
+  matched_by: github_id
+- github_id: PedroDiez
+  contributions: 952
+  repositories:
+  - BlockchainPublicAddress
+  - CarrierBillingCheckOut
+  - Commonalities
+  - CustomerInsights
+  repository_count: 4
+  person: null
+  org: null
+  matched_by: null
+  github_company: TELEFONICA I+D
+- github_id: rartych
+  contributions: 904
+  repositories:
+  - BlockchainPublicAddress
+  - CallForwardingSignal
+  - CarrierBillingCheckOut
+  - Commonalities
+  - ConnectedNetworkType
+  - ConnectivityInsights
+  - DeviceDataVolume
+  - DeviceLocation
+  - DeviceMediaStreamingRate
+  - DeviceReachabilityStatus
+  - DeviceRoamingStatus
+  - DeviceStatus
+  - EdgeCloud
+  - IdentityAndConsentManagement
+  - KnowYourCustomer
+  - KnowYourCustomerAgeVerification
+  - NumberVerification
+  - OTPValidation
+  - QualityOnDemand
+  - ReleaseManagement
+  - SimSwap
+  - SimpleEdgeDiscovery
+  - Template_API_Repository
+  - WebRTC
+  - camara-landscape
+  - test-repo-wo-linting
+  - tooling
+  repository_count: 27
+  person: Rafal Artych
+  org: Deutsche Telekom
+  matched_by: github_id
+- github_id: Kevsy
+  contributions: 730
+  repositories:
+  - APIBacklog
+  - ApplicationEndpointDiscovery
+  - ApplicationEndpointRegistration
+  - ApplicationProfiles
+  - Commonalities
+  - ConnectivityInsights
+  - CustomerInsights
+  - DeviceIdentifier
+  - EdgeApplicationManagement
+  - EdgeCloud
+  - Governance
+  - OptimalEdgeDiscovery
+  - QoSBooking
+  - QualityOnDemand
+  - ReleaseManagement
+  - SessionInsights
+  - SimpleEdgeDiscovery
+  - SubscriptionStatus
+  - Template_API_Repository
+  - TrafficInfluence
+  - camaraproject.github.io
+  - tooling
+  repository_count: 22
+  person: Kevin Smith
+  org: Vodafone
+  matched_by: profile-name
+- github_id: jlurien
+  contributions: 618
+  repositories:
+  - Commonalities
+  - DeviceLocation
+  - NumberVerification
+  - QoSBooking
+  - QualityOnDemand
+  - ReleaseManagement
+  - SimSwap
+  - TrafficInfluence
+  repository_count: 8
+  person: Jose Luis Urien
+  org: Telefonica
+  matched_by: profile-name
+- github_id: maxl2287
+  contributions: 614
+  repositories:
+  - .github
+  - Commonalities
+  - ConnectedNetworkType
+  - DeviceDataVolume
+  - DeviceLocation
+  - DeviceReachabilityStatus
+  - DeviceRoamingStatus
+  - DeviceStatus
+  - KnowYourCustomer
+  - KnowYourCustomerMatch
+  - NumberRecycling
+  - NumberVerification
+  - QualityOnDemand
+  - QualityOnDemand_PI1
+  - SimSwap
+  repository_count: 15
+  person: Maximilian Laue
+  org: Deutsche Telekom
+  matched_by: profile-name
+- github_id: fernandopradocabrillo
+  contributions: 494
+  repositories:
+  - Commonalities
+  - ConnectedNetworkType
+  - DeviceReachabilityStatus
+  - DeviceRoamingStatus
+  - DeviceStatus
+  - DeviceSwap
+  - KnowYourCustomer
+  - KnowYourCustomerAgeVerification
+  - KnowYourCustomerFill-in
+  - KnowYourCustomerMatch
+  - MostFrequentLocation
+  - NumberRecycling
+  - NumberVerification
+  - OTPValidation
+  - QualityOnDemand
+  - SimSwap
+  - Tenure
+  repository_count: 17
+  person: Fernando Prado Cabrillo
+  org: Telefonica
+  matched_by: github_id
+- github_id: akoshunyadi
+  contributions: 490
+  repositories:
+  - ConnectedNetworkType
+  - DeviceLocation
+  - DeviceReachabilityStatus
+  - DeviceRoamingStatus
+  - DeviceStatus
+  - QualityOnDemand
+  repository_count: 6
+  person: Akos Hunyadi
+  org: Deutsche Telekom
+  matched_by: github_id
+- github_id: jgarciahospital
+  contributions: 415
+  repositories:
+  - APIBacklog
+  - CustomerInsights
+  - DedicatedNetworks
+  - DeviceLocation
+  - DeviceSwap
+  - Governance
+  - KnowYourCustomer
+  - NumberRecycling
+  - PopulationDensityData
+  - QualityOnDemand
+  - SimSwap
+  - Tenure
+  repository_count: 12
+  person: Jorge Garcia Hospital
+  org: Telefonica
+  matched_by: profile-name
+- github_id: AxelNennker
+  contributions: 391
+  repositories:
+  - Commonalities
+  - ConsentInfo
+  - ConsentManagement
+  - DeviceIdentifier
+  - IdentityAndConsentManagement
+  - KnowYourCustomer
+  - NumberVerification
+  - QualityOnDemand
+  - SimSwap
+  repository_count: 9
+  person: Axel Nennker
+  org: Deutsche Telekom
+  matched_by: github_id
+- github_id: jpengar
+  contributions: 372
+  repositories:
+  - Commonalities
+  - ConsentInfo
+  - ConsentManagement
+  - IdentityAndConsentManagement
+  - NumberVerification
+  repository_count: 5
+  person: Jesús Peña García-Oliva
+  org: Telefonica
+  matched_by: profile-name
+- github_id: ToshiWakayama-KDDI
+  contributions: 349
+  repositories:
+  - EdgeCloud
+  - Governance
+  - KnowYourCustomer
+  - KnowYourCustomerAgeVerification
+  - KnowYourCustomerFill-in
+  - KnowYourCustomerMatch
+  - NumberRecycling
+  - QualityOnDemand
+  - SubscriptionStatus
+  repository_count: 9
+  person: null
+  org: null
+  matched_by: null
+- github_id: tlohmar
+  contributions: 331
+  repositories:
+  - APIBacklog
+  - Commonalities
+  - ConnectivityQualityManagement
+  - DedicatedNetworks
+  - NetworkSliceBooking
+  - QualityOnDemand
+  - ReleaseManagement
+  repository_count: 7
+  person: Thorsten Lohmar
+  org: Ericsson
+  matched_by: github_id
+- github_id: chinaunicomyangfan
+  contributions: 303
+  repositories:
+  - APIBacklog
+  - DeviceVisitLocation
+  - NetworkSliceBooking
+  - RegionDeviceCount
+  - SubscriptionStatus
+  repository_count: 5
+  person: null
+  org: null
+  matched_by: null
+- github_id: maheshc01
+  contributions: 299
+  repositories:
+  - APIBacklog
+  - ApplicationEndpointDiscovery
+  - ApplicationEndpointRegistration
+  - ApplicationProfiles
+  - ConnectivityInsights
+  - DeviceLocation
+  - DeviceMediaStreamingRate
+  - DeviceStatus
+  - EdgeCloud
+  - Governance
+  - IoTDeviceManagement
+  - OptimalEdgeDiscovery
+  - PopulationDensityData
+  - QualityOnDemand
+  - SessionInsights
+  - SimpleEdgeDiscovery
+  repository_count: 16
+  person: null
+  org: null
+  matched_by: null
+  github_company: Verizon
+- github_id: wrathwolf
+  contributions: 295
+  repositories:
+  - APIBacklog
+  - BlockchainPublicAddress
+  - CarrierBillingCheckOut
+  - ClickToDial
+  - Commonalities
+  - ConnectivityInsights
+  - CustomerInsights
+  - DeviceDataVolume
+  - DeviceStatus
+  - DeviceSwap
+  - Governance
+  - IdentityAndConsentManagement
+  - IoTNetworkOptimization
+  - KnowYourCustomer
+  - Marketing
+  - MostFrequentLocation
+  - NetworkAccessManagement
+  - NetworkSliceBooking
+  - RegionDeviceCount
+  - ReleaseManagement
+  - SessionInsights
+  - SubscriptionStatus
+  - Template_API_Repository
+  - camara-landscape
+  repository_count: 24
+  person: Casey Cain
+  org: LinuxFoundation
+  matched_by: profile-name
+- github_id: hdamker-bot
+  contributions: 287
+  repositories:
+  - ApplicationEndpointDiscovery
+  - ApplicationEndpointRegistration
+  - ApplicationProfiles
+  - BlockchainPublicAddress
+  - CallForwardingSignal
+  - CapabilitiesAndRuntimeRestrictions
+  - CarrierBillingCheckOut
+  - ClickToDial
+  - ConnectedNetworkType
+  - ConnectivityInsights
+  - ConsentInfo
+  - ConsentManagement
+  - CustomerInsights
+  - DedicatedNetworks
+  - DeviceAuthenticity
+  - DeviceDataVolume
+  - DeviceIdentifier
+  - DeviceLocation
+  - DeviceMediaStreamingRate
+  - DeviceReachabilityStatus
+  - DeviceRoamingStatus
+  - DeviceStatus
+  - DeviceSwap
+  - DeviceVisitLocation
+  - EnergyFootprintNotification
+  - HighThroughputElasticNetworks
+  - InHomeDeviceManagement
+  - IoTDeviceManagement
+  - IoTNetworkOptimization
+  - IoTSIMFraudPrevention
+  - KnowYourCustomer
+  - KnowYourCustomerAgeVerification
+  - KnowYourCustomerFill-in
+  - KnowYourCustomerMatch
+  - ModelAsAService
+  - MostFrequentLocation
+  - MultiPointVPN
+  - NetworkAccessManagement
+  - NetworkInsights
+  - NetworkSliceBooking
+  - NumberRecycling
+  - NumberVerification
+  - OTPValidation
+  - OptimalEdgeDiscovery
+  - PopulationDensityData
+  - PredictiveConnectivityData
+  - QoSBooking
+  - QualityOnDemand
+  - RainfallIntensity
+  - RegionDeviceCount
+  - ReleaseTest
+  - SessionInsights
+  - SimSwap
+  - SimpleEdgeDiscovery
+  - SponsoredData
+  - SubscriptionStatus
+  - Tenure
+  - TrafficInfluence
+  - VerifiedCaller
+  - VoiceNotification
+  - VoiceVerificationCode
+  - WebRTC
+  - eSimRemoteManagement
+  - project-administration
+  - test-repo-wo-linting
+  - tooling
+  repository_count: 66
+  person: null
+  org: null
+  matched_by: null
+- github_id: tanjadegroot
+  contributions: 283
+  repositories:
+  - Commonalities
+  - Governance
+  - ReleaseManagement
+  repository_count: 3
+  person: Tanja de Groot
+  org: Nokia
+  matched_by: github_id
+- github_id: cnzj-Gc
+  contributions: 267
+  repositories:
+  - APIBacklog
+  - NetworkInsights
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+- github_id: albertoramosmonagas
+  contributions: 265
+  repositories:
+  - APIBacklog
+  - ConnectivityQualityManagement
+  - DeviceSwap
+  - Governance
+  - PopulationDensityData
+  - PredictiveConnectivityData
+  - ReleaseManagement
+  repository_count: 7
+  person: Alberto Ramos Monagas
+  org: Telefonica
+  matched_by: github_id
+- github_id: DT-DawidWroblewski
+  contributions: 232
+  repositories:
+  - IdentityAndConsentManagement
+  - NumberVerification
+  - OTPValidation
+  - SimSwap
+  repository_count: 4
+  person: null
+  org: null
+  matched_by: null
+  github_company: Deutsche Telekom
+- github_id: shilpa-padgaonkar
+  contributions: 230
+  repositories:
+  - Commonalities
+  - DeviceLocation
+  - DeviceStatus
+  - EdgeCloud
+  - Governance
+  - IdentityAndConsentManagement
+  - QualityOnDemand
+  - QualityOnDemand_PI1
+  repository_count: 8
+  person: Shilpa Padgaonkar
+  org: T-Mobile US
+  matched_by: github_id
+- github_id: chenfr2-ChinaTelecom
+  contributions: 226
+  repositories:
+  - APIBacklog
+  - IoTDeviceManagement
+  - IoTSIMFraudPrevention
+  repository_count: 3
+  person: null
+  org: null
+  matched_by: null
+- github_id: lihaojie-CMCC
+  contributions: 220
+  repositories:
+  - APIBacklog
+  - ModelAsAService
+  repository_count: 2
+  person: Haojie Li
+  org: China Mobile
+  matched_by: profile-name
+- github_id: Masa8106
+  contributions: 214
+  repositories:
+  - APIBacklog
+  - KnowYourCustomer
+  - NumberRecycling
+  - QoSBooking
+  repository_count: 4
+  person: Masaharu Hattori
+  org: KDDI
+  matched_by: profile-name
+- github_id: GillesInnov35
+  contributions: 208
+  repositories:
+  - KnowYourCustomer
+  - KnowYourCustomerAgeVerification
+  - KnowYourCustomerFill-in
+  - KnowYourCustomerMatch
+  - Tenure
+  - VerifiedCaller
+  repository_count: 6
+  person: Gilles Renoux
+  org: ORANGE
+  matched_by: profile-name
+- github_id: urvika-v
+  contributions: 174
+  repositories:
+  - ApplicationEndpointDiscovery
+  - ApplicationEndpointRegistration
+  - ApplicationProfiles
+  - ConnectivityInsights
+  - EdgeCloud
+  - OptimalEdgeDiscovery
+  repository_count: 6
+  person: null
+  org: null
+  matched_by: null
+  github_company: Verizon
+- github_id: stroncoso-quobis
+  contributions: 169
+  repositories:
+  - VerifiedCaller
+  - WebRTC
+  repository_count: 2
+  person: Santiago Troncoso
+  org: Quobis
+  matched_by: profile-name
+- github_id: alpaycetin74
+  contributions: 161
+  repositories:
+  - VerifiedCaller
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: jordonezlucena
+  contributions: 160
+  repositories:
+  - BlockchainPublicAddress
+  - CarrierBillingCheckOut
+  - Commonalities
+  - EdgeCloud
+  - Governance
+  - IdentityAndConsentManagement
+  - QualityOnDemand
+  repository_count: 7
+  person: null
+  org: null
+  matched_by: null
+- github_id: yamamoto0104
+  contributions: 148
+  repositories:
+  - NumberRecycling
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: KDDI
+- github_id: TEF-RicardoSerr
+  contributions: 130
+  repositories:
+  - APIBacklog
+  - EdgeCloud
+  - Governance
+  - Tenure
+  - VerifiedCaller
+  - WebRTC
+  repository_count: 6
+  person: Ricardo Serrano Gutierrez
+  org: Telefonica
+  matched_by: profile-name
+- github_id: JoseMConde
+  contributions: 122
+  repositories:
+  - ApplicationEndpointDiscovery
+  - ApplicationEndpointRegistration
+  - EdgeApplicationManagement
+  - EdgeCloud
+  - OptimalEdgeDiscovery
+  - SimpleEdgeDiscovery
+  - TrafficInfluence
+  repository_count: 7
+  person: null
+  org: null
+  matched_by: null
+  github_company: Telefónica S.A.
+- github_id: benhepworth
+  contributions: 119
+  repositories:
+  - APIBacklog
+  - ConnectivityInsights
+  - NetworkAccessManagement
+  - QualityOnDemand
+  - SessionInsights
+  repository_count: 5
+  person: Ben Hepworth
+  org: Cablelabs
+  matched_by: github_id
+- github_id: ALIIQBAL786
+  contributions: 116
+  repositories:
+  - APIBacklog
+  - CustomerInsights
+  - DeviceAuthenticity
+  - DeviceIdentifier
+  - EdgeCloud
+  - IoTNetworkOptimization
+  - TrafficInfluence
+  repository_count: 7
+  person: Ali Iqbal
+  org: X Flow Software Technology
+  matched_by: github_id
+- github_id: mdomale
+  contributions: 115
+  repositories:
+  - DeviceLocation
+  - DeviceStatus
+  - QualityOnDemand
+  repository_count: 3
+  person: null
+  org: null
+  matched_by: null
+- github_id: XunliYang
+  contributions: 105
+  repositories:
+  - IoTDeviceManagement
+  - IoTSIMFraudPrevention
+  - NetworkSliceBooking
+  repository_count: 3
+  person: null
+  org: null
+  matched_by: null
+- github_id: sachinvodafone
+  contributions: 104
+  repositories:
+  - ConnectedNetworkType
+  - DeviceDataVolume
+  - DeviceMediaStreamingRate
+  - DeviceReachabilityStatus
+  - DeviceRoamingStatus
+  - DeviceStatus
+  - IdentityAndConsentManagement
+  - PopulationDensityData
+  repository_count: 8
+  person: null
+  org: null
+  matched_by: null
+- github_id: RandyLevensalor
+  contributions: 102
+  repositories:
+  - NetworkAccessManagement
+  - QualityOnDemand
+  repository_count: 2
+  person: Randy Levensalor
+  org: Cablelabs
+  matched_by: github_id
+- github_id: gmuratk
+  contributions: 97
+  repositories:
+  - CapabilitiesAndRuntimeRestrictions
+  - Commonalities
+  - DeviceStatus
+  - Governance
+  - QoSBooking
+  repository_count: 5
+  person: null
+  org: null
+  matched_by: null
+- github_id: rkandoi
+  contributions: 97
+  repositories:
+  - Commonalities
+  - DedicatedNetworks
+  - IoTDeviceManagement
+  - IoTNetworkOptimization
+  repository_count: 4
+  person: Rajat Kandoi
+  org: Ericsson
+  matched_by: github_id
+- github_id: teikuran
+  contributions: 89
+  repositories:
+  - WebRTC
+  repository_count: 1
+  person: Tsuyoshi Takakura
+  org: Clap-n-Clank
+  matched_by: profile-name
+- github_id: YadingFang
+  contributions: 87
+  repositories:
+  - ClickToDial
+  repository_count: 1
+  person: Yading Fang
+  org: China Mobile
+  matched_by: github_id
+- github_id: RamTMO
+  contributions: 84
+  repositories:
+  - IdentityAndConsentManagement
+  - QoSBooking
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+  github_company: T-Mobile USA
+- github_id: monamok
+  contributions: 82
+  repositories:
+  - DeviceStatus
+  - NumberVerification
+  - OTPValidation
+  - SimSwap
+  repository_count: 4
+  person: null
+  org: null
+  matched_by: null
+- github_id: jafilippini1
+  contributions: 71
+  repositories:
+  - APIBacklog
+  - SponsoredData
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+  github_company: Telecom Argentina
+- github_id: patrice-conil
+  contributions: 67
+  repositories:
+  - Commonalities
+  - DeviceStatus
+  - PopulationDensityData
+  - QualityOnDemand
+  - QualityOnDemand_PI2
+  repository_count: 5
+  person: Patrice Conil
+  org: ORANGE
+  matched_by: github_id
+- github_id: stroncoso
+  contributions: 65
+  repositories:
+  - VerifiedCaller
+  - WebRTC
+  repository_count: 2
+  person: Santiago Troncoso
+  org: Quobis
+  matched_by: github_id
+- github_id: Marcin-Jarzab
+  contributions: 64
+  repositories:
+  - QualityOnDemand
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: ShutingQing
+  contributions: 55
+  repositories:
+  - CarrierBillingCheckOut
+  - ClickToDial
+  - DeviceSwap
+  - Governance
+  - IdentityAndConsentManagement
+  - NetworkSliceBooking
+  - SimSwap
+  repository_count: 7
+  person: null
+  org: null
+  matched_by: null
+- github_id: dfischer-tech
+  contributions: 55
+  repositories:
+  - Commonalities
+  - DeviceDataVolume
+  - DeviceLocation
+  - DeviceStatus
+  - QualityOnDemand
+  - SimSwap
+  repository_count: 6
+  person: Dominik Fischer
+  org: Deutsche Telekom
+  matched_by: profile-name
+- github_id: ChinaUnicomXiaoDongrui
+  contributions: 52
+  repositories:
+  - DeviceVisitLocation
+  - NetworkInsights
+  - NetworkSliceBooking
+  - VoiceNotification
+  - VoiceVerificationCode
+  - eSimRemoteManagement
+  repository_count: 6
+  person: null
+  org: null
+  matched_by: null
+- github_id: T-sm
+  contributions: 49
+  repositories:
+  - Governance
+  - QualityOnDemand
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+  github_company: DT
+- github_id: caubut-charter
+  contributions: 43
+  repositories:
+  - APIBacklog
+  - NetworkAccessManagement
+  repository_count: 2
+  person: Christopher Aubut
+  org: Charter
+  matched_by: profile-name
+- github_id: DLondonoD
+  contributions: 41
+  repositories:
+  - EdgeApplicationManagement
+  - OptimalEdgeDiscovery
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+  github_company: Telefónica
+- github_id: emil-cheung
+  contributions: 41
+  repositories:
+  - EdgeCloud
+  - Governance
+  - QualityOnDemand
+  repository_count: 3
+  person: null
+  org: null
+  matched_by: null
+- github_id: deepakjaiswal1
+  contributions: 40
+  repositories:
+  - WebRTC
+  repository_count: 1
+  person: Deepak Jaiswal
+  org: T-Mobile US
+  matched_by: github_id
+- github_id: AureMG
+  contributions: 37
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: hemantagogoi-infy
+  contributions: 37
+  repositories:
+  - InHomeDeviceManagement
+  - MultiPointVPN
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+- github_id: hubertp-ericsson
+  contributions: 36
+  repositories:
+  - DedicatedNetworks
+  repository_count: 1
+  person: Hubert Przybysz
+  org: Ericsson
+  matched_by: profile-name
+- github_id: ravindrapalaskar17
+  contributions: 34
+  repositories:
+  - Commonalities
+  - DeviceDataVolume
+  - DeviceStatus
+  - NumberVerification
+  - QualityOnDemand
+  repository_count: 5
+  person: Ravindra Palaskar
+  org: Deutsche Telekom
+  matched_by: github_id
+- github_id: gunjald
+  contributions: 34
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: Deepak A. Gunjal
+  org: Capgemini
+  matched_by: github_id
+- github_id: VijayKesharwani
+  contributions: 32
+  repositories:
+  - Commonalities
+  - DeviceDataVolume
+  - DeviceLocation
+  - DeviceStatus
+  repository_count: 4
+  person: null
+  org: null
+  matched_by: null
+- github_id: javierlozallu
+  contributions: 30
+  repositories:
+  - EdgeCloud
+  - SimpleEdgeDiscovery
+  repository_count: 2
+  person: Jhon Javier Lozal Luco
+  org: Telefonica
+  matched_by: profile-name
+- github_id: kohlian18
+  contributions: 29
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: sebdewet
+  contributions: 28
+  repositories:
+  - IdentityAndConsentManagement
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: mohdfarhanakram
+  contributions: 26
+  repositories:
+  - CallForwardingSignal
+  - QualityOnDemand
+  - SessionInsights
+  - VerifiedCaller
+  repository_count: 4
+  person: Mohd Farhan Akram
+  org: null
+  matched_by: github_id
+- github_id: varanto
+  contributions: 25
+  repositories:
+  - APIBacklog
+  - IoTNetworkOptimization
+  - IoTNetworkOptimization_PI
+  repository_count: 3
+  person: Antonio Varvara
+  org: TIM
+  matched_by: profile-name
+- github_id: jordijoangimenez
+  contributions: 25
+  repositories:
+  - ConnectivityQualityManagement
+  - DedicatedNetworks
+  repository_count: 2
+  person: Jordi Joan Gimenez
+  org: 5G M
+  matched_by: github_id
+- github_id: clundie-CL
+  contributions: 24
+  repositories:
+  - EdgeCloud
+  - NetworkAccessManagement
+  repository_count: 2
+  person: Cody Lundie
+  org: Cablelabs
+  matched_by: profile-name
+- github_id: jgarciatovar
+  contributions: 22
+  repositories:
+  - ApplicationEndpointDiscovery
+  - EdgeCloud
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+- github_id: Elisabeth-Mueller
+  contributions: 21
+  repositories:
+  - IdentityAndConsentManagement
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: erc
+- github_id: gainsley
+  contributions: 19
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: garciasolero
+  contributions: 19
+  repositories:
+  - IdentityAndConsentManagement
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: abd-abhisek
+  contributions: 18
+  repositories:
+  - APIBacklog
+  - InHomeDeviceManagement
+  - MultiPointVPN
+  repository_count: 3
+  person: null
+  org: null
+  matched_by: null
+  github_company: Infosys
+- github_id: sergiofranciscoortiz
+  contributions: 18
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: crissancas
+  contributions: 17
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: chia2017
+  contributions: 16
+  repositories:
+  - DeviceLocation
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: 'all4ip.de '
+- github_id: seralogar
+  contributions: 16
+  repositories:
+  - EdgeApplicationManagement
+  - EdgeCloud
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+  github_company: Nearby Computing SL
+- github_id: sfnuser
+  contributions: 15
+  repositories:
+  - DeviceIdentifier
+  - IdentityAndConsentManagement
+  - QualityOnDemand
+  - QualityOnDemand_PI3
+  repository_count: 4
+  person: null
+  org: null
+  matched_by: null
+  github_company: Spry Fox Networks
+- github_id: travishepworth
+  contributions: 15
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: Travis Hepworth
+  org: Cablelabs
+  matched_by: github_id
+- github_id: wangruobei
+  contributions: 13
+  repositories:
+  - APIBacklog
+  - HighThroughputElasticNetworks
+  repository_count: 2
+  person: Wang Ruo Bei
+  org: China Mobile
+  matched_by: github_id
+- github_id: HanbaiWang
+  contributions: 13
+  repositories:
+  - ClickToDial
+  repository_count: 1
+  person: Hanbai Wang
+  org: China Mobile
+  matched_by: github_id
+- github_id: niu-chinauicom
+  contributions: 12
+  repositories:
+  - APIBacklog
+  - VoiceNotification
+  - VoiceVerificationCode
+  repository_count: 3
+  person: null
+  org: null
+  matched_by: null
+- github_id: Kamran-Keykhosravi
+  contributions: 12
+  repositories:
+  - APIBacklog
+  - RainfallIntensity
+  repository_count: 2
+  person: Kamran Keykhosravi
+  org: Ericsson
+  matched_by: github_id
+- github_id: felipevicens
+  contributions: 12
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Telefónica
+- github_id: KeldaAnders
+  contributions: 12
+  repositories:
+  - SimSwap
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: T-Mobile
+- github_id: philipxujin
+  contributions: 11
+  repositories:
+  - APIBacklog
+  - Governance
+  - RegionDeviceCount
+  repository_count: 3
+  person: null
+  org: null
+  matched_by: null
+- github_id: Ma-Guang-Han
+  contributions: 9
+  repositories:
+  - APIBacklog
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: SentianSun
+  contributions: 9
+  repositories:
+  - APIBacklog
+  - eSimRemoteManagement
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+- github_id: usmanTheCoder
+  contributions: 9
+  repositories:
+  - DeviceAuthenticity
+  - DeviceIdentifier
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+  github_company: xFlow Research Inc.
+- github_id: SyeddR
+  contributions: 8
+  repositories:
+  - ConnectivityInsights
+  - DeviceStatus
+  - EdgeCloud
+  - Governance
+  - IdentityAndConsentManagement
+  - QualityOnDemand
+  repository_count: 6
+  person: Syed A Rehman
+  org: Verizon
+  matched_by: profile-name
+- github_id: hbujakow
+  contributions: 8
+  repositories:
+  - DeviceLocation
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Warsaw University of Technology
+- github_id: petorre
+  contributions: 8
+  repositories:
+  - EdgeCloud
+  - Governance
+  repository_count: 2
+  person: Petar Torre
+  org: Intel
+  matched_by: profile-name
+- github_id: diegogonmar
+  contributions: 8
+  repositories:
+  - IdentityAndConsentManagement
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: gregory1g
+  contributions: 8
+  repositories:
+  - PopulationDensityData
+  - SimSwap
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+- github_id: daniel-dierich
+  contributions: 8
+  repositories:
+  - SimSwap
+  repository_count: 1
+  person: Daniel Dierich
+  org: Deutsche Telekom
+  matched_by: github_id
+- github_id: m-nahum
+  contributions: 7
+  repositories:
+  - Commonalities
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Aduna Global
+- github_id: LarryHu0217
+  contributions: 7
+  repositories:
+  - Commonalities
+  - tooling
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+  github_company: Columbia University
+- github_id: SylMOREL
+  contributions: 7
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Sylvain Morel
+  org: ORANGE
+  matched_by: profile-name
+- github_id: FrimanJan
+  contributions: 7
+  repositories:
+  - Governance
+  - IdentityAndConsentManagement
+  repository_count: 2
+  person: Jan Friman
+  org: Ericsson
+  matched_by: profile-name
+- github_id: soadeyemo
+  contributions: 7
+  repositories:
+  - ReleaseManagement
+  repository_count: 1
+  person: Samuel Adeyemo
+  org: Nokia
+  matched_by: profile-name
+- github_id: rhtszk
+  contributions: 7
+  repositories:
+  - WebRTC
+  repository_count: 1
+  person: Rihito Suzuki
+  org: NTT
+  matched_by: profile-name
+- github_id: NoelWirzius
+  contributions: 6
+  repositories:
+  - APIBacklog
+  - DeviceStatus
+  - Governance
+  repository_count: 3
+  person: Noel Wirzius
+  org: Deutsche Telekom
+  matched_by: github_id
+- github_id: eharrison24
+  contributions: 6
+  repositories:
+  - CapabilitiesAndRuntimeRestrictions
+  - DeviceStatus
+  - Governance
+  - SubscriptionStatus
+  repository_count: 4
+  person: Evan Harrison
+  org: LinuxFoundation
+  matched_by: github_id
+- github_id: rafpas-tim
+  contributions: 6
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: Raffaele Passannanti
+  org: TIM
+  matched_by: profile-name
+- github_id: Bart-Ericsson
+  contributions: 6
+  repositories:
+  - Governance
+  - QualityOnDemand
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+- github_id: pradeepachar-mavenir
+  contributions: 6
+  repositories:
+  - WebRTC
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: YmFuWrok
+  contributions: 5
+  repositories:
+  - APIBacklog
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: dimitrisgiannopoulos
+  contributions: 5
+  repositories:
+  - APIBacklog
+  repository_count: 1
+  person: Dimitris Giannopoulos
+  org: University of Patr
+  matched_by: github_id
+- github_id: jimfengjinhua
+  contributions: 5
+  repositories:
+  - DedicatedNetworks
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Ericsson AB
+- github_id: ukkaps
+  contributions: 5
+  repositories:
+  - DeviceLocation
+  repository_count: 1
+  person: Udaka Kappagoda
+  org: axiata
+  matched_by: profile-name
+- github_id: tizghadam
+  contributions: 5
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: ylesaout
+  contributions: 5
+  repositories:
+  - MCPEnablement_PI1
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Orange
+- github_id: lbertz02
+  contributions: 4
+  repositories:
+  - CapabilitiesAndRuntimeRestrictions
+  repository_count: 1
+  person: Lyle Bertz
+  org: T-Mobile
+  matched_by: github_id
+- github_id: alabajnaid
+  contributions: 4
+  repositories:
+  - CarrierBillingCheckOut
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: RubenBG7
+  contributions: 4
+  repositories:
+  - Commonalities
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: trehman-gsma
+  contributions: 4
+  repositories:
+  - Commonalities
+  - DeviceLocation
+  - DeviceStatus
+  - SimSwap
+  repository_count: 4
+  person: null
+  org: null
+  matched_by: null
+- github_id: ThomasEXR
+  contributions: 4
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: Lueder-de-Riese
+  contributions: 4
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: sushanthmavenir
+  contributions: 4
+  repositories:
+  - WebRTC
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: nicolacdnll
+  contributions: 3
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: Nicola Cadenelli
+  org: Nearby Computing
+  matched_by: profile-name
+- github_id: awajs
+  contributions: 3
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Andrew Wajs
+  org: Scenera
+  matched_by: github_id
+- github_id: djhunt-ibm
+  contributions: 3
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: 'IBM '
+- github_id: facejuanc
+  contributions: 3
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: bishnu-infy
+  contributions: 3
+  repositories:
+  - MultiPointVPN
+  repository_count: 1
+  person: Bishnu Prasad Panda
+  org: Infosys
+  matched_by: profile-name
+- github_id: Kai-hw
+  contributions: 3
+  repositories:
+  - NetworkSliceBooking
+  repository_count: 1
+  person: Kai Zhang
+  org: Huawei
+  matched_by: profile-name
+- github_id: jimbobbennett
+  contributions: 3
+  repositories:
+  - QualityOnDemand
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Arize AI
+- github_id: JavierVillaLabarra
+  contributions: 3
+  repositories:
+  - WebRTC
+  repository_count: 1
+  person: Javier Villa Labarra
+  org: Telefonica
+  matched_by: github_id
+- github_id: ag-vodafone
+  contributions: 2
+  repositories:
+  - APIBacklog
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: MASDXI
+  contributions: 2
+  repositories:
+  - BlockchainPublicAddress
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: yada
+  contributions: 2
+  repositories:
+  - camara-landscape
+  repository_count: 1
+  person: Yacine Kheddache
+  org: Microcks
+  matched_by: profile-name
+- github_id: seekwain
+  contributions: 2
+  repositories:
+  - ClickToDial
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: JoachimDahlgren
+  contributions: 2
+  repositories:
+  - DeviceLocation
+  - DeviceStatus
+  repository_count: 2
+  person: Joachim Dahlgren
+  org: Ericsson
+  matched_by: github_id
+- github_id: paweltalar
+  contributions: 2
+  repositories:
+  - DeviceStatus
+  - QualityOnDemand_PI1
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+  github_company: Deutsche Telekom AG
+- github_id: FredericFi
+  contributions: 2
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: PrashantGDT
+  contributions: 2
+  repositories:
+  - EdgeCloud
+  - Governance
+  repository_count: 2
+  person: Prashant Goswami
+  org: Deutsche Telekom
+  matched_by: profile-name
+- github_id: lpcox
+  contributions: 2
+  repositories:
+  - EdgeCloud
+  - Governance
+  repository_count: 2
+  person: Landon Cox
+  org: Microsoft
+  matched_by: profile-name
+- github_id: kevin8xu
+  contributions: 2
+  repositories:
+  - EdgeCloud
+  - Governance
+  repository_count: 2
+  person: Kevin Xu
+  org: Verizon
+  matched_by: github_id
+- github_id: kreincke
+  contributions: 2
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Gewerbliche Schulen Lahn-Dill-Kreis, Germany
+- github_id: tomvanpelt
+  contributions: 2
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Tom van Pelt
+  org: GSMA
+  matched_by: github_id
+- github_id: roprocopio
+  contributions: 2
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: piwesol
+  contributions: 2
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Deutsche Telekom AG
+- github_id: dabernie
+  contributions: 2
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: cjp5330
+  contributions: 2
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: TVMobiledgeX
+  contributions: 2
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: bdfreeman1421
+  contributions: 2
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: MarkCornall
+  contributions: 2
+  repositories:
+  - Governance
+  - IdentityAndConsentManagement
+  repository_count: 2
+  person: Mark Cornall
+  org: GSMA
+  matched_by: github_id
+- github_id: alexlau48
+  contributions: 2
+  repositories:
+  - IoTDeviceManagement
+  - IoTSIMFraudPrevention
+  repository_count: 2
+  person: null
+  org: null
+  matched_by: null
+- github_id: vijaymurthyn
+  contributions: 2
+  repositories:
+  - MultiPointVPN
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: anjamorton
+  contributions: 2
+  repositories:
+  - QualityOnDemand
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: chriscorcimiglia
+  contributions: 2
+  repositories:
+  - QualityOnDemand
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: CableLabs
+- github_id: kaikreuzer
+  contributions: 2
+  repositories:
+  - QualityOnDemand
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Deutsche Telekom AG, openHAB Foundation e.V.
+- github_id: GuyVidal
+  contributions: 2
+  repositories:
+  - QualityOnDemand_PI2
+  repository_count: 1
+  person: Guy Vidal
+  org: ORANGE
+  matched_by: github_id
+- github_id: ravim95-eng
+  contributions: 1
+  repositories:
+  - APIBacklog
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: tcchiba
+  contributions: 1
+  repositories:
+  - APIBacklog
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: KDDI
+- github_id: annania
+  contributions: 1
+  repositories:
+  - camara-landscape
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: F5Networks @NGINX
+- github_id: cynthia-sg
+  contributions: 1
+  repositories:
+  - camara-landscape
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: thelinuxfoundation
+- github_id: jmertic
+  contributions: 1
+  repositories:
+  - camara-landscape
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Linux Foundation
+- github_id: tegioz
+  contributions: 1
+  repositories:
+  - camara-landscape
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Linux Foundation
+- github_id: vevi
+  contributions: 1
+  repositories:
+  - camara-landscape
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Red Hat
+- github_id: AAlmohaimeed16
+  contributions: 1
+  repositories:
+  - CarrierBillingCheckOut
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: bitbonk
+  contributions: 1
+  repositories:
+  - CarrierBillingCheckOut
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: wuhonglin
+  contributions: 1
+  repositories:
+  - ClickToDial
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: brettrhill
+  contributions: 1
+  repositories:
+  - ConnectivityInsights
+  repository_count: 1
+  person: Brett Hill
+  org: Telstra
+  matched_by: profile-name
+- github_id: deeokonkwo
+  contributions: 1
+  repositories:
+  - DeviceIdentifier
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: Sachinsiso
+  contributions: 1
+  repositories:
+  - DeviceStatus
+  repository_count: 1
+  person: Sachin Kumar
+  org: Vodafone
+  matched_by: profile-name
+- github_id: tuantranthai
+  contributions: 1
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: Tuan Tran Thai
+  org: Broadpeak
+  matched_by: github_id
+- github_id: BpkCN
+  contributions: 1
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: Christoph Neumann
+  org: Broadpeak
+  matched_by: profile-name
+- github_id: bbezerra82
+  contributions: 1
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: Bernardo Bezerra
+  org: Vodafone
+  matched_by: github_id
+- github_id: snoopalex9
+  contributions: 1
+  repositories:
+  - EdgeCloud
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Orange
+- github_id: kans-sharma
+  contributions: 1
+  repositories:
+  - EnergyFootprintNotification
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: scooter99boston
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Scott Nicholas
+  org: LinuxFoundation
+  matched_by: profile-name
+- github_id: greuff
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Thomas Wana
+  org: Dimetor
+  matched_by: profile-name
+- github_id: accfDT
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: faisalzia5
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: jesusmamartin
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: miguel-hernandez-TEF
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: n-oliver
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: octowald
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: raghuram-parvataneni
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Raghuram Parvataneni
+  org: Verizon
+  matched_by: github_id
+- github_id: sm7084
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Shahram Mohajeri
+  org: AT&T
+  matched_by: profile-name
+- github_id: villarrealr44
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: SaadUSheikh
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: ReneSaathoff
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Rene Saathoff
+  org: Nokia
+  matched_by: github_id
+- github_id: Nokia-Marc
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: KlausMoschner
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: elmundt
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Deutsche Telekom AG
+- github_id: CAMG3236
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: BarryElia
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Barry Elia
+  org: AT&T
+  matched_by: github_id
+- github_id: ab-ip
+  contributions: 1
+  repositories:
+  - Governance
+  repository_count: 1
+  person: Aleksandar Brankovic
+  org: IPification
+  matched_by: profile-name
+- github_id: mhfoo
+  contributions: 1
+  repositories:
+  - IdentityAndConsentManagement
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Singtel
+- github_id: stossie
+  contributions: 1
+  repositories:
+  - IoTDeviceManagement
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: dsrg1803
+  contributions: 1
+  repositories:
+  - IoTDeviceManagement
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: javier-carrocalabor
+  contributions: 1
+  repositories:
+  - MostFrequentLocation
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: engst03
+  contributions: 1
+  repositories:
+  - OTPValidation
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+- github_id: nashjain
+  contributions: 1
+  repositories:
+  - QualityOnDemand_PI1
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: Specmatic.io
+- github_id: DanXu-ChinaTelecom
+  contributions: 1
+  repositories:
+  - VerifiedCaller
+  repository_count: 1
+  person: null
+  org: null
+  matched_by: null
+  github_company: China Telecommunications Corporation
