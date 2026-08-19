@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Call Forwarding Signal Age Verification Payment API",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/payments",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Requested index to indicate the start of the resources to be provided in the response"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Requested number of resources to be provided in response"
+              },
+              {
+                "name": "paymentCreationDate.gte",
+                "value": "",
+                "type": "query",
+                "description": "Initial `paymentCreationDate` for running the query. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone."
+              },
+              {
+                "name": "paymentCreationDate.lte",
+                "value": "",
+                "type": "query",
+                "description": "End `paymentCreationDate` for running the query. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Used to return the sorted results in descending (default) or ascending order, based on `paymentCreationDate` property"
+              },
+              {
+                "name": "paymentStatus",
+                "value": "",
+                "type": "query",
+                "description": "List of payment status to be considered for the query"
+              },
+              {
+                "name": "merchantIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Merchant identifier to filter the results"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of payments and their details based on some filtering criteria.\nRegardless the payment criteria provided, response MUST be always limited to payments performed by the API client (i.e same oAuth credentials) triggering this request.\nThis is to guarantee no API client can check payments performed by other, therefore avoiding any legal or privacy topic.\n\nWhen Access Token is issued for a given user phone number, the list of payments returned would be only the ones associated to that"
+        },
+        {
+          "info": {
+            "name": "Get payment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/payments/:paymentId",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "Payment identifier that was obtained from the create payment operation"
+              }
+            ]
+          },
+          "docs": "Retrieve payment details for a given payment.\n\nWhen Access Token is issued for a given user phone number, the payment details would be returned in case the `paymentId` is associated to that user phone number and API client, otherwise `404 NOT_FOUND` will be returned. When Access Token is not associated to a user phone number, the payment details are returned in case the API client managed that payment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

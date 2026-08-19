@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Call Forwarding Signal Age Verification Fill-in API",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fill-in",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Providing information related to a customer identity stored the account data bound to the customer's phone number.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/fill-in",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Providing information related to a customer identity stored the account data bound to the customer's phone number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

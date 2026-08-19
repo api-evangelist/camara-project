@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Call Forwarding Signal Age Verification Two Step Payment API",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Two Step Payment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Prepare (reserve) a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/payments/prepare",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Prepare a new payment procedure. Carrier Billing Server will apply the charging according to business configuration for the end user."
+        },
+        {
+          "info": {
+            "name": "Validate a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/payments/:paymentId/validate",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "The payment identifier returned when the payment preparation was created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate a given payment with a code, identified by its paymentId. This process is applicable for 2-STEP, when optionally required by business case."
+        },
+        {
+          "info": {
+            "name": "Confirm a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/payments/:paymentId/confirm",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "The payment identifier returned when the payment preparation was created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Confirm a reservation of a given payment, identified by its paymentId."
+        },
+        {
+          "info": {
+            "name": "Cancel a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/payments/:paymentId/cancel",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "The payment identifier returned when the payment preparation was created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a reservation of a given payment, identified by its paymentId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

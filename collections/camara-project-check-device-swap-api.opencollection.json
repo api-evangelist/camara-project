@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Call Forwarding Signal Age Verification Check Device Swap API",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Check Device Swap",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check last device swap date",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/check",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check if device swap has been performed during a past period"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

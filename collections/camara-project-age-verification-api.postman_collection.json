@@ -1,0 +1,473 @@
+{
+  "item": [
+    {
+      "id": "aa36b7df-497b-457b-aaa3-a97215545ea8",
+      "name": "Age Verification",
+      "description": {
+        "content": "Operations to verify the age of a user.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b2ea1bc-d777-400f-bd19-c42d0e35a9ad",
+          "name": "Verify Age Threshold",
+          "request": {
+            "name": "Verify Age Threshold",
+            "description": {
+              "content": "Verify that the age of the subscriber associated with a phone number is equal to or greater than the specified age threshold value.\n\nAs it is possible that the person holding the contract and the end-user of the subscription may not be the same, the endpoint also admits a list of optional properties to be included in the request to improve the identification. The response may optionally include the `identityMatchScore` property with a value that indicates how certain it is that the information returned relates to the person that the API Client is requesting. To increase the reliability of the information returned, the API Provider may include in the response the `verifiedStatus` property, indicating whether the identity information in its possession has been verified against an identification document legally accepted as an age verification document.\n\nIf the API Client indicates request properties `includeContentLock` or `includeParentalControl` with value `true` and the API Provider implements this functionality, then the response will also include `contentLock` and `parentalControl` properties to indicate if the subscription has any kind of content filtering enabled. On the other hand, if the request properties are not included or the API Client specifies value `false`, then the response properties will not be returned. If the API Provider doesn't implement this functionality, request properties will be ignored and response properties won't be returned in any case.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`",
+                  "type": "any",
+                  "value": "{{apiRoot}}",
+                  "key": "apiRoot"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Correlation id for the different services",
+                "key": "x-correlator",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ageThreshold\": \"<integer>\",\n  \"phoneNumber\": \"<string>\",\n  \"idDocument\": \"<string>\",\n  \"name\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"familyName\": \"<string>\",\n  \"middleNames\": \"<string>\",\n  \"familyNameAtBirth\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"email\": \"<email>\",\n  \"includeContentLock\": false,\n  \"includeParentalControl\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42003f1a-9f32-479e-889e-45fbee220b72",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`",
+                      "type": "any",
+                      "value": "{{apiRoot}}",
+                      "key": "apiRoot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Correlation id for the different services",
+                    "key": "x-correlator",
+                    "value": "b4333c46-49c0-4f62-80d7-f0ef930f1c46"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ageThreshold\": 18,\n  \"phoneNumber\": \"+34629255833\",\n  \"idDocument\": \"66666666q\",\n  \"name\": \"Federica Sanchez Arjona\",\n  \"givenName\": \"Federica\",\n  \"familyName\": \"Sanchez Arjona\",\n  \"middleNames\": \"Sanchez\",\n  \"familyNameAtBirth\": \"YYYY\",\n  \"birthdate\": \"1978-08-22\",\n  \"email\": \"federicaSanchez.Arjona@example.com\",\n  \"includeContentLock\": true,\n  \"includeParentalControl\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Correlation id for the different services",
+                  "key": "x-correlator",
+                  "value": "JabsTd0w1LPpPmE4"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ageCheck\": \"true\",\n  \"verifiedStatus\": true,\n  \"identityMatchScore\": 90,\n  \"contentLock\": \"false\",\n  \"parentalControl\": \"true\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "328dafac-9fee-477b-aff5-095980d5949e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`",
+                      "type": "any",
+                      "value": "{{apiRoot}}",
+                      "key": "apiRoot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Correlation id for the different services",
+                    "key": "x-correlator",
+                    "value": "b4333c46-49c0-4f62-80d7-f0ef930f1c46"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ageThreshold\": 18,\n  \"phoneNumber\": \"+34629255833\",\n  \"idDocument\": \"66666666q\",\n  \"name\": \"Federica Sanchez Arjona\",\n  \"givenName\": \"Federica\",\n  \"familyName\": \"Sanchez Arjona\",\n  \"middleNames\": \"Sanchez\",\n  \"familyNameAtBirth\": \"YYYY\",\n  \"birthdate\": \"1978-08-22\",\n  \"email\": \"federicaSanchez.Arjona@example.com\",\n  \"includeContentLock\": true,\n  \"includeParentalControl\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Correlation id for the different services",
+                  "key": "x-correlator",
+                  "value": "JabsTd0w1LPpPmE4"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": \"INVALID_ARGUMENT\",\n  \"message\": \"Client specified an invalid argument, request body or query param.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e7f8e23-df95-4f0d-88d2-b7eb4ade4568",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`",
+                      "type": "any",
+                      "value": "{{apiRoot}}",
+                      "key": "apiRoot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Correlation id for the different services",
+                    "key": "x-correlator",
+                    "value": "b4333c46-49c0-4f62-80d7-f0ef930f1c46"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ageThreshold\": 18,\n  \"phoneNumber\": \"+34629255833\",\n  \"idDocument\": \"66666666q\",\n  \"name\": \"Federica Sanchez Arjona\",\n  \"givenName\": \"Federica\",\n  \"familyName\": \"Sanchez Arjona\",\n  \"middleNames\": \"Sanchez\",\n  \"familyNameAtBirth\": \"YYYY\",\n  \"birthdate\": \"1978-08-22\",\n  \"email\": \"federicaSanchez.Arjona@example.com\",\n  \"includeContentLock\": true,\n  \"includeParentalControl\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Correlation id for the different services",
+                  "key": "x-correlator",
+                  "value": "JabsTd0w1LPpPmE4"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 401,\n  \"code\": \"UNAUTHENTICATED\",\n  \"message\": \"Request not authenticated due to missing, invalid, or expired credentials.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64fbdb75-f27a-4aef-93b8-cf5d5d6d090c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`",
+                      "type": "any",
+                      "value": "{{apiRoot}}",
+                      "key": "apiRoot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Correlation id for the different services",
+                    "key": "x-correlator",
+                    "value": "b4333c46-49c0-4f62-80d7-f0ef930f1c46"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ageThreshold\": 18,\n  \"phoneNumber\": \"+34629255833\",\n  \"idDocument\": \"66666666q\",\n  \"name\": \"Federica Sanchez Arjona\",\n  \"givenName\": \"Federica\",\n  \"familyName\": \"Sanchez Arjona\",\n  \"middleNames\": \"Sanchez\",\n  \"familyNameAtBirth\": \"YYYY\",\n  \"birthdate\": \"1978-08-22\",\n  \"email\": \"federicaSanchez.Arjona@example.com\",\n  \"includeContentLock\": true,\n  \"includeParentalControl\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Correlation id for the different services",
+                  "key": "x-correlator",
+                  "value": "JabsTd0w1LPpPmE4"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 403,\n  \"code\": \"PERMISSION_DENIED\",\n  \"message\": \"Client does not have sufficient permissions to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "773f1d51-8b80-4c24-84cd-685c5e6321b4",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`",
+                      "type": "any",
+                      "value": "{{apiRoot}}",
+                      "key": "apiRoot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Correlation id for the different services",
+                    "key": "x-correlator",
+                    "value": "b4333c46-49c0-4f62-80d7-f0ef930f1c46"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ageThreshold\": 18,\n  \"phoneNumber\": \"+34629255833\",\n  \"idDocument\": \"66666666q\",\n  \"name\": \"Federica Sanchez Arjona\",\n  \"givenName\": \"Federica\",\n  \"familyName\": \"Sanchez Arjona\",\n  \"middleNames\": \"Sanchez\",\n  \"familyNameAtBirth\": \"YYYY\",\n  \"birthdate\": \"1978-08-22\",\n  \"email\": \"federicaSanchez.Arjona@example.com\",\n  \"includeContentLock\": true,\n  \"includeParentalControl\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Correlation id for the different services",
+                  "key": "x-correlator",
+                  "value": "JabsTd0w1LPpPmE4"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 404,\n  \"code\": \"IDENTIFIER_NOT_FOUND\",\n  \"message\": \"The phone number provided is not associated with a customer account\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10bf5948-4178-45f3-b4e3-41d77da0a545",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`",
+                      "type": "any",
+                      "value": "{{apiRoot}}",
+                      "key": "apiRoot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Correlation id for the different services",
+                    "key": "x-correlator",
+                    "value": "b4333c46-49c0-4f62-80d7-f0ef930f1c46"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ageThreshold\": 18,\n  \"phoneNumber\": \"+34629255833\",\n  \"idDocument\": \"66666666q\",\n  \"name\": \"Federica Sanchez Arjona\",\n  \"givenName\": \"Federica\",\n  \"familyName\": \"Sanchez Arjona\",\n  \"middleNames\": \"Sanchez\",\n  \"familyNameAtBirth\": \"YYYY\",\n  \"birthdate\": \"1978-08-22\",\n  \"email\": \"federicaSanchez.Arjona@example.com\",\n  \"includeContentLock\": true,\n  \"includeParentalControl\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Correlation id for the different services",
+                  "key": "x-correlator",
+                  "value": "JabsTd0w1LPpPmE4"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"code\": \"SERVICE_NOT_APPLICABLE\",\n  \"message\": \"The service is not applicable for the provided phone number\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "http://localhost:9091",
+      "key": "apiRoot"
+    },
+    {
+      "type": "string",
+      "value": "{{apiRoot}}/call-forwarding-signal/vwip",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "80e54a2d-421b-4033-b54a-9527428e1e37",
+    "name": "Call Forwarding Signal Age Verification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Overview\nThe Call Forwarding Signal API provides the API Consumer with\ninformation about the status of the Call Forwarding Service on a specific\nphone number. The main scope of the Call Forwarding Signal API is \"anti\nFraud\" to avoid fraudsters to use the Call Forwarding Service to carry\non a scam. Other use cases are anyway supported by the Call Forwarding\nSignal API that also\nprovides additional endpoints to detect the general Call Forwarding\nService settings.\n# Introduction\nThe Call Forwarding Service is provided by the Network to a phone\nnumber. This service redirects the incoming call to that phone number\nto an alternative destination such as another phone number or a voice mail\nsystem. There are two main types of call forwarding settings:\nunconditional and conditional.\nThe Call Forwarding Signal API can be invoked to detect if the unconditional\ncall forwarding service is active. The Call Forwarding Signal API can also\nbe invoked to\nget the general status of the Call Forwarding Service (inactive,\nconditional, unconditional). If conditional call forwarding is active,\nthe different type of settings are returned ('conditional_busy',\n'conditional_not_reachable', 'conditional_no_answer').\n\n**Example use cases:**\n\n[**Bank Frauds**](https://github.com/camaraproject/CallForwardingSignal/discussions/3#discussioncomment-8694420)\n\n[**Alert Interception**](https://github.com/camaraproject/CallForwardingSignal/discussions/3#discussioncomment-8701847)\n\n[**Call Forwarding Verification**](https://github.com/camaraproject/CallForwarding\\Signal/discussions/3#discussioncomment-8915595)\n# Quick Start\nThe Call Forwarding Signal API is a REST API based on the\nCreateCallForwardingSignal resource.\nThis resource can be used, by the API Consumer, to specify the phone number\non which the Call Forwarding Service status must be verified, in case of\ntwo-legged authentication. If three-legged authentication is used the phone\nnumber is instead detected, by the API Producer, from the access token.\n\nBefore starting to use the Call Forwarding API, the developer needs to know\nabout the below specified details:\n\n**phoneNumber**\nThis is the end user phone number. The Call Forwarding Signal API verifies\nif a call forwarding\nservice is active on this phone number. Note: this parameter must be\nmust be provided/valued only in case of two-legged authentication.\nIn case of three-legged authentication the phone number is retrieved by\nthe access token.\n\n**CreateCallForwardingSignal**\nThis is the resource the API Consumer uses to define the phone number to\nbe verified about the status of the Network Call Forwarding service.\n\n**UnconditionalCallForwardingSignal**\nThis is the resource the API Consumer gets back, containing the information\nabout the Unconditional Call Forwarding Service status for the given phone\nnumber (PhoneNumber).\n\n**CallForwardingSignal**\nThis is the resource the API Consumer gets back, containing the information\nabout the general status of the Network Call Forwarding service for the\nspecified phone number.\n\nThe Call Forwarding Signal API provides two endpoints fulfilling the\nfollowing intents:\n- **unconditional-call-forwardings**: Is the unconditional call fwd service\nactive on a specific phone number?\n- **call-forwardings**: Which is the status of the call forwarding for a\nspecific phone number?\n# API Documentation\n## Details\nThe Call Forwarding Signal API is invoked by an API Consumer after the\nConsent Management flow.\n\nThe API Consumer can request the API Producer for the status of the\nUnconditional Call Forwarding service using the\nunconditional-call-forwardings POST method. A boolean, with the information\nabout the activation status of the call forwarding service, will be\nprovided back via the UnconditionalCallForwardingSignal resource.\n\nThe API Consumer can also request the API Producer for the generic status of\nthe Call Forwarding service using the call-forwardings POST method. An array\nof strings with the information of the type of active call forwarding\nservices will be provided back via the CallForwardingSignal resource.\n# Authorization and authentication\nThe \"Camara Security and Interoperability Profile\" provides details of how\nan API consumer requests an access token. Please refer to Identity and\nConsent Management\n(https://github.com/camaraproject/IdentityAndConsentManagement/)\nfor the released version of the profile.\n\nThe specific authorization flows to be used will be agreed upon during the\nonboarding process, happening between the API consumer and the API\nprovider, taking into account the declared purpose for accessing the API,\nwhilst also being subject to the prevailing legal framework dictated by\nlocal legislation.\n\nIn cases where personal data is processed by the API and users can\nexercise their rights through mechanisms such as opt-in and/or opt-out,\nthe use of three-legged access tokens is mandatory. This ensures that\nthe API remains in compliance with privacy regulations, upholding the\nprinciples of transparency and user-centric privacy-by-design.\n# Identifying the phone number from the access token\nThis API requires the API consumer to identify a phone number as the\nsubject of the API as follows:\n- When the API is invoked using a two-legged access token, the subject\nwill be identified from the optional `phoneNumber` object field, which\ntherefore MUST be provided.\n- When a three-legged access token is used however, this optional\nidentifier MUST NOT be provided, as the subject will be uniquely\nidentified from the access token.\n\nThis approach simplifies API usage for API consumers using a\nthree-legged access token to invoke the API by relying on the\ninformation that is associated with the access token and was\nidentified during the authentication process.\n## Error handling:\n\n- If the subject cannot be identified from the access token and the\noptional `phoneNumber` object field is not included in the request, then\nthe server will return an error with the\n`422 MISSING_IDENTIFIER` error code.\n\n- If the subject can be identified from the access token and the\noptional `phoneNumber` object field is also included in the request, then\nthe server will return an error with the `422 UNNECESSARY_IDENTIFIER`\nerror code. This will be the case even if the same device is\nidentified by these two methods, as the server is unable to make\nthis comparison.\n\n# Additional CAMARA error responses\nThe list of error codes in this API specification is not exhaustive.\nTherefore the API specification may not document some non-mandatory error\nstatuses as indicated in `CAMARA API Design Guide`.\n\nPlease refer to the `CAMARA_common.yaml` of the Commonalities Release\nassociated to this API version for a complete list of error responses.\nThe applicable Commonalities Release can be identified in the\n`API Readiness Checklist` document associated to this API version.\n\nAs a specific rule, error `501 - NOT_IMPLEMENTED` can be only a possible\nerror response if it is explicitly documented in the API.\n# FAQ's\n(FAQs will be added in a later version of the documentation)\n",
+      "type": "text/plain"
+    }
+  }
+}

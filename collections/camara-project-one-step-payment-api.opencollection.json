@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Call Forwarding Signal Age Verification One Step Payment API",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "One Step Payment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/payments",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new payment for subsequent charging to an end user. Carrier Billing Server will apply the charging according to business configuration for the end user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

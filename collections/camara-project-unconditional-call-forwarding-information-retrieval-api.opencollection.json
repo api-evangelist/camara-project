@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Call Forwarding Signal Age Verification Unconditional Call Forwarding information retrieval API",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unconditional Call Forwarding information retrieval",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the information about the status of the unconditional call forwarding service on a phone number (PhoneNumber)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/unconditional-call-forwardings",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint provides information about the status of the unconditional call forwarding, being active or not."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

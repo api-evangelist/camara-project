@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Call Forwarding Signal Age Verification Retrieve Device Swap Date API",
+    "version": "wip"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieve Device Swap Date",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get last device swap date",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{apiRoot}/call-forwarding-signal/vwip/retrieve-date",
+            "headers": [
+              {
+                "name": "x-correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get timestamp of last device swap for a mobile user account provided with phone number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
