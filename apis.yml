@@ -45,6 +45,8 @@ apis:
   description: Provides information on Call Forwarding settings for the provided phone number (PhoneNumber).
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
+  - Call Forwarding Information Retrieval
+  tags_raw:
   - Call Forwarding information retrieval
   properties:
   - type: OpenAPI
@@ -438,6 +440,8 @@ apis:
   description: Verification of the location of a device
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
+  - Location Verification
+  tags_raw:
   - Location verification
   properties:
   - type: OpenAPI
@@ -1145,6 +1149,8 @@ apis:
     (PhoneNumber)
   humanURL: https://github.com/camaraproject/NumberVerification
   tags:
+  - Unconditional Call Forwarding Information Retrieval
+  tags_raw:
   - Unconditional Call Forwarding information retrieval
   properties:
   - type: OpenAPI
@@ -1181,6 +1187,22 @@ apis:
     url: https://github.com/camaraproject/ConnectivityInsights
 name: CAMARA Project
 tags:
+- API Standards
+- CAMARA
+- GSMA
+- GSMA Open Gateway
+- Linux Foundation
+- Network APIs
+- OpenAPI
+- Open Gateway
+- Open-Source
+- Standards
+- Standards Body
+- Telco
+- Telco API Alliance
+- Telecom
+- Telecommunications
+tags_raw:
 - API Standards
 - CAMARA
 - GSMA
