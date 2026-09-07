@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Call Forwarding Signal Age Verification OTP Management API
   description: '# Overview
@@ -358,80 +358,136 @@ paths:
       - openId:
         - one-time-password-sms:send-validate
 components:
-  schemas:
-    SendCodeResponse:
-      description: Structure to provide authentication identifier
-      type: object
-      properties:
-        authenticationId:
-          $ref: '#/components/schemas/AuthenticationId'
-      required:
-      - authenticationId
-    AuthenticationId:
-      type: string
-      description: unique id of the verification attempt the code belongs to.
-      maxLength: 36
-      example: ea0840f3-3663-4149-bd10-c7c6b8912105
-    XCorrelator:
-      type: string
-      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
-      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
-    ValidateCodeBody:
-      description: Strcuture to request code verification
-      type: object
-      properties:
-        authenticationId:
-          $ref: '#/components/schemas/AuthenticationId'
-        code:
-          $ref: '#/components/schemas/Code'
-      required:
-      - authenticationId
-      - code
-    ErrorInfo:
-      description: Structure to describe error
-      type: object
-      required:
-      - status
-      - code
-      - message
-      properties:
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: A human-readable code to describe the error
-        message:
-          type: string
-          description: A human-readable description of what the event represents
-    Code:
-      type: string
-      description: temporal, short code to be validated
-      maxLength: 10
-      example: AJY3
-    Message:
-      type: string
-      description: Message template used to compose the content of the SMS sent to the phone number. It must include the following label indicating where to include the short code `{{code}}`
-      pattern: .*\{\{code\}\}.*
-      maxLength: 160
-      example: '{{code}} is your short code to authenticate with Cool App via SMS'
-    SendCodeBody:
-      description: Structure to request sending a code to a phone number
-      type: object
-      properties:
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-        message:
-          $ref: '#/components/schemas/Message'
-      required:
-      - message
-      - phoneNumber
-    PhoneNumber:
-      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
-      type: string
-      pattern: ^\+[1-9][0-9]{4,14}$
-      example: '+346661113334'
+  headers:
+    x-correlator:
+      description: Correlation id for the different services
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
   responses:
+    Generic400:
+      description: Problem with the client request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 400
+                code:
+                  enum:
+                  - INVALID_ARGUMENT
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+    Generic429:
+      description: Either out of resource quota or reaching rate limiting
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 429
+                code:
+                  enum:
+                  - QUOTA_EXCEEDED
+                  - TOO_MANY_REQUESTS
+          examples:
+            GENERIC_429_QUOTA_EXCEEDED:
+              description: Request is rejected due to exceeding a business quota limit
+              value:
+                status: 429
+                code: QUOTA_EXCEEDED
+                message: Out of resource quota.
+            GENERIC_429_TOO_MANY_REQUESTS:
+              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
+              value:
+                status: 429
+                code: TOO_MANY_REQUESTS
+                message: Rate limit reached.
+    SendCodeForbiddenError403:
+      description: "Client does not have sufficient permissions to perform this action.\nIn addition to regular scenario of `PERMISSION_DENIED`, another scenarios may exist:\n  - Too many code requests were sent (`{\"code\": \"ONE_TIME_PASSWORD_SMS.MAX_OTP_CODES_EXCEEDED\",\"message\": \"Too many OTPs have been requested for this MSISDN. Try later.\"}`)\n  - The given phoneNumber can't receive an SMS due to business reasons in the operator, e.g. fraud, receiving SMS is not supported, etc (`{\"code\": \"ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_NOT_ALLOWED\",\"message\": \"Phone_number can't receive an SMS due to business reasons in the operator.\"}`)\n  - The given phoneNumber is blocked to receive SMS due to any blocking business reason in the operator (`{\"code\": \"ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_BLOCKED\",\"message\": \"Phone_number is blocked to receive SMS due to any blocking business reason in the operator.\"}`)"
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 403
+                code:
+                  enum:
+                  - PERMISSION_DENIED
+                  - ONE_TIME_PASSWORD_SMS.MAX_OTP_CODES_EXCEEDED
+                  - ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_NOT_ALLOWED
+                  - ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_BLOCKED
+          examples:
+            GENERIC_403_PERMISSION_DENIED:
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action
+            OTP_VALIDATION_403_MAX_OTP_CODES_EXCEEDED:
+              value:
+                status: 403
+                code: ONE_TIME_PASSWORD_SMS.MAX_OTP_CODES_EXCEEDED
+                message: Too many OTPs have been requested for this MSISDN. Try later.
+            OTP_VALIDATION_403_PHONE_NUMBER_NOT_ALLOWED:
+              value:
+                status: 403
+                code: ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_NOT_ALLOWED
+                message: Phone_number can't receive an SMS due to business reasons in the operator.
+            OTP_VALIDATION_403_PHONE_NUMBER_BLOCKED:
+              value:
+                status: 403
+                code: ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_BLOCKED
+                message: Phone_number is blocked to receive SMS due to any blocking business reason in the operator.
+    Generic401:
+      description: Authentication problem with the client request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 401
+                code:
+                  enum:
+                  - UNAUTHENTICATED
+          examples:
+            GENERIC_401_UNAUTHENTICATED:
+              description: Request cannot be authenticated
+              value:
+                status: 401
+                code: UNAUTHENTICATED
+                message: Request not authenticated due to missing, invalid, or expired credentials.
     ValidateCodeBadRequestError400:
       description: "Problem with the client request. In addition to regular scenario of `INVALID_ARGUMENT`, another scenarios may exist:\n  - Too many unsuccessful attempts (`{\"code\": \"ONE_TIME_PASSWORD_SMS.VERIFICATION_FAILED\",\"message\": \"The maximum number of attempts for this authenticationId was exceeded without providing a valid OTP\"}`)\n  - Expired authenticationId (`{\"code\": \"ONE_TIME_PASSWORD_SMS.VERIFICATION_EXPIRED\",\"message\": \"The authenticationId is no longer valid\"}`)\n  - OTP is not valid for the provided authenticationId (`{\"code\": \"ONE_TIME_PASSWORD_SMS.INVALID_OTP\",\"message\": \"The provided OTP is not valid for this authenticationId\"}`)"
       headers:
@@ -481,31 +537,6 @@ components:
                 status: 400
                 code: ONE_TIME_PASSWORD_SMS.INVALID_OTP
                 message: The provided OTP is not valid for this authenticationId
-    Generic401:
-      description: Authentication problem with the client request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 401
-                code:
-                  enum:
-                  - UNAUTHENTICATED
-          examples:
-            GENERIC_401_UNAUTHENTICATED:
-              description: Request cannot be authenticated
-              value:
-                status: 401
-                code: UNAUTHENTICATED
-                message: Request not authenticated due to missing, invalid, or expired credentials.
     Generic403:
       description: Client does not have sufficient permission
       headers:
@@ -531,105 +562,6 @@ components:
                 status: 403
                 code: PERMISSION_DENIED
                 message: Client does not have sufficient permissions to perform this action.
-    Generic429:
-      description: Either out of resource quota or reaching rate limiting
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 429
-                code:
-                  enum:
-                  - QUOTA_EXCEEDED
-                  - TOO_MANY_REQUESTS
-          examples:
-            GENERIC_429_QUOTA_EXCEEDED:
-              description: Request is rejected due to exceeding a business quota limit
-              value:
-                status: 429
-                code: QUOTA_EXCEEDED
-                message: Out of resource quota.
-            GENERIC_429_TOO_MANY_REQUESTS:
-              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
-              value:
-                status: 429
-                code: TOO_MANY_REQUESTS
-                message: Rate limit reached.
-    Generic400:
-      description: Problem with the client request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 400
-                code:
-                  enum:
-                  - INVALID_ARGUMENT
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
-    SendCodeForbiddenError403:
-      description: "Client does not have sufficient permissions to perform this action.\nIn addition to regular scenario of `PERMISSION_DENIED`, another scenarios may exist:\n  - Too many code requests were sent (`{\"code\": \"ONE_TIME_PASSWORD_SMS.MAX_OTP_CODES_EXCEEDED\",\"message\": \"Too many OTPs have been requested for this MSISDN. Try later.\"}`)\n  - The given phoneNumber can't receive an SMS due to business reasons in the operator, e.g. fraud, receiving SMS is not supported, etc (`{\"code\": \"ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_NOT_ALLOWED\",\"message\": \"Phone_number can't receive an SMS due to business reasons in the operator.\"}`)\n  - The given phoneNumber is blocked to receive SMS due to any blocking business reason in the operator (`{\"code\": \"ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_BLOCKED\",\"message\": \"Phone_number is blocked to receive SMS due to any blocking business reason in the operator.\"}`)"
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 403
-                code:
-                  enum:
-                  - PERMISSION_DENIED
-                  - ONE_TIME_PASSWORD_SMS.MAX_OTP_CODES_EXCEEDED
-                  - ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_NOT_ALLOWED
-                  - ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_BLOCKED
-          examples:
-            GENERIC_403_PERMISSION_DENIED:
-              value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action
-            OTP_VALIDATION_403_MAX_OTP_CODES_EXCEEDED:
-              value:
-                status: 403
-                code: ONE_TIME_PASSWORD_SMS.MAX_OTP_CODES_EXCEEDED
-                message: Too many OTPs have been requested for this MSISDN. Try later.
-            OTP_VALIDATION_403_PHONE_NUMBER_NOT_ALLOWED:
-              value:
-                status: 403
-                code: ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_NOT_ALLOWED
-                message: Phone_number can't receive an SMS due to business reasons in the operator.
-            OTP_VALIDATION_403_PHONE_NUMBER_BLOCKED:
-              value:
-                status: 403
-                code: ONE_TIME_PASSWORD_SMS.PHONE_NUMBER_BLOCKED
-                message: Phone_number is blocked to receive SMS due to any blocking business reason in the operator.
     Generic404:
       description: Resource Not Found
       headers:
@@ -655,11 +587,79 @@ components:
                 status: 404
                 code: NOT_FOUND
                 message: The specified resource is not found.
-  headers:
-    x-correlator:
-      description: Correlation id for the different services
-      schema:
-        $ref: '#/components/schemas/XCorrelator'
+  schemas:
+    XCorrelator:
+      type: string
+      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
+      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
+    AuthenticationId:
+      type: string
+      description: unique id of the verification attempt the code belongs to.
+      maxLength: 36
+      example: ea0840f3-3663-4149-bd10-c7c6b8912105
+    PhoneNumber:
+      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+      type: string
+      pattern: ^\+[1-9][0-9]{4,14}$
+      example: '+346661113334'
+    Message:
+      type: string
+      description: Message template used to compose the content of the SMS sent to the phone number. It must include the following label indicating where to include the short code `{{code}}`
+      pattern: .*\{\{code\}\}.*
+      maxLength: 160
+      example: '{{code}} is your short code to authenticate with Cool App via SMS'
+    ValidateCodeBody:
+      description: Strcuture to request code verification
+      type: object
+      properties:
+        authenticationId:
+          $ref: '#/components/schemas/AuthenticationId'
+        code:
+          $ref: '#/components/schemas/Code'
+      required:
+      - authenticationId
+      - code
+    SendCodeBody:
+      description: Structure to request sending a code to a phone number
+      type: object
+      properties:
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        message:
+          $ref: '#/components/schemas/Message'
+      required:
+      - message
+      - phoneNumber
+    ErrorInfo:
+      description: Structure to describe error
+      type: object
+      required:
+      - status
+      - code
+      - message
+      properties:
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: A human-readable code to describe the error
+        message:
+          type: string
+          description: A human-readable description of what the event represents
+    Code:
+      type: string
+      description: temporal, short code to be validated
+      maxLength: 10
+      example: AJY3
+    SendCodeResponse:
+      description: Structure to provide authentication identifier
+      type: object
+      properties:
+        authenticationId:
+          $ref: '#/components/schemas/AuthenticationId'
+      required:
+      - authenticationId
   parameters:
     x-correlator:
       name: x-correlator

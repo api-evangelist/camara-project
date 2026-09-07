@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Call Forwarding Signal Age Verification Sim Swap Subscription API
   description: '# Overview
@@ -494,140 +494,359 @@ paths:
         '404':
           $ref: '#/components/responses/Generic404'
 components:
-  parameters:
-    x-correlator:
-      name: x-correlator
-      in: header
-      description: Correlation id for the different services
-      schema:
-        $ref: '#/components/schemas/XCorrelator'
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      description: Subscription identifier that was obtained from the create event subscription operation
-      required: true
-      schema:
-        $ref: '#/components/schemas/SubscriptionId'
-  examples:
-    SUBSCRIPTIONS:
-      value:
-      - protocol: HTTP
-        sink: https://endpoint.example.com/sink
-        types:
-        - org.camaraproject.sim-swap-subscriptions.v0.swapped
-        config:
-          subscriptionDetail:
-            phoneNumber: '+123456789'
-          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
-        id: '1119920371'
-        startsAt: '2024-06-07T16:10:15.302Z'
-        expiresAt: '2024-06-07T16:10:15.302Z'
-        status: ACTIVATION_REQUESTED
-    SUBSCRIPTION_RESPONSE:
-      value:
-        protocol: HTTP
-        sink: https://endpoint.example.com/sink
-        types:
-        - org.camaraproject.sim-swap-subscriptions.v0.swapped
-        config:
-          subscriptionDetail:
-            phoneNumber: '+123456789'
-          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
-        id: '1119920371'
-        startsAt: '2024-06-07T16:10:15.302Z'
-        expiresAt: '2024-06-07T16:10:15.302Z'
-        status: ACTIVATION_REQUESTED
-    SUBSCRIPTIONS_3LEGS:
-      value:
-      - protocol: HTTP
-        sink: https://endpoint.example.com/sink
-        types:
-        - org.camaraproject.sim-swap-subscriptions.v0.swapped
-        config:
-          subscriptionDetail: {}
-          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
-        id: '1119920371'
-        startsAt: '2024-06-07T16:10:15.302Z'
-        expiresAt: '2024-06-07T16:10:15.302Z'
-        status: ACTIVATION_REQUESTED
-    SWAPPED:
-      value:
-        id: '123655'
-        source: supertelco.notificationSendServer12
-        type: org.camaraproject.sim-swap-subscriptions.v0.swapped
-        specversion: '1.0'
-        datacontenttype: application/json
-        data:
-          phoneNumber: '+123456788'
-          subscriptionId: 2ghy-55gg-7iup-yuo9
-        time: 2023-01-18 13:18:23.682000+00:00
-    SUBSCRIPTION_REQUEST:
-      value:
-        protocol: HTTP
-        sink: https://endpoint.example.com/sink
-        sinkCredential:
-          credentialType: ACCESSTOKEN
-          accessToken: yJ2ZXIiOiIxLjAiLCJ0eXAiO...
-          accessTokenExpiresUtc: '1717753038'
-          accessTokenType: bearer
-        types:
-        - org.camaraproject.sim-swap-subscriptions.v0.swapped
-        config:
-          subscriptionDetail:
-            phoneNumber: '+123456789'
-          subscriptionMaxEvents: 10
-          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
-    SUBSCRIPTION_ENDS:
-      value:
-        id: '123658'
-        source: supertelco.notificationSendServer12
-        type: org.camaraproject.sim-swap-subscriptions.v0.subscription-ended
-        specversion: '1.0'
-        datacontenttype: application/json
-        data:
-          phoneNumber: '+123456789'
-          terminationReason: SUBSCRIPTION_EXPIRED
-          subscriptionId: 2ghy-55gg-7iup-yuo9
-          terminationDescription: subscription expire time reached
-        time: 2023-01-19 13:18:23.682000+00:00
-    SUBSCRIPTION_REQUEST_3LEGS:
-      value:
-        protocol: HTTP
-        sink: https://endpoint.example.com/sink
-        sinkCredential:
-          credentialType: ACCESSTOKEN
-          accessToken: yJ2ZXIiOiIxLjAiLCJ0eXAiO...
-          accessTokenExpiresUtc: '1717753038'
-          accessTokenType: bearer
-        types:
-        - org.camaraproject.sim-swap-subscriptions.v0.swapped
-        config:
-          subscriptionDetail: {}
-          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
-    SUBSCRIPTION_RESPONSE_3LEGS:
-      value:
-        protocol: HTTP
-        sink: https://endpoint.example.com/sink
-        types:
-        - org.camaraproject.sim-swap-subscriptions.v0.swapped
-        config:
-          subscriptionDetail: {}
-          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
-        id: '1119920371'
-        startsAt: '2024-06-07T16:10:15.302Z'
-        expiresAt: '2024-06-07T16:10:15.302Z'
-        status: ACTIVATION_REQUESTED
+  responses:
+    SubscriptionPermissionDenied403:
+      description: Client does not have sufficient permission
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 403
+                code:
+                  enum:
+                  - PERMISSION_DENIED
+          examples:
+            GENERIC_403_PERMISSION_DENIED:
+              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action.
+    Generic409:
+      description: Conflict
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 409
+                code:
+                  enum:
+                  - ABORTED
+                  - ALREADY_EXISTS
+          examples:
+            GENERIC_409_ABORTED:
+              description: Concurreny of processes of the same nature/scope
+              value:
+                status: 409
+                code: ABORTED
+                message: Concurrency conflict.
+            GENERIC_409_ALREADY_EXISTS:
+              description: Trying to create an existing resource
+              value:
+                status: 409
+                code: ALREADY_EXISTS
+                message: The resource that a client tried to create already exists.
+    SubscriptionIdRequired400:
+      description: Problem with the client request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 400
+                code:
+                  enum:
+                  - INVALID_ARGUMENT
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+            GENERIC_400_SUBSCRIPTION_ID_REQUIRED:
+              description: subscription id is required
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: 'Expected property is missing: subscriptionId'
+    Generic400:
+      description: Problem with the client request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 400
+                code:
+                  enum:
+                  - INVALID_ARGUMENT
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+    Generic404:
+      description: Resource Not Found
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 404
+                code:
+                  enum:
+                  - NOT_FOUND
+          examples:
+            GENERIC_404_NOT_FOUND:
+              description: Resource is not found
+              value:
+                status: 404
+                code: NOT_FOUND
+                message: The specified resource is not found.
+    Generic429:
+      description: Too Many Requests
+      headers:
+        X-Correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 429
+                code:
+                  enum:
+                  - QUOTA_EXCEEDED
+                  - TOO_MANY_REQUESTS
+          examples:
+            GENERIC_429_QUOTA_EXCEEDED:
+              description: Request is rejected due to exceeding a business quota limit
+              value:
+                status: 429
+                code: QUOTA_EXCEEDED
+                message: Out of resource quota.
+            GENERIC_429_TOO_MANY_REQUESTS:
+              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
+              value:
+                status: 429
+                code: TOO_MANY_REQUESTS
+                message: Rate limit reached.
+    Generic401:
+      description: Authentication problem with the client request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 401
+                code:
+                  enum:
+                  - UNAUTHENTICATED
+          examples:
+            GENERIC_401_UNAUTHENTICATED:
+              description: Request cannot be authenticated and a new authentication is required
+              value:
+                status: 401
+                code: UNAUTHENTICATED
+                message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
+    Generic403:
+      description: Client does not have sufficient permission
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 403
+                code:
+                  enum:
+                  - PERMISSION_DENIED
+          examples:
+            GENERIC_403_PERMISSION_DENIED:
+              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action.
+    Generic410:
+      description: Gone
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 410
+                code:
+                  enum:
+                  - GONE
+          examples:
+            GENERIC_410_GONE:
+              description: Use in notifications flow to allow API Consumer to indicate that its callback is no longer available
+              value:
+                status: 410
+                code: GONE
+                message: Access to the target resource is no longer available.
+    CreateSubscriptionUnprocessableEntity422:
+      description: Unprocessable Entity
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 422
+                code:
+                  enum:
+                  - SERVICE_NOT_APPLICABLE
+                  - MISSING_IDENTIFIER
+                  - UNNECESSARY_IDENTIFIER
+          examples:
+            GENERIC_422_SERVICE_NOT_APPLICABLE:
+              description: Service not applicable for the provided identifier
+              value:
+                status: 422
+                code: SERVICE_NOT_APPLICABLE
+                message: The service is not available for the provided identifier.
+            GENERIC_422_MISSING_IDENTIFIER:
+              description: An identifier is not included in the request and the device or phone number identification cannot be derived from the 3-legged access token
+              value:
+                status: 422
+                code: MISSING_IDENTIFIER
+                message: The device cannot be identified.
+            GENERIC_422_UNNECESSARY_IDENTIFIER:
+              description: An explicit identifier is provided when a device or phone number has already been identified from the access token
+              value:
+                status: 422
+                code: UNNECESSARY_IDENTIFIER
+                message: The device is already identified by the access token.
+    CreateSubscriptionBadRequest400:
+      description: Problem with the client request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 400
+                code:
+                  enum:
+                  - INVALID_ARGUMENT
+                  - OUT_OF_RANGE
+                  - INVALID_PROTOCOL
+                  - INVALID_CREDENTIAL
+                  - INVALID_TOKEN
+                  - INVALID_SINK
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+            GENERIC_400_OUT_OF_RANGE:
+              description: Out of Range. Specific Syntax Exception used when a given field has a pre-defined range or a invalid filter criteria combination is requested
+              value:
+                status: 400
+                code: OUT_OF_RANGE
+                message: Client specified an invalid range.
+            GENERIC_400_INVALID_PROTOCOL:
+              description: Invalid protocol for events subscription management
+              value:
+                status: 400
+                code: INVALID_PROTOCOL
+                message: Only HTTP is supported
+            GENERIC_400_INVALID_CREDENTIAL:
+              description: Invalid sink credential type
+              value:
+                status: 400
+                code: INVALID_CREDENTIAL
+                message: Only Access token is supported
+            GENERIC_400_INVALID_TOKEN:
+              description: Invalid token type for sink credential of type ACCESSTOKEN
+              value:
+                status: 400
+                code: INVALID_TOKEN
+                message: Only bearer token is supported
+            GENERIC_400_INVALID_SINK:
+              description: Invalid sink value
+              value:
+                status: 400
+                code: INVALID_SINK
+                message: sink not valid for the specified protocol
   schemas:
-    SubscriptionId:
+    SubscriptionEventType:
       type: string
-      description: The unique identifier of the subscription in the scope of the subscription manager. When this information is contained within an event notification, this concept SHALL be referred as subscriptionId as per Commonalities Event Notification Model.
-      example: qs15-h556-rt89-1298
-    SubscriptionAsync:
-      description: Response for a event-type subscription request managed asynchronously (Creation or Deletion)
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/SubscriptionId'
+      description: 'swapped - Event triggered when a sim swap occurs on the line
+
+        '
+      enum:
+      - org.camaraproject.sim-swap-subscriptions.v0.swapped
     CloudEvent:
       description: The notification callback
       required:
@@ -707,28 +926,38 @@ components:
           AMQP: '#/components/schemas/AMQPSubscriptionRequest'
           NATS: '#/components/schemas/NATSSubscriptionRequest'
           KAFKA: '#/components/schemas/ApacheKafkaSubscriptionRequest'
+    SubscriptionAsync:
+      description: Response for a event-type subscription request managed asynchronously (Creation or Deletion)
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SubscriptionId'
+    Protocol:
+      type: string
+      enum:
+      - HTTP
+      - MQTT3
+      - MQTT5
+      - AMQP
+      - NATS
+      - KAFKA
+      description: Identifier of a delivery protocol. Only HTTP is allowed for now
+      example: HTTP
+    CreateSubscriptionDetail:
+      description: The detail of the requested event subscription
+      type: object
+      properties:
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
     XCorrelator:
       type: string
       pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
       example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
-    PhoneNumber:
+    DateTime:
       type: string
-      pattern: ^\+[1-9][0-9]{4,14}$
-      example: '+123456789'
-      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
-    SubscriptionEventType:
-      type: string
-      description: 'swapped - Event triggered when a sim swap occurs on the line
-
-        '
-      enum:
-      - org.camaraproject.sim-swap-subscriptions.v0.swapped
-    Source:
-      type: string
-      format: uri-reference
-      minLength: 1
-      description: "Identifies the context in which an event happened, as a non-empty `URI-reference` like:\n- URI with a DNS authority:\n  * https://github.com/cloudevents\n  * mailto:cncf-wg-serverless@lists.cncf.io\n- Universally-unique URN with a UUID:\n  * urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66\n- Application-specific identifier:\n  * /cloudevents/spec/pull/123\n  * 1-555-123-4567\n"
-      example: https://notificationSendServer12.supertelco.com
+      format: date-time
+      description: Timestamp of when the occurrence happened. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
+      example: '2018-04-05T17:31:00Z'
     Subscription:
       description: Represents a event-type subscription.
       type: object
@@ -802,22 +1031,6 @@ components:
           AMQP: '#/components/schemas/AMQPSubscriptionResponse'
           NATS: '#/components/schemas/NATSSubscriptionResponse'
           KAFKA: '#/components/schemas/ApacheKafkaSubscriptionResponse'
-    ErrorInfo:
-      type: object
-      required:
-      - status
-      - code
-      - message
-      properties:
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: A human-readable code to describe the error
-        message:
-          type: string
-          description: A human-readable description of what the event represents
     SinkCredential:
       description: A sink credential provides authentication or authorization information necessary to enable delivery of events to a target.
       type: object
@@ -837,17 +1050,54 @@ components:
           REFRESHTOKEN: '#/components/schemas/RefreshTokenCredential'
       required:
       - credentialType
-    DateTime:
-      type: string
-      format: date-time
-      description: Timestamp of when the occurrence happened. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
-      example: '2018-04-05T17:31:00Z'
-    CreateSubscriptionDetail:
-      description: The detail of the requested event subscription
+    ErrorInfo:
       type: object
+      required:
+      - status
+      - code
+      - message
       properties:
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: A human-readable code to describe the error
+        message:
+          type: string
+          description: A human-readable description of what the event represents
+    SimSwapNotificationEventType:
+      type: string
+      description: 'swapped - Event triggered when a sim swap was performed for this phone number
+
+
+        - subscription-started: Event triggered when the subscription starts
+
+        - subscription-updated: Event triggered when the subscription is updated
+
+        - subscription-ended: Event triggered when the subscription ends
+
+        '
+      enum:
+      - org.camaraproject.sim-swap-subscriptions.v0.swapped
+      - org.camaraproject.api-name.v0.subscription-started
+      - org.camaraproject.api-name.v0.subscription-updated
+      - org.camaraproject.sim-swap-subscriptions.v0.subscription-ended
+    Source:
+      type: string
+      format: uri-reference
+      minLength: 1
+      description: "Identifies the context in which an event happened, as a non-empty `URI-reference` like:\n- URI with a DNS authority:\n  * https://github.com/cloudevents\n  * mailto:cncf-wg-serverless@lists.cncf.io\n- Universally-unique URN with a UUID:\n  * urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66\n- Application-specific identifier:\n  * /cloudevents/spec/pull/123\n  * 1-555-123-4567\n"
+      example: https://notificationSendServer12.supertelco.com
+    PhoneNumber:
+      type: string
+      pattern: ^\+[1-9][0-9]{4,14}$
+      example: '+123456789'
+      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+    SubscriptionId:
+      type: string
+      description: The unique identifier of the subscription in the scope of the subscription manager. When this information is contained within an event notification, this concept SHALL be referred as subscriptionId as per Commonalities Event Notification Model.
+      example: qs15-h556-rt89-1298
     Config:
       description: 'Implementation-specific configuration parameters needed by the subscription manager for acquiring events.
 
@@ -874,379 +1124,129 @@ components:
             '
           minimum: 1
           example: 5
-    SimSwapNotificationEventType:
-      type: string
-      description: 'swapped - Event triggered when a sim swap was performed for this phone number
-
-
-        - subscription-started: Event triggered when the subscription starts
-
-        - subscription-updated: Event triggered when the subscription is updated
-
-        - subscription-ended: Event triggered when the subscription ends
-
-        '
-      enum:
-      - org.camaraproject.sim-swap-subscriptions.v0.swapped
-      - org.camaraproject.api-name.v0.subscription-started
-      - org.camaraproject.api-name.v0.subscription-updated
-      - org.camaraproject.sim-swap-subscriptions.v0.subscription-ended
-    Protocol:
-      type: string
-      enum:
-      - HTTP
-      - MQTT3
-      - MQTT5
-      - AMQP
-      - NATS
-      - KAFKA
-      description: Identifier of a delivery protocol. Only HTTP is allowed for now
-      example: HTTP
-  responses:
-    Generic410:
-      description: Gone
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 410
-                code:
-                  enum:
-                  - GONE
-          examples:
-            GENERIC_410_GONE:
-              description: Use in notifications flow to allow API Consumer to indicate that its callback is no longer available
-              value:
-                status: 410
-                code: GONE
-                message: Access to the target resource is no longer available.
-    Generic429:
-      description: Too Many Requests
-      headers:
-        X-Correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 429
-                code:
-                  enum:
-                  - QUOTA_EXCEEDED
-                  - TOO_MANY_REQUESTS
-          examples:
-            GENERIC_429_QUOTA_EXCEEDED:
-              description: Request is rejected due to exceeding a business quota limit
-              value:
-                status: 429
-                code: QUOTA_EXCEEDED
-                message: Out of resource quota.
-            GENERIC_429_TOO_MANY_REQUESTS:
-              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
-              value:
-                status: 429
-                code: TOO_MANY_REQUESTS
-                message: Rate limit reached.
-    CreateSubscriptionBadRequest400:
-      description: Problem with the client request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 400
-                code:
-                  enum:
-                  - INVALID_ARGUMENT
-                  - OUT_OF_RANGE
-                  - INVALID_PROTOCOL
-                  - INVALID_CREDENTIAL
-                  - INVALID_TOKEN
-                  - INVALID_SINK
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
-            GENERIC_400_OUT_OF_RANGE:
-              description: Out of Range. Specific Syntax Exception used when a given field has a pre-defined range or a invalid filter criteria combination is requested
-              value:
-                status: 400
-                code: OUT_OF_RANGE
-                message: Client specified an invalid range.
-            GENERIC_400_INVALID_PROTOCOL:
-              description: Invalid protocol for events subscription management
-              value:
-                status: 400
-                code: INVALID_PROTOCOL
-                message: Only HTTP is supported
-            GENERIC_400_INVALID_CREDENTIAL:
-              description: Invalid sink credential type
-              value:
-                status: 400
-                code: INVALID_CREDENTIAL
-                message: Only Access token is supported
-            GENERIC_400_INVALID_TOKEN:
-              description: Invalid token type for sink credential of type ACCESSTOKEN
-              value:
-                status: 400
-                code: INVALID_TOKEN
-                message: Only bearer token is supported
-            GENERIC_400_INVALID_SINK:
-              description: Invalid sink value
-              value:
-                status: 400
-                code: INVALID_SINK
-                message: sink not valid for the specified protocol
-    Generic400:
-      description: Problem with the client request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 400
-                code:
-                  enum:
-                  - INVALID_ARGUMENT
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
-    SubscriptionIdRequired400:
-      description: Problem with the client request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 400
-                code:
-                  enum:
-                  - INVALID_ARGUMENT
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
-            GENERIC_400_SUBSCRIPTION_ID_REQUIRED:
-              description: subscription id is required
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: 'Expected property is missing: subscriptionId'
-    Generic409:
-      description: Conflict
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 409
-                code:
-                  enum:
-                  - ABORTED
-                  - ALREADY_EXISTS
-          examples:
-            GENERIC_409_ABORTED:
-              description: Concurreny of processes of the same nature/scope
-              value:
-                status: 409
-                code: ABORTED
-                message: Concurrency conflict.
-            GENERIC_409_ALREADY_EXISTS:
-              description: Trying to create an existing resource
-              value:
-                status: 409
-                code: ALREADY_EXISTS
-                message: The resource that a client tried to create already exists.
-    CreateSubscriptionUnprocessableEntity422:
-      description: Unprocessable Entity
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 422
-                code:
-                  enum:
-                  - SERVICE_NOT_APPLICABLE
-                  - MISSING_IDENTIFIER
-                  - UNNECESSARY_IDENTIFIER
-          examples:
-            GENERIC_422_SERVICE_NOT_APPLICABLE:
-              description: Service not applicable for the provided identifier
-              value:
-                status: 422
-                code: SERVICE_NOT_APPLICABLE
-                message: The service is not available for the provided identifier.
-            GENERIC_422_MISSING_IDENTIFIER:
-              description: An identifier is not included in the request and the device or phone number identification cannot be derived from the 3-legged access token
-              value:
-                status: 422
-                code: MISSING_IDENTIFIER
-                message: The device cannot be identified.
-            GENERIC_422_UNNECESSARY_IDENTIFIER:
-              description: An explicit identifier is provided when a device or phone number has already been identified from the access token
-              value:
-                status: 422
-                code: UNNECESSARY_IDENTIFIER
-                message: The device is already identified by the access token.
-    Generic401:
-      description: Authentication problem with the client request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 401
-                code:
-                  enum:
-                  - UNAUTHENTICATED
-          examples:
-            GENERIC_401_UNAUTHENTICATED:
-              description: Request cannot be authenticated and a new authentication is required
-              value:
-                status: 401
-                code: UNAUTHENTICATED
-                message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
-    SubscriptionPermissionDenied403:
-      description: Client does not have sufficient permission
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 403
-                code:
-                  enum:
-                  - PERMISSION_DENIED
-          examples:
-            GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
-              value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action.
-    Generic403:
-      description: Client does not have sufficient permission
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 403
-                code:
-                  enum:
-                  - PERMISSION_DENIED
-          examples:
-            GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
-              value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action.
-    Generic404:
-      description: Resource Not Found
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 404
-                code:
-                  enum:
-                  - NOT_FOUND
-          examples:
-            GENERIC_404_NOT_FOUND:
-              description: Resource is not found
-              value:
-                status: 404
-                code: NOT_FOUND
-                message: The specified resource is not found.
+  examples:
+    SUBSCRIPTION_RESPONSE_3LEGS:
+      value:
+        protocol: HTTP
+        sink: https://endpoint.example.com/sink
+        types:
+        - org.camaraproject.sim-swap-subscriptions.v0.swapped
+        config:
+          subscriptionDetail: {}
+          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
+        id: '1119920371'
+        startsAt: '2024-06-07T16:10:15.302Z'
+        expiresAt: '2024-06-07T16:10:15.302Z'
+        status: ACTIVATION_REQUESTED
+    SWAPPED:
+      value:
+        id: '123655'
+        source: supertelco.notificationSendServer12
+        type: org.camaraproject.sim-swap-subscriptions.v0.swapped
+        specversion: '1.0'
+        datacontenttype: application/json
+        data:
+          phoneNumber: '+123456788'
+          subscriptionId: 2ghy-55gg-7iup-yuo9
+        time: 2023-01-18 13:18:23.682000+00:00
+    SUBSCRIPTIONS:
+      value:
+      - protocol: HTTP
+        sink: https://endpoint.example.com/sink
+        types:
+        - org.camaraproject.sim-swap-subscriptions.v0.swapped
+        config:
+          subscriptionDetail:
+            phoneNumber: '+123456789'
+          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
+        id: '1119920371'
+        startsAt: '2024-06-07T16:10:15.302Z'
+        expiresAt: '2024-06-07T16:10:15.302Z'
+        status: ACTIVATION_REQUESTED
+    SUBSCRIPTION_REQUEST:
+      value:
+        protocol: HTTP
+        sink: https://endpoint.example.com/sink
+        sinkCredential:
+          credentialType: ACCESSTOKEN
+          accessToken: yJ2ZXIiOiIxLjAiLCJ0eXAiO...
+          accessTokenExpiresUtc: '1717753038'
+          accessTokenType: bearer
+        types:
+        - org.camaraproject.sim-swap-subscriptions.v0.swapped
+        config:
+          subscriptionDetail:
+            phoneNumber: '+123456789'
+          subscriptionMaxEvents: 10
+          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
+    SUBSCRIPTION_RESPONSE:
+      value:
+        protocol: HTTP
+        sink: https://endpoint.example.com/sink
+        types:
+        - org.camaraproject.sim-swap-subscriptions.v0.swapped
+        config:
+          subscriptionDetail:
+            phoneNumber: '+123456789'
+          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
+        id: '1119920371'
+        startsAt: '2024-06-07T16:10:15.302Z'
+        expiresAt: '2024-06-07T16:10:15.302Z'
+        status: ACTIVATION_REQUESTED
+    SUBSCRIPTION_ENDS:
+      value:
+        id: '123658'
+        source: supertelco.notificationSendServer12
+        type: org.camaraproject.sim-swap-subscriptions.v0.subscription-ended
+        specversion: '1.0'
+        datacontenttype: application/json
+        data:
+          phoneNumber: '+123456789'
+          terminationReason: SUBSCRIPTION_EXPIRED
+          subscriptionId: 2ghy-55gg-7iup-yuo9
+          terminationDescription: subscription expire time reached
+        time: 2023-01-19 13:18:23.682000+00:00
+    SUBSCRIPTION_REQUEST_3LEGS:
+      value:
+        protocol: HTTP
+        sink: https://endpoint.example.com/sink
+        sinkCredential:
+          credentialType: ACCESSTOKEN
+          accessToken: yJ2ZXIiOiIxLjAiLCJ0eXAiO...
+          accessTokenExpiresUtc: '1717753038'
+          accessTokenType: bearer
+        types:
+        - org.camaraproject.sim-swap-subscriptions.v0.swapped
+        config:
+          subscriptionDetail: {}
+          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
+    SUBSCRIPTIONS_3LEGS:
+      value:
+      - protocol: HTTP
+        sink: https://endpoint.example.com/sink
+        types:
+        - org.camaraproject.sim-swap-subscriptions.v0.swapped
+        config:
+          subscriptionDetail: {}
+          subscriptionExpireTime: '2025-01-17T13:18:23.682Z'
+        id: '1119920371'
+        startsAt: '2024-06-07T16:10:15.302Z'
+        expiresAt: '2024-06-07T16:10:15.302Z'
+        status: ACTIVATION_REQUESTED
+  parameters:
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      description: Subscription identifier that was obtained from the create event subscription operation
+      required: true
+      schema:
+        $ref: '#/components/schemas/SubscriptionId'
+    x-correlator:
+      name: x-correlator
+      in: header
+      description: Correlation id for the different services
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
   headers:
     x-correlator:
       description: Correlation id for the different services

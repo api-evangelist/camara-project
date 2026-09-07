@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Call Forwarding Signal Age Verification API
   description: '# Overview
@@ -369,11 +369,21 @@ paths:
           $ref: '#/components/responses/Generic422'
 components:
   schemas:
-    IdentityMatchScore:
+    VerifiedStatus:
+      type: boolean
+      description: Indicate `true` if the information provided has been compared against information based on an identification document legally accepted as an age verification document, otherwise indicate `false`.
+    GivenName:
+      type: string
+      description: First/given name or compound first/given name of the customer.
+    AgeThreshold:
       type: integer
       minimum: 0
-      maximum: 100
-      description: The overall score of identity information available in the API Provider, information either provided in the request body comparing it to the one that the API Provider holds or directly using internal API Provider's information. It is optional for the API Provider to return the Identity match score.
+      maximum: 120
+      description: The age to be verified. The indicated range is a global definition of maximum and minimum values allowed to be requested. It is important to note that this range might be more restrictive in some implementations due to local regulations of a country i.e. A country does not allow to request for an age under 18. This limitation must be informed during the onboarding process.
+    IncludeContentLock:
+      type: boolean
+      default: false
+      description: If this parameter is included in the request with value `true`, the response property `contentLock` will be returned. If it is not included or its value is `false`, the response property will not be returned.
     VerifyRequestBody:
       type: object
       description: Request to verify the age threshold provided.
@@ -404,62 +414,6 @@ components:
           $ref: '#/components/schemas/IncludeContentLock'
         includeParentalControl:
           $ref: '#/components/schemas/IncludeParentalControl'
-    IncludeContentLock:
-      type: boolean
-      default: false
-      description: If this parameter is included in the request with value `true`, the response property `contentLock` will be returned. If it is not included or its value is `false`, the response property will not be returned.
-    MiddleNames:
-      type: string
-      description: Middle name/s of the customer.
-    Name:
-      type: string
-      description: Complete name of the customer, usually composed of first/given name and last/family/sur- name in a country.  Depending on the country, the order of first/give name and last/family/sur- name varies, and middle name could be included.  It can use givenName, middleNames, familyName and/or familyNameAtBirth. For example, in ESP, name+familyName; in NLD, it can be name+middleNames+familyName or name+middleNames+familyNameAtBirth, etc.
-    FamilyName:
-      type: string
-      description: Last name, family name, or surname of the customer.
-    Birthdate:
-      type: string
-      format: date
-      description: The birthdate of the customer, in RFC 3339 / ISO 8601 calendar date format (YYYY-MM-DD).
-    AgeCheck:
-      type: string
-      description: Indicate `"true"` when the age of the user is the same age or older than the age threshold (age >= age threshold), and `"false"` if not (age < age threshold). If the API Provider doesn't have enough information to perform the validation, a `not_available` can be returned.
-      enum:
-      - 'true'
-      - 'false'
-      - not_available
-    Email:
-      type: string
-      format: email
-      description: Email address of the customer in the RFC specified format (local-part@domain).
-    VerifyResponseBody:
-      type: object
-      description: Response to an age verification request
-      required:
-      - ageCheck
-      properties:
-        ageCheck:
-          $ref: '#/components/schemas/AgeCheck'
-        verifiedStatus:
-          $ref: '#/components/schemas/VerifiedStatus'
-        identityMatchScore:
-          $ref: '#/components/schemas/IdentityMatchScore'
-        contentLock:
-          $ref: '#/components/schemas/ContentLock'
-        parentalControl:
-          $ref: '#/components/schemas/ParentalControl'
-    PhoneNumber:
-      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
-      type: string
-      pattern: ^\+[1-9][0-9]{4,14}$
-      example: '+123456789'
-    IncludeParentalControl:
-      type: boolean
-      default: false
-      description: If this parameter is included in the request with value `true`, the response property `parentalControl` will be returned. If it is not included or its value is `false`, the response property will not be returned.
-    GivenName:
-      type: string
-      description: First/given name or compound first/given name of the customer.
     ContentLock:
       type: string
       description: Indicate `"true"` if the subscription associated with the phone number has any kind of content lock (i.e certain web content blocked) and `"false"` if not. If the information is not available the value `not_available` can be returned.
@@ -467,6 +421,25 @@ components:
       - 'true'
       - 'false'
       - not_available
+    Birthdate:
+      type: string
+      format: date
+      description: The birthdate of the customer, in RFC 3339 / ISO 8601 calendar date format (YYYY-MM-DD).
+    Name:
+      type: string
+      description: Complete name of the customer, usually composed of first/given name and last/family/sur- name in a country.  Depending on the country, the order of first/give name and last/family/sur- name varies, and middle name could be included.  It can use givenName, middleNames, familyName and/or familyNameAtBirth. For example, in ESP, name+familyName; in NLD, it can be name+middleNames+familyName or name+middleNames+familyNameAtBirth, etc.
+    FamilyNameAtBirth:
+      type: string
+      description: Last/family/sur- name at birth of the customer.
+    IdDocument:
+      type: string
+      description: Id number associated to the official identity document in the country. It may contain alphanumeric characters.
+    FamilyName:
+      type: string
+      description: Last name, family name, or surname of the customer.
+    MiddleNames:
+      type: string
+      description: Middle name/s of the customer.
     ErrorInfo:
       type: object
       required:
@@ -483,9 +456,10 @@ components:
         message:
           type: string
           description: Detailed error description
-    FamilyNameAtBirth:
-      type: string
-      description: Last/family/sur- name at birth of the customer.
+    IncludeParentalControl:
+      type: boolean
+      default: false
+      description: If this parameter is included in the request with value `true`, the response property `parentalControl` will be returned. If it is not included or its value is `false`, the response property will not be returned.
     ParentalControl:
       type: string
       description: Indicate `"true"` if the subscription associated with the phone number has any kind of parental control activated and `"false"` if not. If the information is not available the value `not_available` can be returned.
@@ -493,26 +467,43 @@ components:
       - 'true'
       - 'false'
       - not_available
-    VerifiedStatus:
-      type: boolean
-      description: Indicate `true` if the information provided has been compared against information based on an identification document legally accepted as an age verification document, otherwise indicate `false`.
-    AgeThreshold:
+    Email:
+      type: string
+      format: email
+      description: Email address of the customer in the RFC specified format (local-part@domain).
+    PhoneNumber:
+      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+      type: string
+      pattern: ^\+[1-9][0-9]{4,14}$
+      example: '+123456789'
+    AgeCheck:
+      type: string
+      description: Indicate `"true"` when the age of the user is the same age or older than the age threshold (age >= age threshold), and `"false"` if not (age < age threshold). If the API Provider doesn't have enough information to perform the validation, a `not_available` can be returned.
+      enum:
+      - 'true'
+      - 'false'
+      - not_available
+    VerifyResponseBody:
+      type: object
+      description: Response to an age verification request
+      required:
+      - ageCheck
+      properties:
+        ageCheck:
+          $ref: '#/components/schemas/AgeCheck'
+        verifiedStatus:
+          $ref: '#/components/schemas/VerifiedStatus'
+        identityMatchScore:
+          $ref: '#/components/schemas/IdentityMatchScore'
+        contentLock:
+          $ref: '#/components/schemas/ContentLock'
+        parentalControl:
+          $ref: '#/components/schemas/ParentalControl'
+    IdentityMatchScore:
       type: integer
       minimum: 0
-      maximum: 120
-      description: The age to be verified. The indicated range is a global definition of maximum and minimum values allowed to be requested. It is important to note that this range might be more restrictive in some implementations due to local regulations of a country i.e. A country does not allow to request for an age under 18. This limitation must be informed during the onboarding process.
-    IdDocument:
-      type: string
-      description: Id number associated to the official identity document in the country. It may contain alphanumeric characters.
-  parameters:
-    x-correlator:
-      name: x-correlator
-      in: header
-      description: Correlation id for the different services
-      schema:
-        type: string
-        pattern: ^[a-zA-Z0-9-]{0,55}$
-        example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
+      maximum: 100
+      description: The overall score of identity information available in the API Provider, information either provided in the request body comparing it to the one that the API Provider holds or directly using internal API Provider's information. It is optional for the API Provider to return the Identity match score.
   responses:
     Generic422:
       description: Unprocessable Content
@@ -585,6 +576,31 @@ components:
                 status: 400
                 code: OUT_OF_RANGE
                 message: Client specified an invalid range.
+    Generic404:
+      description: Not found
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 404
+                code:
+                  enum:
+                  - IDENTIFIER_NOT_FOUND
+          examples:
+            GENERIC_404_IDENTIFIER_NOT_FOUND:
+              description: The phone number is not associated with a CSP customer account
+              value:
+                status: 404
+                code: IDENTIFIER_NOT_FOUND
+                message: The phone number provided is not associated with a customer account
     Generic401:
       description: Unauthorized
       headers:
@@ -642,31 +658,15 @@ components:
                 status: 403
                 code: PERMISSION_DENIED
                 message: Client does not have sufficient permissions to perform this action.
-    Generic404:
-      description: Not found
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 404
-                code:
-                  enum:
-                  - IDENTIFIER_NOT_FOUND
-          examples:
-            GENERIC_404_IDENTIFIER_NOT_FOUND:
-              description: The phone number is not associated with a CSP customer account
-              value:
-                status: 404
-                code: IDENTIFIER_NOT_FOUND
-                message: The phone number provided is not associated with a customer account
+  parameters:
+    x-correlator:
+      name: x-correlator
+      in: header
+      description: Correlation id for the different services
+      schema:
+        type: string
+        pattern: ^[a-zA-Z0-9-]{0,55}$
+        example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
   headers:
     x-correlator:
       description: Correlation id for the different services

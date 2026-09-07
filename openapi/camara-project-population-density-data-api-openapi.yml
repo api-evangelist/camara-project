@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Call Forwarding Signal Age Verification Population Density Data API
   description: '# Overview
@@ -408,17 +408,16 @@ paths:
       - openId:
         - population-density-data:read
 components:
-  parameters:
-    x-correlator:
-      name: x-correlator
-      in: header
-      description: Correlation id for the different services.
-      schema:
-        $ref: '#/components/schemas/XCorrelator'
   examples:
-    PopulationDensitySupportedAreaResponseExample:
+    PopulationDensityOperationNotCompletedExample:
       value:
-        status: SUPPORTED_AREA
+        status: OPERATION_NOT_COMPLETED
+        timedPopulationDensityData: []
+        statusInfo: Some error happened during the processing of the request
+        operationId: 2322f362-eaab-4cf3-86d2-efcbdf3a7cb4
+    PopulationDensityPartOfAreaNotSupportedResponseExample:
+      value:
+        status: PART_OF_AREA_NOT_SUPPORTED
         timedPopulationDensityData:
         - startTime: '2024-01-03T10:00:00Z'
           endTime: '2024-01-03T11:00:00Z'
@@ -434,7 +433,7 @@ components:
             minPplDensity: 40
             pplDensity: 90
           - geohash: ezdqemu
-            dataType: LOW_DENSITY
+            dataType: NO_DATA
         - startTime: '2024-01-03T11:00:00Z'
           endTime: '2024-01-03T12:00:00Z'
           cellPopulationDensityData:
@@ -449,20 +448,7 @@ components:
             minPplDensity: 40
             pplDensity: 100
           - geohash: ezdqemu
-            dataType: DENSITY_ESTIMATION
-            maxPplDensity: 200
-            minPplDensity: 40
-            pplDensity: 100
-    PopulationDensityAreaNotSupportedResponseExample:
-      value:
-        status: AREA_NOT_SUPPORTED
-        timedPopulationDensityData: []
-    PopulationDensityOperationNotCompletedExample:
-      value:
-        status: OPERATION_NOT_COMPLETED
-        timedPopulationDensityData: []
-        statusInfo: Some error happened during the processing of the request
-        operationId: 2322f362-eaab-4cf3-86d2-efcbdf3a7cb4
+            dataType: NO_DATA
     PopulationDensitySupportedAreaAsyncResponseExample:
       value:
         status: SUPPORTED_AREA
@@ -506,9 +492,9 @@ components:
         status: AREA_NOT_SUPPORTED
         timedPopulationDensityData: []
         operationId: 2322f362-eaab-4cf3-86d2-efcbdf3a7cb4
-    PopulationDensityPartOfAreaNotSupportedResponseExample:
+    PopulationDensitySupportedAreaResponseExample:
       value:
-        status: PART_OF_AREA_NOT_SUPPORTED
+        status: SUPPORTED_AREA
         timedPopulationDensityData:
         - startTime: '2024-01-03T10:00:00Z'
           endTime: '2024-01-03T11:00:00Z'
@@ -524,7 +510,7 @@ components:
             minPplDensity: 40
             pplDensity: 90
           - geohash: ezdqemu
-            dataType: NO_DATA
+            dataType: LOW_DENSITY
         - startTime: '2024-01-03T11:00:00Z'
           endTime: '2024-01-03T12:00:00Z'
           cellPopulationDensityData:
@@ -539,7 +525,10 @@ components:
             minPplDensity: 40
             pplDensity: 100
           - geohash: ezdqemu
-            dataType: NO_DATA
+            dataType: DENSITY_ESTIMATION
+            maxPplDensity: 200
+            minPplDensity: 40
+            pplDensity: 100
     PopulationDensityPartOfAreaNotSupportedAsyncResponseExample:
       value:
         status: PART_OF_AREA_NOT_SUPPORTED
@@ -575,89 +564,11 @@ components:
           - geohash: ezdqemu
             dataType: NO_DATA
         operationId: 2322f362-eaab-4cf3-86d2-efcbdf3a7cb4
+    PopulationDensityAreaNotSupportedResponseExample:
+      value:
+        status: AREA_NOT_SUPPORTED
+        timedPopulationDensityData: []
   responses:
-    Generic410:
-      description: Gone
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 410
-                code:
-                  enum:
-                  - GONE
-          examples:
-            GENERIC_410_GONE:
-              description: Use in notifications flow to allow API Consumer to indicate that its callback is no longer available
-              value:
-                status: 410
-                code: GONE
-                message: Access to the target resource is no longer available.
-    Generic429:
-      description: Too Many Requests
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 429
-                code:
-                  enum:
-                  - QUOTA_EXCEEDED
-                  - TOO_MANY_REQUESTS
-          examples:
-            GENERIC_429_QUOTA_EXCEEDED:
-              description: Request is rejected due to exceeding a business quota limit
-              value:
-                status: 429
-                code: QUOTA_EXCEEDED
-                message: Out of resource quota.
-            GENERIC_429_TOO_MANY_REQUESTS:
-              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
-              value:
-                status: 429
-                code: TOO_MANY_REQUESTS
-                message: Rate limit reached.
-    Generic400:
-      description: Problem with the client request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 400
-                code:
-                  enum:
-                  - INVALID_ARGUMENT
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
     RetrieveLocationBadRequest400:
       description: "Problem with the client request. In addition to generic scenarios of `INVALID_ARGUMENT`, `INVALID_CREDENTIAL`, `INVALID_TOKEN`, another scenarios may exist:\n  - The area is not a polygon shape or exceeds supported complexity (\"code\": \"POPULATION_DENSITY_DATA.INVALID_AREA\", \"message\": \"The area is not a polygon shape or exceeds supported complexity\")\n  - Indicated `startTime` is greater than the maximum allowed (\"code\": \"POPULATION_DENSITY_DATA.MAX_STARTTIME_EXCEEDED\", \"message\": \"Indicated startTime is greater than the maximum allowed\")\n  - Indicated `startTime` is earlier than the minimum allowed (\"code\": \"POPULATION_DENSITY_DATA.MIN_STARTTIME_EXCEEDED\", \"message\": \"Indicated startTime is earlier than the minimum allowed\")\n  - Indicated `endTime` is earlier than the `startTime` (\"code\": \"POPULATION_DENSITY_DATA.INVALID_END_TIME\", \"message\": \"Indicated endTime is earlier than the startTime\")\n  - Indicated time period is partially in the past and partially in the future (\"code\": \"POPULATION_DENSITY_DATA.INVALID_TIME_PERIOD\", \"message\": \"time period is partially in the past and partially in the future\")\n  - Indicated time period is greater than the maximum allowed (More than maximum hours between startTime and endTime) (\"code\": \"POPULATION_DENSITY_DATA.MAX_TIME_PERIOD_EXCEEDED\", \"message\": \"Indicated time period is greater than the maximum allowed (More than maximum hours between startTime and endTime)\")"
       headers:
@@ -737,8 +648,8 @@ components:
                 status: 400
                 code: POPULATION_DENSITY_DATA.INVALID_TIME_PERIOD
                 message: Indicated time period is partially in the past and partially in the future
-    Generic401:
-      description: Unauthorized
+    Generic400:
+      description: Problem with the client request
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -751,17 +662,17 @@ components:
               properties:
                 status:
                   enum:
-                  - 401
+                  - 400
                 code:
                   enum:
-                  - UNAUTHENTICATED
+                  - INVALID_ARGUMENT
           examples:
-            GENERIC_401_UNAUTHENTICATED:
-              description: Request cannot be authenticated
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
               value:
-                status: 401
-                code: UNAUTHENTICATED
-                message: Request not authenticated due to missing, invalid, or expired credentials.
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
     RetrieveLocationUnprocessableContent422:
       description: "Problem with the client request. The following scenarios may exist:\n  - Indicated combination of area, time interval and precision is too big (\"code\": \"POPULATION_DENSITY_DATA.UNSUPPORTED_REQUEST\", \"message\": \"Indicated combination of area, time interval and precision is too big\")\n  - Indicated cell precision (Geohash level) is not supported (\"code\": \"POPULATION_DENSITY_DATA.UNSUPPORTED_PRECISION\", \"message\": \"Indicated cell precision (Geohash level) is not supported\")\n  - Indicated combination of area, time interval and precision is too big for a sync response (\"code\": \"POPULATION_DENSITY_DATA.UNSUPPORTED_SYNC_RESPONSE\", \"message\": \"Indicated combination of area, time interval and precision is too big for a sync response\")"
       headers:
@@ -798,8 +709,8 @@ components:
                 status: 422
                 code: POPULATION_DENSITY_DATA.UNSUPPORTED_SYNC_RESPONSE
                 message: Indicated combination of area, time interval and precision is too big for synchronous processing and asynchronous processing is not enabled
-    Generic403:
-      description: Forbidden
+    Generic429:
+      description: Too Many Requests
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -812,17 +723,24 @@ components:
               properties:
                 status:
                   enum:
-                  - 403
+                  - 429
                 code:
                   enum:
-                  - PERMISSION_DENIED
+                  - QUOTA_EXCEEDED
+                  - TOO_MANY_REQUESTS
           examples:
-            GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+            GENERIC_429_QUOTA_EXCEEDED:
+              description: Request is rejected due to exceeding a business quota limit
               value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action.
+                status: 429
+                code: QUOTA_EXCEEDED
+                message: Out of resource quota.
+            GENERIC_429_TOO_MANY_REQUESTS:
+              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
+              value:
+                status: 429
+                code: TOO_MANY_REQUESTS
+                message: Rate limit reached.
     Generic404:
       description: Not found
       headers:
@@ -848,7 +766,123 @@ components:
                 status: 404
                 code: NOT_FOUND
                 message: The specified resource is not found.
+    Generic401:
+      description: Unauthorized
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 401
+                code:
+                  enum:
+                  - UNAUTHENTICATED
+          examples:
+            GENERIC_401_UNAUTHENTICATED:
+              description: Request cannot be authenticated
+              value:
+                status: 401
+                code: UNAUTHENTICATED
+                message: Request not authenticated due to missing, invalid, or expired credentials.
+    Generic403:
+      description: Forbidden
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 403
+                code:
+                  enum:
+                  - PERMISSION_DENIED
+          examples:
+            GENERIC_403_PERMISSION_DENIED:
+              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action.
+    Generic410:
+      description: Gone
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 410
+                code:
+                  enum:
+                  - GONE
+          examples:
+            GENERIC_410_GONE:
+              description: Use in notifications flow to allow API Consumer to indicate that its callback is no longer available
+              value:
+                status: 410
+                code: GONE
+                message: Access to the target resource is no longer available.
   schemas:
+    CellPopulationDensityDataArray:
+      type: array
+      description: Population density data for the different cells in a concrete time range.
+      items:
+        $ref: '#/components/schemas/CellPopulationDensityData'
+      minItems: 1
+    OperationId:
+      type: string
+      description: The unique identifier of the asynchronous operation that is returned when the operation is initiated.
+    PopulationDensityAsyncResponse:
+      allOf:
+      - $ref: '#/components/schemas/PopulationDensityResponse'
+      - type: object
+        properties:
+          operationId:
+            $ref: '#/components/schemas/OperationId'
+        required:
+        - operationId
+    XCorrelator:
+      type: string
+      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
+      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
+    TimedPopulationDensityData:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Interval start time. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone. Recommended format is yyyy-MM-dd'T'HH:mm:ss.SSSZ (i.e. which allows 2023-07-03T14:27:08.312+02:00 or 2023-07-03T12:27:08.312Z)
+          example: '2023-07-03T10:00:00Z'
+        endTime:
+          type: string
+          format: date-time
+          description: Interval end time. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone. Recommended format is yyyy-MM-dd'T'HH:mm:ss.SSSZ (i.e. which allows 2023-07-03T14:27:08.312+02:00 or 2023-07-03T12:27:08.312Z)
+          example: '2023-07-03T11:00:00Z'
+        cellPopulationDensityData:
+          $ref: '#/components/schemas/CellPopulationDensityDataArray'
+      required:
+      - startTime
+      - endTime
+      - cellPopulationDensityData
     AreaType:
       type: string
       description: 'Type of this area.
@@ -858,6 +892,29 @@ components:
         '
       enum:
       - POLYGON
+    CellPopulationDensityData:
+      type: object
+      description: Population density data of a cell in a concrete time range. In case of insufficient data, to guarantee an anonymized prediction due to the k-anonymity within a specific cell and time range, no population density data is returned and the property `dataType` value is "LOW_DENSITY". In case of a cell not supported `dataType` value is "NO_DATA"
+      properties:
+        geohash:
+          type: string
+          description: Coordinates of the cell represented as a string using the [Geohash system](https://en.wikipedia.org/wiki/Geohash). Encoding a geographic location into a short string. The value length, and thus, the cell granularity, is determined by the request body property `precision`.
+          example: ezdmemd
+        dataType:
+          type: string
+          enum:
+          - NO_DATA
+          - LOW_DENSITY
+          - DENSITY_ESTIMATION
+      required:
+      - geohash
+      - dataType
+      discriminator:
+        propertyName: dataType
+        mapping:
+          NO_DATA: '#/components/schemas/NoData'
+          LOW_DENSITY: '#/components/schemas/LowDensity'
+          DENSITY_ESTIMATION: '#/components/schemas/DensityEstimation'
     AcceptedAsyncResponse:
       type: object
       properties:
@@ -865,10 +922,82 @@ components:
           $ref: '#/components/schemas/OperationId'
       required:
       - operationId
-    XCorrelator:
+    PopulationDensityResponse:
+      type: object
+      description: Population density values is represented in time intervals for different cells of the requested area. Each element in `timedPopulationDensityData` array corresponds to a time interval, containing population density data for the grid cells. The intervals are 1 hour long.
+      properties:
+        timedPopulationDensityData:
+          type: array
+          description: "Time ranges along with the population density data for the cells within it.\n The request startTime or the request endTime have to be fully covered by the intervals.\n For example, if the intervals are 1-hour long and the input date range were [2024-01-03T11:25:00Z\n to 2024-01-03T12:45:00Z] it would contain 2 intervals (Interval from 2024-01-03T11:00:00Z\n to 2024-01-03T12:00:00Z and interval from 2024-01-03T12:00:00Z to 2024-01-03T13:00:00Z)."
+          items:
+            $ref: '#/components/schemas/TimedPopulationDensityData'
+        status:
+          $ref: '#/components/schemas/ResponseStatus'
+        statusInfo:
+          type: string
+          description: Information about the status, mandatory when property `status` is `OPERATION_NOT_COMPLETED` for adding extra information about the error.
+          example: Some error happened during the processing of the request
+      required:
+      - timedPopulationDensityData
+      - status
+    Area:
+      description: Base schema for all areas
+      type: object
+      properties:
+        areaType:
+          $ref: '#/components/schemas/AreaType'
+      required:
+      - areaType
+      discriminator:
+        propertyName: areaType
+        mapping:
+          POLYGON: '#/components/schemas/Polygon'
+    SinkCredential:
+      type: object
+      properties:
+        credentialType:
+          type: string
+          enum:
+          - PLAIN
+          - ACCESSTOKEN
+          - REFRESHTOKEN
+          description: 'The type of the credential.
+
+            Note: Type of the credential - MUST be set to ACCESSTOKEN for now
+
+            '
+      discriminator:
+        propertyName: credentialType
+        mapping:
+          PLAIN: '#/components/schemas/PlainCredential'
+          ACCESSTOKEN: '#/components/schemas/AccessTokenCredential'
+          REFRESHTOKEN: '#/components/schemas/RefreshTokenCredential'
+      required:
+      - credentialType
+    ErrorInfo:
+      type: object
+      required:
+      - status
+      - code
+      - message
+      properties:
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: A human-readable code to describe the error
+        message:
+          type: string
+          description: A human-readable description of what the event represents
+    ResponseStatus:
       type: string
-      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
-      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
+      description: "Represents the state of the response for the input polygon defined in the request, the possible values are:\n  - `SUPPORTED_AREA`: The whole request area is supported. Population density data for the entire requested area is returned.\n  - `PART_OF_AREA_NOT_SUPPORTED`: Part of the requested area is outside the MNOs coverage area, the cells outside the coverage\n  area will have property `dataType` with value `NO_DATA`.\n  - `AREA_NOT_SUPPORTED`: The whole requested area is outside the MNOs coverage area. No data will be returned.\n  - `OPERATION_NOT_COMPLETED`: An error happened during asynchronous processing of the request. This status will only be returned\n  in case the asynchronous API behaviour is used."
+      enum:
+      - SUPPORTED_AREA
+      - PART_OF_AREA_NOT_SUPPORTED
+      - AREA_NOT_SUPPORTED
+      - OPERATION_NOT_COMPLETED
     PopulationDensityRequest:
       type: object
       description: 'Request object for retrieving population density data in a specified area. **NOTE**: The difference between `startTime` and `endTime` cannot be greater than 7 days.'
@@ -905,142 +1034,13 @@ components:
       - area
       - startTime
       - endTime
-    PopulationDensityResponse:
-      type: object
-      description: Population density values is represented in time intervals for different cells of the requested area. Each element in `timedPopulationDensityData` array corresponds to a time interval, containing population density data for the grid cells. The intervals are 1 hour long.
-      properties:
-        timedPopulationDensityData:
-          type: array
-          description: "Time ranges along with the population density data for the cells within it.\n The request startTime or the request endTime have to be fully covered by the intervals.\n For example, if the intervals are 1-hour long and the input date range were [2024-01-03T11:25:00Z\n to 2024-01-03T12:45:00Z] it would contain 2 intervals (Interval from 2024-01-03T11:00:00Z\n to 2024-01-03T12:00:00Z and interval from 2024-01-03T12:00:00Z to 2024-01-03T13:00:00Z)."
-          items:
-            $ref: '#/components/schemas/TimedPopulationDensityData'
-        status:
-          $ref: '#/components/schemas/ResponseStatus'
-        statusInfo:
-          type: string
-          description: Information about the status, mandatory when property `status` is `OPERATION_NOT_COMPLETED` for adding extra information about the error.
-          example: Some error happened during the processing of the request
-      required:
-      - timedPopulationDensityData
-      - status
-    Area:
-      description: Base schema for all areas
-      type: object
-      properties:
-        areaType:
-          $ref: '#/components/schemas/AreaType'
-      required:
-      - areaType
-      discriminator:
-        propertyName: areaType
-        mapping:
-          POLYGON: '#/components/schemas/Polygon'
-    ResponseStatus:
-      type: string
-      description: "Represents the state of the response for the input polygon defined in the request, the possible values are:\n  - `SUPPORTED_AREA`: The whole request area is supported. Population density data for the entire requested area is returned.\n  - `PART_OF_AREA_NOT_SUPPORTED`: Part of the requested area is outside the MNOs coverage area, the cells outside the coverage\n  area will have property `dataType` with value `NO_DATA`.\n  - `AREA_NOT_SUPPORTED`: The whole requested area is outside the MNOs coverage area. No data will be returned.\n  - `OPERATION_NOT_COMPLETED`: An error happened during asynchronous processing of the request. This status will only be returned\n  in case the asynchronous API behaviour is used."
-      enum:
-      - SUPPORTED_AREA
-      - PART_OF_AREA_NOT_SUPPORTED
-      - AREA_NOT_SUPPORTED
-      - OPERATION_NOT_COMPLETED
-    PopulationDensityAsyncResponse:
-      allOf:
-      - $ref: '#/components/schemas/PopulationDensityResponse'
-      - type: object
-        properties:
-          operationId:
-            $ref: '#/components/schemas/OperationId'
-        required:
-        - operationId
-    ErrorInfo:
-      type: object
-      required:
-      - status
-      - code
-      - message
-      properties:
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: A human-readable code to describe the error
-        message:
-          type: string
-          description: A human-readable description of what the event represents
-    OperationId:
-      type: string
-      description: The unique identifier of the asynchronous operation that is returned when the operation is initiated.
-    SinkCredential:
-      type: object
-      properties:
-        credentialType:
-          type: string
-          enum:
-          - PLAIN
-          - ACCESSTOKEN
-          - REFRESHTOKEN
-          description: 'The type of the credential.
-
-            Note: Type of the credential - MUST be set to ACCESSTOKEN for now
-
-            '
-      discriminator:
-        propertyName: credentialType
-        mapping:
-          PLAIN: '#/components/schemas/PlainCredential'
-          ACCESSTOKEN: '#/components/schemas/AccessTokenCredential'
-          REFRESHTOKEN: '#/components/schemas/RefreshTokenCredential'
-      required:
-      - credentialType
-    TimedPopulationDensityData:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          description: Interval start time. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone. Recommended format is yyyy-MM-dd'T'HH:mm:ss.SSSZ (i.e. which allows 2023-07-03T14:27:08.312+02:00 or 2023-07-03T12:27:08.312Z)
-          example: '2023-07-03T10:00:00Z'
-        endTime:
-          type: string
-          format: date-time
-          description: Interval end time. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone. Recommended format is yyyy-MM-dd'T'HH:mm:ss.SSSZ (i.e. which allows 2023-07-03T14:27:08.312+02:00 or 2023-07-03T12:27:08.312Z)
-          example: '2023-07-03T11:00:00Z'
-        cellPopulationDensityData:
-          $ref: '#/components/schemas/CellPopulationDensityDataArray'
-      required:
-      - startTime
-      - endTime
-      - cellPopulationDensityData
-    CellPopulationDensityDataArray:
-      type: array
-      description: Population density data for the different cells in a concrete time range.
-      items:
-        $ref: '#/components/schemas/CellPopulationDensityData'
-      minItems: 1
-    CellPopulationDensityData:
-      type: object
-      description: Population density data of a cell in a concrete time range. In case of insufficient data, to guarantee an anonymized prediction due to the k-anonymity within a specific cell and time range, no population density data is returned and the property `dataType` value is "LOW_DENSITY". In case of a cell not supported `dataType` value is "NO_DATA"
-      properties:
-        geohash:
-          type: string
-          description: Coordinates of the cell represented as a string using the [Geohash system](https://en.wikipedia.org/wiki/Geohash). Encoding a geographic location into a short string. The value length, and thus, the cell granularity, is determined by the request body property `precision`.
-          example: ezdmemd
-        dataType:
-          type: string
-          enum:
-          - NO_DATA
-          - LOW_DENSITY
-          - DENSITY_ESTIMATION
-      required:
-      - geohash
-      - dataType
-      discriminator:
-        propertyName: dataType
-        mapping:
-          NO_DATA: '#/components/schemas/NoData'
-          LOW_DENSITY: '#/components/schemas/LowDensity'
-          DENSITY_ESTIMATION: '#/components/schemas/DensityEstimation'
+  parameters:
+    x-correlator:
+      name: x-correlator
+      in: header
+      description: Correlation id for the different services.
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
   headers:
     x-correlator:
       description: Correlation id for the different services.

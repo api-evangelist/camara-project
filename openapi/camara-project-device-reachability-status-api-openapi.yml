@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Call Forwarding Signal Age Verification Device reachability status API
   description: '# Overview
@@ -353,31 +353,6 @@ paths:
           $ref: '#/components/responses/Generic503'
 components:
   responses:
-    Generic503:
-      description: Service Unavailable
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 503
-                code:
-                  enum:
-                  - UNAVAILABLE
-          examples:
-            GENERIC_503_UNAVAILABLE:
-              description: Service is not available. Temporary situation usually related to maintenance process in the server side
-              value:
-                status: 503
-                code: UNAVAILABLE
-                message: Network issue
     Generic422:
       description: Unprocessable Content
       headers:
@@ -431,6 +406,63 @@ components:
                 status: 422
                 code: UNNECESSARY_IDENTIFIER
                 message: The device is already identified by the access token.
+    Generic400:
+      description: Bad Request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 400
+                code:
+                  enum:
+                  - INVALID_ARGUMENT
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+    Generic404:
+      description: Not found
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 404
+                code:
+                  enum:
+                  - NOT_FOUND
+                  - IDENTIFIER_NOT_FOUND
+          examples:
+            GENERIC_404_NOT_FOUND:
+              description: Resource is not found
+              value:
+                status: 404
+                code: NOT_FOUND
+                message: The specified resource is not found.
+            GENERIC_404_IDENTIFIER_NOT_FOUND:
+              description: The phone number is not associated with a CSP customer account
+              value:
+                status: 404
+                code: IDENTIFIER_NOT_FOUND
+                message: The phone number provided is not associated with a customer account
     Generic429:
       description: Too Many Requests
       headers:
@@ -463,8 +495,8 @@ components:
                 status: 429
                 code: TOO_MANY_REQUESTS
                 message: Rate limit reached.
-    Generic400:
-      description: Bad Request
+    Generic503:
+      description: Service Unavailable
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -477,17 +509,17 @@ components:
               properties:
                 status:
                   enum:
-                  - 400
+                  - 503
                 code:
                   enum:
-                  - INVALID_ARGUMENT
+                  - UNAVAILABLE
           examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
+            GENERIC_503_UNAVAILABLE:
+              description: Service is not available. Temporary situation usually related to maintenance process in the server side
               value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
+                status: 503
+                code: UNAVAILABLE
+                message: Network issue
     Generic401:
       description: Unauthorized
       headers:
@@ -545,44 +577,11 @@ components:
                 status: 403
                 code: PERMISSION_DENIED
                 message: Client does not have sufficient permissions to perform this action.
-    Generic404:
-      description: Not found
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 404
-                code:
-                  enum:
-                  - NOT_FOUND
-                  - IDENTIFIER_NOT_FOUND
-          examples:
-            GENERIC_404_NOT_FOUND:
-              description: Resource is not found
-              value:
-                status: 404
-                code: NOT_FOUND
-                message: The specified resource is not found.
-            GENERIC_404_IDENTIFIER_NOT_FOUND:
-              description: The phone number is not associated with a CSP customer account
-              value:
-                status: 404
-                code: IDENTIFIER_NOT_FOUND
-                message: The phone number provided is not associated with a customer account
   schemas:
-    LastStatusTime:
-      description: Last time that the associated device reachability status was updated
+    NetworkAccessIdentifier:
+      description: A public identifier addressing a subscription in a mobile network. In 3GPP terminology, it corresponds to the GPSI formatted with the External Identifier ({Local Identifier}@{Domain Identifier}). Unlike the telephone number, the network access identifier is not subjected to portability ruling in force, and is individually managed by each operator.
       type: string
-      format: date-time
-      example: '2024-02-20T10:41:38.657Z'
+      example: 123456789@domain.com
     ReachabilityStatusResponse:
       type: object
       required:
@@ -597,16 +596,63 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ConnectivityType'
+    LastStatusTime:
+      description: Last time that the associated device reachability status was updated
+      type: string
+      format: date-time
+      example: '2024-02-20T10:41:38.657Z'
+    Device:
+      description: 'End-user equipment able to connect to a mobile network. Examples of devices include smartphones or IoT sensors/actuators.
+
+
+        The developer can choose to provide the below specified device identifiers:
+
+
+        * `ipv4Address`
+
+        * `ipv6Address`
+
+        * `phoneNumber`
+
+        * `networkAccessIdentifier`
+
+
+        NOTE: the MNO might support only a subset of these options. The API invoker can provide multiple identifiers to be compatible across different MNOs. In this case the identifiers MUST belong to the same device.
+
+        '
+      type: object
+      properties:
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        networkAccessIdentifier:
+          $ref: '#/components/schemas/NetworkAccessIdentifier'
+        ipv4Address:
+          $ref: '#/components/schemas/DeviceIpv4Addr'
+        ipv6Address:
+          $ref: '#/components/schemas/DeviceIpv6Address'
+      minProperties: 1
+    RequestReachabilityStatus:
+      description: The request to retrieve the current roaming-status for the requested device.
+      type: object
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
     SingleIpv4Addr:
       description: A single IPv4 address with no subnet mask
       type: string
       format: ipv4
       example: 84.125.93.10
-    PhoneNumber:
-      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+    ConnectivityType:
+      description: 'DATA: The device is connected to the network for Data usage (regardless of the SMS reachability)
+
+
+        SMS: The device is connected to the network only for SMS usage
+
+        '
       type: string
-      pattern: ^\+[1-9][0-9]{4,14}$
-      example: '+123456789'
+      enum:
+      - DATA
+      - SMS
     DeviceIpv4Addr:
       type: object
       description: 'The device should be identified by either the public (observed) IP address and port as seen by the application server, or the private (local) and any public (observed) IP addresses in use by the device (this information can be obtained by various means, for example from some DNS servers).
@@ -655,6 +701,16 @@ components:
         message:
           type: string
           description: Detailed error description
+    Port:
+      description: TCP or UDP port number
+      type: integer
+      minimum: 0
+      maximum: 65535
+    PhoneNumber:
+      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+      type: string
+      pattern: ^\+[1-9][0-9]{4,14}$
+      example: '+123456789'
     DeviceIpv6Address:
       description: 'The device should be identified by the observed IPv6 address, or by any single IPv6 address from within the subnet allocated to the device (e.g. adding ::0 to the /64 prefix).
 
@@ -662,62 +718,6 @@ components:
       type: string
       format: ipv6
       example: 2001:db8:85a3:8d3:1319:8a2e:370:7344
-    RequestReachabilityStatus:
-      description: The request to retrieve the current roaming-status for the requested device.
-      type: object
-      properties:
-        device:
-          $ref: '#/components/schemas/Device'
-    ConnectivityType:
-      description: 'DATA: The device is connected to the network for Data usage (regardless of the SMS reachability)
-
-
-        SMS: The device is connected to the network only for SMS usage
-
-        '
-      type: string
-      enum:
-      - DATA
-      - SMS
-    Port:
-      description: TCP or UDP port number
-      type: integer
-      minimum: 0
-      maximum: 65535
-    Device:
-      description: 'End-user equipment able to connect to a mobile network. Examples of devices include smartphones or IoT sensors/actuators.
-
-
-        The developer can choose to provide the below specified device identifiers:
-
-
-        * `ipv4Address`
-
-        * `ipv6Address`
-
-        * `phoneNumber`
-
-        * `networkAccessIdentifier`
-
-
-        NOTE: the MNO might support only a subset of these options. The API invoker can provide multiple identifiers to be compatible across different MNOs. In this case the identifiers MUST belong to the same device.
-
-        '
-      type: object
-      properties:
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-        networkAccessIdentifier:
-          $ref: '#/components/schemas/NetworkAccessIdentifier'
-        ipv4Address:
-          $ref: '#/components/schemas/DeviceIpv4Addr'
-        ipv6Address:
-          $ref: '#/components/schemas/DeviceIpv6Address'
-      minProperties: 1
-    NetworkAccessIdentifier:
-      description: A public identifier addressing a subscription in a mobile network. In 3GPP terminology, it corresponds to the GPSI formatted with the External Identifier ({Local Identifier}@{Domain Identifier}). Unlike the telephone number, the network access identifier is not subjected to portability ruling in force, and is individually managed by each operator.
-      type: string
-      example: 123456789@domain.com
   parameters:
     x-correlator:
       name: x-correlator

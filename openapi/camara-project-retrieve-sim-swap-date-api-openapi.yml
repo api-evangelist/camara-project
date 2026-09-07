@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Call Forwarding Signal Age Verification Retrieve SIM swap date API
   description: '# Overview
@@ -342,28 +342,65 @@ paths:
         '429':
           $ref: '#/components/responses/Generic429'
 components:
+  headers:
+    x-correlator:
+      description: Correlation id for the different services
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
   examples:
-    RETRIEVE_2LEGS:
-      summary: Retrieve request without 3-legged access tokens
-      value:
-        phoneNumber: '+346661113334'
-    RETRIEVE_3LEGS:
-      summary: Retrieve request with 3-legged access tokens
-      value: {}
     RETRIEVE_DATE:
       summary: Lastest SIM swap date is send back
       value:
         latestSimChange: 2024-09-18 07:37:53.471829+00:00
+    RETRIEVE_MONITORED_NULL:
+      summary: Only null value is retrieved
+      value:
+        latestSimChange: null
+    RETRIEVE_3LEGS:
+      summary: Retrieve request with 3-legged access tokens
+      value: {}
+    RETRIEVE_2LEGS:
+      summary: Retrieve request without 3-legged access tokens
+      value:
+        phoneNumber: '+346661113334'
     RETRIEVE_MONITORED_PERIOD:
       summary: null is send back for the date but a monitoredPeriod is provided
       value:
         latestSimChange: null
         monitoredPeriod: 120
-    RETRIEVE_MONITORED_NULL:
-      summary: Only null value is retrieved
-      value:
-        latestSimChange: null
   responses:
+    Generic400:
+      description: Bad Request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 400
+                code:
+                  enum:
+                  - INVALID_ARGUMENT
+                  - OUT_OF_RANGE
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+            GENERIC_400_OUT_OF_RANGE:
+              description: Out of Range. Specific Syntax Exception used when a given field has a pre-defined range or a invalid filter criteria combination is requested
+              value:
+                status: 400
+                code: OUT_OF_RANGE
+                message: Client specified an invalid range.
     Generic422:
       description: Unprocessable Content
       headers:
@@ -429,6 +466,38 @@ components:
                 status: 404
                 code: NOT_FOUND
                 message: The specified resource is not found.
+    Generic429:
+      description: Too Many Requests
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 429
+                code:
+                  enum:
+                  - QUOTA_EXCEEDED
+                  - TOO_MANY_REQUESTS
+          examples:
+            GENERIC_429_QUOTA_EXCEEDED:
+              description: Request is rejected due to exceeding a business quota limit
+              value:
+                status: 429
+                code: QUOTA_EXCEEDED
+                message: Rejected due to exceeding a business quota limit.
+            GENERIC_429_TOO_MANY_REQUESTS:
+              description: API Server request limit is overpassed
+              value:
+                status: 429
+                code: TOO_MANY_REQUESTS
+                message: Rejected due to request rate limit overpassed.
     Generic401:
       description: Unauthorized
       headers:
@@ -479,80 +548,37 @@ components:
                 status: 403
                 code: PERMISSION_DENIED
                 message: Client does not have sufficient permissions to perform this action.
-    Generic429:
-      description: Too Many Requests
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 429
-                code:
-                  enum:
-                  - QUOTA_EXCEEDED
-                  - TOO_MANY_REQUESTS
-          examples:
-            GENERIC_429_QUOTA_EXCEEDED:
-              description: Request is rejected due to exceeding a business quota limit
-              value:
-                status: 429
-                code: QUOTA_EXCEEDED
-                message: Rejected due to exceeding a business quota limit.
-            GENERIC_429_TOO_MANY_REQUESTS:
-              description: API Server request limit is overpassed
-              value:
-                status: 429
-                code: TOO_MANY_REQUESTS
-                message: Rejected due to request rate limit overpassed.
-    Generic400:
-      description: Bad Request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 400
-                code:
-                  enum:
-                  - INVALID_ARGUMENT
-                  - OUT_OF_RANGE
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
-            GENERIC_400_OUT_OF_RANGE:
-              description: Out of Range. Specific Syntax Exception used when a given field has a pre-defined range or a invalid filter criteria combination is requested
-              value:
-                status: 400
-                code: OUT_OF_RANGE
-                message: Client specified an invalid range.
-  headers:
-    x-correlator:
-      description: Correlation id for the different services
-      schema:
-        $ref: '#/components/schemas/XCorrelator'
   schemas:
     XCorrelator:
       type: string
       pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
       example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
+    SimSwapInfo:
+      type: object
+      required:
+      - latestSimChange
+      properties:
+        latestSimChange:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Timestamp of latest SIM swap performed. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
+          example: '2023-07-03T14:27:08.312+02:00'
+        monitoredPeriod:
+          type: integer
+          description: Timeframe in days for SIM card change supervision for the phone number. It could be valued in the response if the latest SIM swap occurred before this monitored period.
+          example: 120
+    CreateSimSwapDate:
+      type: object
+      properties:
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+    PhoneNumber:
+      type: string
+      pattern: ^\+[1-9][0-9]{4,14}$
+      example: '+346661113334'
+      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
     ErrorInfo:
       type: object
       required:
@@ -569,31 +595,6 @@ components:
         message:
           type: string
           description: A human-readable description of what the event represents
-    CreateSimSwapDate:
-      type: object
-      properties:
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-    SimSwapInfo:
-      type: object
-      required:
-      - latestSimChange
-      properties:
-        latestSimChange:
-          type: string
-          format: date-time
-          description: Timestamp of latest SIM swap performed. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
-          nullable: true
-          example: '2023-07-03T14:27:08.312+02:00'
-        monitoredPeriod:
-          type: integer
-          description: Timeframe in days for SIM card change supervision for the phone number. It could be valued in the response if the latest SIM swap occurred before this monitored period.
-          example: 120
-    PhoneNumber:
-      type: string
-      pattern: ^\+[1-9][0-9]{4,14}$
-      example: '+346661113334'
-      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
   parameters:
     x-correlator:
       name: x-correlator

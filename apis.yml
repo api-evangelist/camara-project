@@ -1390,3 +1390,5 @@ x-type: standards-body
 x-category: Specification
 x-host: Linux Foundation
 x-host-structure: LF Directed Fund
+x-parent: camara
+x-relationship: product

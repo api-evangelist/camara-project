@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Call Forwarding Signal Age Verification Send SMS API
   description: '# Overview
@@ -347,6 +347,36 @@ components:
             status: 503
             code: UNAVAILABLE
             detail: Service unavailable
+    Generic500:
+      description: Server error
+      headers:
+        x-correlator:
+          description: Correlation id for the different services
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorInfo'
+          example:
+            status: 500
+            code: INTERNAL
+            detail: Server error
+    Generic400:
+      description: Problem with the client request
+      headers:
+        x-correlator:
+          description: Correlation id for the different services
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorInfo'
+          example:
+            status: 400
+            code: INVALID_ARGUMENT
+            detail: Client specified an invalid argument, request body or query param
     Generic200:
       description: OK
       headers:
@@ -361,6 +391,21 @@ components:
           example:
             msgId: 56647d96-b3e6-48d2-b93f-ab0d56bdd965
             timestamp: '2024-03-19T12:33:27.070Z'
+    Generic404:
+      description: Resource Not Found
+      headers:
+        x-correlator:
+          description: Correlation id for the different services
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorInfo'
+          example:
+            status: 404
+            code: NOT_FOUND
+            detail: A specified resource is not found
     Generic401:
       description: Authentication problem with the client request
       headers:
@@ -398,51 +443,13 @@ components:
                 status: 403
                 code: INVALID_TOKEN_CONTEXT
                 detail: Phone number cannot be deducted from access token context
-    Generic400:
-      description: Problem with the client request
-      headers:
-        x-correlator:
-          description: Correlation id for the different services
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorInfo'
-          example:
-            status: 400
-            code: INVALID_ARGUMENT
-            detail: Client specified an invalid argument, request body or query param
-    Generic500:
-      description: Server error
-      headers:
-        x-correlator:
-          description: Correlation id for the different services
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorInfo'
-          example:
-            status: 500
-            code: INTERNAL
-            detail: Server error
-    Generic404:
-      description: Resource Not Found
-      headers:
-        x-correlator:
-          description: Correlation id for the different services
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorInfo'
-          example:
-            status: 404
-            code: NOT_FOUND
-            detail: A specified resource is not found
+  parameters:
+    x-correlator:
+      name: x-correlator
+      in: header
+      description: Correlation id for the different services
+      schema:
+        type: string
   schemas:
     MessageResponse:
       type: object
@@ -457,6 +464,22 @@ components:
           type: string
           format: date-time
           description: Timestamp when SMS was delivered. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone. Recommended format is yyyy-MM-dd'T'HH:mm:ss.SSSZ (i.e. which allows 2023-07-03T14:27:08.312+02:00 or 2023-07-03T12:27:08.312Z)
+    ErrorInfo:
+      type: object
+      required:
+      - status
+      - code
+      - detail
+      properties:
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: Code given to this error
+        detail:
+          type: string
+          description: Detailed error description
     MessageRequest:
       type: object
       required:
@@ -481,29 +504,6 @@ components:
         message:
           type: string
           description: SMS message
-    ErrorInfo:
-      type: object
-      required:
-      - status
-      - code
-      - detail
-      properties:
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: Code given to this error
-        detail:
-          type: string
-          description: Detailed error description
-  parameters:
-    x-correlator:
-      name: x-correlator
-      in: header
-      description: Correlation id for the different services
-      schema:
-        type: string
   securitySchemes:
     openId:
       description: to support Consent Management
