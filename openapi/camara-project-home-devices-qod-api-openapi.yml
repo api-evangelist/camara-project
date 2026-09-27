@@ -68,27 +68,12 @@ paths:
         '504':
           $ref: '#/components/responses/Generic504'
 components:
+  headers:
+    x-correlator:
+      description: Correlation id for the different services
+      schema:
+        type: string
   responses:
-    setQosServiceUnavailable503:
-      description: Service Unavailable
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorInfo'
-          examples:
-            Unavailable:
-              value:
-                status: 503
-                code: UNAVAILABLE
-                message: Service Unavailable
-            RouterOffline:
-              value:
-                status: 503
-                code: HOME_DEVICES_QOD.ROUTER_OFFLINE
-                message: Router is not online. Try it later
     setQosNotFound404:
       description: Not found
       headers:
@@ -122,6 +107,26 @@ components:
             status: 500
             code: INTERNAL
             message: Server error
+    setQosPermissionDenied403:
+      description: Forbidden
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorInfo'
+          examples:
+            PermissionDenied:
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action
+            InvalidTokenContext:
+              value:
+                status: 403
+                code: INVALID_TOKEN_CONTEXT
+                message: User home network cannot be deducted from access token context
     Generic401:
       description: Unauthorized
       headers:
@@ -148,39 +153,6 @@ components:
             status: 400
             code: INVALID_ARGUMENT
             message: Client specified an invalid argument, request body or query param
-    setQosPermissionDenied403:
-      description: Forbidden
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorInfo'
-          examples:
-            PermissionDenied:
-              value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action
-            InvalidTokenContext:
-              value:
-                status: 403
-                code: INVALID_TOKEN_CONTEXT
-                message: User home network cannot be deducted from access token context
-    Generic504:
-      description: Gateway Timeout
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorInfo'
-          example:
-            status: 504
-            code: TIMEOUT
-            message: Request timeout exceeded
     setQosConflict409:
       description: Conflict
       headers:
@@ -231,23 +203,47 @@ components:
                 status: 409
                 code: HOME_DEVICES_QOD.QOS_ALREADY_SET_TO_DEFAULT
                 message: Device QoS is already set to default value
+    Generic504:
+      description: Gateway Timeout
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorInfo'
+          example:
+            status: 504
+            code: TIMEOUT
+            message: Request timeout exceeded
+    setQosServiceUnavailable503:
+      description: Service Unavailable
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorInfo'
+          examples:
+            Unavailable:
+              value:
+                status: 503
+                code: UNAVAILABLE
+                message: Service Unavailable
+            RouterOffline:
+              value:
+                status: 503
+                code: HOME_DEVICES_QOD.ROUTER_OFFLINE
+                message: Router is not online. Try it later
+  parameters:
+    x-correlator:
+      name: x-correlator
+      in: header
+      description: Correlation id for the different services
+      schema:
+        type: string
   schemas:
-    ErrorInfo:
-      type: object
-      required:
-      - message
-      - status
-      - code
-      properties:
-        message:
-          type: string
-          description: A human readable description of what the event represent
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: Friendly Code to describe the error
     QosOnDemandUpdate:
       type: object
       description: Payload to change the QoS behaviour associated to a home device.
@@ -296,18 +292,22 @@ components:
           format: ipv4
           description: Internal IP address of the connected device in the LAN.
           example: 192.168.1.27
-  parameters:
-    x-correlator:
-      name: x-correlator
-      in: header
-      description: Correlation id for the different services
-      schema:
-        type: string
-  headers:
-    x-correlator:
-      description: Correlation id for the different services
-      schema:
-        type: string
+    ErrorInfo:
+      type: object
+      required:
+      - message
+      - status
+      - code
+      properties:
+        message:
+          type: string
+          description: A human readable description of what the event represent
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: Friendly Code to describe the error
   securitySchemes:
     openId:
       description: 'OpenID Connect 3-legged access tokens must be used by API clients to invoke this API with dedicated scope. The API client must authenticate on behalf of a specific user to use this service. This can be done via IP-based authentication (i.e. using the public IP of the device in this case).

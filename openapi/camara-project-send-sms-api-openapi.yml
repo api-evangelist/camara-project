@@ -129,35 +129,6 @@ components:
             status: 401
             code: UNAUTHENTICATED
             detail: Request not authenticated due to missing, invalid, or expired credentials
-    Generic503:
-      description: Service unavailable. Typically the server is down.
-      headers:
-        x-correlator:
-          description: Correlation id for the different services
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorInfo'
-          example:
-            status: 503
-            code: UNAVAILABLE
-            detail: Service unavailable
-    Generic200:
-      description: OK
-      headers:
-        x-correlator:
-          description: Correlation id for the different services
-          schema:
-            type: string
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MessageResponse'
-          example:
-            msgId: 56647d96-b3e6-48d2-b93f-ab0d56bdd965
-            timestamp: '2024-03-19T12:33:27.070Z'
     Generic403:
       description: Client does not have sufficient permission
       headers:
@@ -180,7 +151,56 @@ components:
                 status: 403
                 code: INVALID_TOKEN_CONTEXT
                 detail: Phone number cannot be deducted from access token context
+    Generic200:
+      description: OK
+      headers:
+        x-correlator:
+          description: Correlation id for the different services
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MessageResponse'
+          example:
+            msgId: 56647d96-b3e6-48d2-b93f-ab0d56bdd965
+            timestamp: '2024-03-19T12:33:27.070Z'
+    Generic503:
+      description: Service unavailable. Typically the server is down.
+      headers:
+        x-correlator:
+          description: Correlation id for the different services
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorInfo'
+          example:
+            status: 503
+            code: UNAVAILABLE
+            detail: Service unavailable
+  parameters:
+    x-correlator:
+      name: x-correlator
+      in: header
+      description: Correlation id for the different services
+      schema:
+        type: string
   schemas:
+    MessageResponse:
+      type: object
+      required:
+      - msgId
+      - timestamp
+      properties:
+        msgId:
+          type: string
+          description: The SMS messages sent to the recipients are identified by smsnumber are identified.
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when SMS was delivered. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone. Recommended format is yyyy-MM-dd'T'HH:mm:ss.SSSZ (i.e. which allows 2023-07-03T14:27:08.312+02:00 or 2023-07-03T12:27:08.312Z)
     ErrorInfo:
       type: object
       required:
@@ -221,26 +241,6 @@ components:
         message:
           type: string
           description: SMS message
-    MessageResponse:
-      type: object
-      required:
-      - msgId
-      - timestamp
-      properties:
-        msgId:
-          type: string
-          description: The SMS messages sent to the recipients are identified by smsnumber are identified.
-        timestamp:
-          type: string
-          format: date-time
-          description: Timestamp when SMS was delivered. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone. Recommended format is yyyy-MM-dd'T'HH:mm:ss.SSSZ (i.e. which allows 2023-07-03T14:27:08.312+02:00 or 2023-07-03T12:27:08.312Z)
-  parameters:
-    x-correlator:
-      name: x-correlator
-      in: header
-      description: Correlation id for the different services
-      schema:
-        type: string
   securitySchemes:
     openId:
       type: openIdConnect

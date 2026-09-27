@@ -124,77 +124,6 @@ paths:
         '429':
           $ref: '#/components/responses/Generic429'
 components:
-  parameters:
-    PerPage:
-      name: perPage
-      in: query
-      description: Requested number of resources to be provided in response
-      schema:
-        type: integer
-        default: 10
-    MerchantIdentifier:
-      description: Merchant identifier to filter the results
-      in: query
-      name: merchantIdentifier
-      required: false
-      schema:
-        type: string
-    StartPaymentCreationDate:
-      description: Initial `paymentCreationDate` for running the query. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
-      in: query
-      name: paymentCreationDate.gte
-      required: false
-      schema:
-        format: date-time
-        type: string
-    x-correlator:
-      name: x-correlator
-      in: header
-      description: Correlation id for the different services
-      schema:
-        $ref: '#/components/schemas/XCorrelator'
-    EndPaymentCreationDate:
-      description: End `paymentCreationDate` for running the query. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
-      in: query
-      name: paymentCreationDate.lte
-      required: false
-      schema:
-        format: date-time
-        type: string
-    Order:
-      description: Used to return the sorted results in descending (default) or ascending order, based on `paymentCreationDate` property
-      in: query
-      name: order
-      required: false
-      schema:
-        default: desc
-        enum:
-        - desc
-        - asc
-        type: string
-    Page:
-      name: page
-      in: query
-      description: Requested index to indicate the start of the resources to be provided in the response
-      schema:
-        type: integer
-        default: 1
-    PaymentStatus:
-      description: List of payment status to be considered for the query
-      in: query
-      name: paymentStatus
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-          enum:
-          - processing
-          - pending_validation
-          - denied
-          - reserved
-          - succeeded
-          - cancelled
   responses:
     GetPaymentsInvalid400:
       description: "Invalid input. In addition to regular INVALID_ARGUMENT scenario other scenarios may exist:\n  - Inconsistent paymentCreationDate.gte and paymentCreationDate.lte values (\"code\": \"CARRIER_BILLING.INVALID_DATE_RANGE\",\"message\": \"Client specified an invalid date range\").\n  - Request out of range (\"code\": \"OUT_OF_RANGE\",\"message\": \"Client specified an invalid range\").\n  - Too many matching records found (\"code\": \"CARRIER_BILLING.TOO_MANY_MATCHING_RECORDS\",\"message\": \"Too many matching records found. Specify additional/suitable criteria to limit the number of records.\")."
@@ -246,8 +175,8 @@ components:
                 status: 400
                 code: CARRIER_BILLING.TOO_MANY_MATCHING_RECORDS
                 message: Too many matching records found. Specify additional/suitable criteria to limit the number of records.
-    Generic404:
-      description: Resource Not Found
+    Generic429:
+      description: Too Many Requests
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -260,18 +189,18 @@ components:
               properties:
                 status:
                   enum:
-                  - 404
+                  - 429
                 code:
                   enum:
-                  - NOT_FOUND
+                  - TOO_MANY_REQUESTS
           examples:
-            GENERIC_404_NOT_FOUND:
-              summary: Generic Not Found
-              description: Resource is not found
+            GENERIC_429_TOO_MANY_REQUESTS:
+              summary: Generic Too Many Requests
+              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
               value:
-                status: 404
-                code: NOT_FOUND
-                message: The specified resource is not found.
+                status: 429
+                code: TOO_MANY_REQUESTS
+                message: Rate limit reached.
     Generic403:
       description: Forbidden
       headers:
@@ -323,32 +252,6 @@ components:
                 status: 400
                 code: INVALID_ARGUMENT
                 message: Client specified an invalid argument, request body or query param.
-    Generic429:
-      description: Too Many Requests
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 429
-                code:
-                  enum:
-                  - TOO_MANY_REQUESTS
-          examples:
-            GENERIC_429_TOO_MANY_REQUESTS:
-              summary: Generic Too Many Requests
-              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
-              value:
-                status: 429
-                code: TOO_MANY_REQUESTS
-                message: Rate limit reached.
     Generic401:
       description: Unauthorized
       headers:
@@ -374,7 +277,62 @@ components:
                 status: 401
                 code: UNAUTHENTICATED
                 message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
+    Generic404:
+      description: Resource Not Found
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 404
+                code:
+                  enum:
+                  - NOT_FOUND
+          examples:
+            GENERIC_404_NOT_FOUND:
+              summary: Generic Not Found
+              description: Resource is not found
+              value:
+                status: 404
+                code: NOT_FOUND
+                message: The specified resource is not found.
+  headers:
+    x-correlator:
+      description: Correlation id for the different services
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
+    X-Total-Count:
+      description: Total number of items matching criteria
+      schema:
+        type: integer
+    Content-Last-Key:
+      description: Indicates the index of the last result provided in the response
+      schema:
+        type: integer
   schemas:
+    ErrorInfo:
+      type: object
+      required:
+      - status
+      - code
+      - message
+      properties:
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: A human-readable code to describe the error
+        message:
+          type: string
+          description: A human-readable description of what the event represents
     PaymentItem:
       type: object
       required:
@@ -415,50 +373,6 @@ components:
 
             '
           example: 21
-    ChargingMetaData:
-      type: object
-      properties:
-        merchantName:
-          type: string
-          description: Indicates the merchant name. Allows aggregators/partners to specify the actual merchant name
-          example: EA Sports
-        merchantIdentifier:
-          type: string
-          description: Indicates the merchant identifier. Allows aggregators/partners to specify the actual merchant identifier
-          example: eas-12345
-        fee:
-          type: number
-          format: float
-          multipleOf: 0.01
-          description: Percentage of the amount to be received by the requester
-          example: 10
-        purchaseCategoryCode:
-          type: string
-          description: A category defining the type of service, product or media being purchased
-          example: games
-        channel:
-          type: string
-          description: The channel over which the requester is interacting with the merchant (e.g. WAP, Web, SMS...)
-          example: web
-        serviceId:
-          type: string
-          description: The identifier of the partner/merchant service being purchased
-          example: games-online
-        productId:
-          type: string
-          description: The product identifier to be combined with the `serviceId` to uniquely identify the product being purchased. For example if the `serviceId` relates to a VOD service, the `productId` can specify the movie rented
-          example: '138235321'
-    PaymentAmountForCharge:
-      type: object
-      required:
-      - chargingInformation
-      properties:
-        chargingInformation:
-          $ref: '#/components/schemas/ChargingInformation'
-        chargingMetaData:
-          $ref: '#/components/schemas/ChargingMetaData'
-        paymentDetails:
-          $ref: '#/components/schemas/PaymentDetails'
     Payment:
       type: object
       required:
@@ -524,28 +438,56 @@ components:
           type: string
           description: Reference to the charge or refund, provided by the server, and meaningful to the server’s backend system for the purpose of reconciliation.
           example: ref-pay-834tfr2rA3v8r8vr3rv-serv
-    ErrorInfo:
-      type: object
-      required:
-      - status
-      - code
-      - message
-      properties:
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: A human-readable code to describe the error
-        message:
-          type: string
-          description: A human-readable description of what the event represents
     PaymentDetails:
       type: array
       description: Detailed description of the concepts/items considered within a specific payment procedure.
       minItems: 1
       items:
         $ref: '#/components/schemas/PaymentItem'
+    PaymentAmountForCharge:
+      type: object
+      required:
+      - chargingInformation
+      properties:
+        chargingInformation:
+          $ref: '#/components/schemas/ChargingInformation'
+        chargingMetaData:
+          $ref: '#/components/schemas/ChargingMetaData'
+        paymentDetails:
+          $ref: '#/components/schemas/PaymentDetails'
+    ChargingMetaData:
+      type: object
+      properties:
+        merchantName:
+          type: string
+          description: Indicates the merchant name. Allows aggregators/partners to specify the actual merchant name
+          example: EA Sports
+        merchantIdentifier:
+          type: string
+          description: Indicates the merchant identifier. Allows aggregators/partners to specify the actual merchant identifier
+          example: eas-12345
+        fee:
+          type: number
+          format: float
+          multipleOf: 0.01
+          description: Percentage of the amount to be received by the requester
+          example: 10
+        purchaseCategoryCode:
+          type: string
+          description: A category defining the type of service, product or media being purchased
+          example: games
+        channel:
+          type: string
+          description: The channel over which the requester is interacting with the merchant (e.g. WAP, Web, SMS...)
+          example: web
+        serviceId:
+          type: string
+          description: The identifier of the partner/merchant service being purchased
+          example: games-online
+        productId:
+          type: string
+          description: The product identifier to be combined with the `serviceId` to uniquely identify the product being purchased. For example if the `serviceId` relates to a VOD service, the `productId` can specify the movie rented
+          example: '138235321'
     ChargingInformation:
       type: object
       required:
@@ -591,19 +533,77 @@ components:
       type: string
       pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
       example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
-  headers:
-    Content-Last-Key:
-      description: Indicates the index of the last result provided in the response
+  parameters:
+    Page:
+      name: page
+      in: query
+      description: Requested index to indicate the start of the resources to be provided in the response
       schema:
         type: integer
+        default: 1
+    PerPage:
+      name: perPage
+      in: query
+      description: Requested number of resources to be provided in response
+      schema:
+        type: integer
+        default: 10
+    StartPaymentCreationDate:
+      description: Initial `paymentCreationDate` for running the query. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
+      in: query
+      name: paymentCreationDate.gte
+      required: false
+      schema:
+        format: date-time
+        type: string
+    EndPaymentCreationDate:
+      description: End `paymentCreationDate` for running the query. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
+      in: query
+      name: paymentCreationDate.lte
+      required: false
+      schema:
+        format: date-time
+        type: string
     x-correlator:
+      name: x-correlator
+      in: header
       description: Correlation id for the different services
       schema:
         $ref: '#/components/schemas/XCorrelator'
-    X-Total-Count:
-      description: Total number of items matching criteria
+    PaymentStatus:
+      description: List of payment status to be considered for the query
+      in: query
+      name: paymentStatus
+      required: false
       schema:
-        type: integer
+        type: array
+        items:
+          type: string
+          enum:
+          - processing
+          - pending_validation
+          - denied
+          - reserved
+          - succeeded
+          - cancelled
+    Order:
+      description: Used to return the sorted results in descending (default) or ascending order, based on `paymentCreationDate` property
+      in: query
+      name: order
+      required: false
+      schema:
+        default: desc
+        enum:
+        - desc
+        - asc
+        type: string
+    MerchantIdentifier:
+      description: Merchant identifier to filter the results
+      in: query
+      name: merchantIdentifier
+      required: false
+      schema:
+        type: string
   securitySchemes:
     openId:
       type: openIdConnect

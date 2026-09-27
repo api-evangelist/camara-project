@@ -140,6 +140,12 @@ paths:
         '422':
           $ref: '#/components/responses/Generic422'
 components:
+  headers:
+    x-correlator:
+      description: Correlation id for the different services
+      schema:
+        type: string
+        pattern: ^[a-zA-Z0-9-]{0,55}$
   responses:
     Generic404:
       description: Not found
@@ -172,38 +178,6 @@ components:
                 status: 404
                 code: IDENTIFIER_NOT_FOUND
                 message: The phone number provided is not associated with a customer account
-    Generic422:
-      description: Unprocessable Content
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 422
-                code:
-                  enum:
-                  - SERVICE_NOT_APPLICABLE
-                  - MISSING_IDENTIFIER
-          examples:
-            GENERIC_422_SERVICE_NOT_APPLICABLE:
-              description: Service is not applicable for the provided phone number
-              value:
-                status: 422
-                code: SERVICE_NOT_APPLICABLE
-                message: The service is not applicable for the provided phone number
-            GENERIC_422_MISSING_IDENTIFIER:
-              description: No phone number has been provided either explicitly or associated with the access token
-              value:
-                status: 422
-                code: MISSING_IDENTIFIER
-                message: No phone number has been provided
     Generic400:
       description: Bad Request
       headers:
@@ -268,6 +242,38 @@ components:
                 status: 401
                 code: AUTHENTICATION_REQUIRED
                 message: New authentication is required.
+    Generic422:
+      description: Unprocessable Content
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 422
+                code:
+                  enum:
+                  - SERVICE_NOT_APPLICABLE
+                  - MISSING_IDENTIFIER
+          examples:
+            GENERIC_422_SERVICE_NOT_APPLICABLE:
+              description: Service is not applicable for the provided phone number
+              value:
+                status: 422
+                code: SERVICE_NOT_APPLICABLE
+                message: The service is not applicable for the provided phone number
+            GENERIC_422_MISSING_IDENTIFIER:
+              description: No phone number has been provided either explicitly or associated with the access token
+              value:
+                status: 422
+                code: MISSING_IDENTIFIER
+                message: No phone number has been provided
     Generic403:
       description: Forbidden
       headers:
@@ -315,6 +321,12 @@ components:
                 code: KNOW_YOUR_CUSTOMER.ID_DOCUMENT_MISMATCH
                 message: The idDocument needs to match the one associated with the provided phoneNumber
   schemas:
+    MatchResult:
+      type: string
+      enum:
+      - 'true'
+      - 'false'
+      - not_available
     KYC_MatchResponse:
       type: object
       properties:
@@ -420,22 +432,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/MatchResult'
           - description: Indicates whether the gender of the customer matches with the one on the Operator's system.
-    ErrorInfo:
-      type: object
-      required:
-      - status
-      - code
-      - message
-      properties:
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: Code given to this error
-        message:
-          type: string
-          description: Detailed error description
     KYC_MatchRequestBody:
       type: object
       description: Payload to validate the customer data.
@@ -508,12 +504,22 @@ components:
           - MALE
           - FEMALE
           - OTHER
-    MatchResult:
-      type: string
-      enum:
-      - 'true'
-      - 'false'
-      - not_available
+    ErrorInfo:
+      type: object
+      required:
+      - status
+      - code
+      - message
+      properties:
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: Code given to this error
+        message:
+          type: string
+          description: Detailed error description
     MatchScoreResult:
       type: integer
       description: Indicates the similarity score assigned to the input value when it does not exactly match the value stored in the operator's system. This property shall only be returned when the value of the corresponding match field is `false`.
@@ -528,12 +534,6 @@ components:
         type: string
         pattern: ^[a-zA-Z0-9-]{0,55}$
         example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
-  headers:
-    x-correlator:
-      description: Correlation id for the different services
-      schema:
-        type: string
-        pattern: ^[a-zA-Z0-9-]{0,55}$
   securitySchemes:
     openId:
       type: openIdConnect

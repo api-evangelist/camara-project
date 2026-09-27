@@ -90,6 +90,11 @@ paths:
       - openId:
         - one-time-password-sms:send-validate
 components:
+  headers:
+    x-correlator:
+      description: Correlation id for the different services
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
   responses:
     Generic404:
       description: Resource Not Found
@@ -257,31 +262,6 @@ components:
                 status: 401
                 code: UNAUTHENTICATED
                 message: Request not authenticated due to missing, invalid, or expired credentials.
-    Generic403:
-      description: Client does not have sufficient permission
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 403
-                code:
-                  enum:
-                  - PERMISSION_DENIED
-          examples:
-            GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
-              value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action.
     Generic429:
       description: Either out of resource quota or reaching rate limiting
       headers:
@@ -314,7 +294,70 @@ components:
                 status: 429
                 code: TOO_MANY_REQUESTS
                 message: Rate limit reached.
+    Generic403:
+      description: Client does not have sufficient permission
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 403
+                code:
+                  enum:
+                  - PERMISSION_DENIED
+          examples:
+            GENERIC_403_PERMISSION_DENIED:
+              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action.
+  parameters:
+    x-correlator:
+      name: x-correlator
+      in: header
+      description: Correlation id for the different services
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
   schemas:
+    AuthenticationId:
+      type: string
+      description: unique id of the verification attempt the code belongs to.
+      maxLength: 36
+      example: ea0840f3-3663-4149-bd10-c7c6b8912105
+    ValidateCodeBody:
+      description: Strcuture to request code verification
+      type: object
+      properties:
+        authenticationId:
+          $ref: '#/components/schemas/AuthenticationId'
+        code:
+          $ref: '#/components/schemas/Code'
+      required:
+      - authenticationId
+      - code
+    SendCodeBody:
+      description: Structure to request sending a code to a phone number
+      type: object
+      properties:
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        message:
+          $ref: '#/components/schemas/Message'
+      required:
+      - message
+      - phoneNumber
+    XCorrelator:
+      type: string
+      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
+      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
     Message:
       type: string
       description: Message template used to compose the content of the SMS sent to the phone number. It must include the following label indicating where to include the short code `{{code}}`
@@ -343,22 +386,6 @@ components:
         message:
           type: string
           description: A human-readable description of what the event represents
-    AuthenticationId:
-      type: string
-      description: unique id of the verification attempt the code belongs to.
-      maxLength: 36
-      example: ea0840f3-3663-4149-bd10-c7c6b8912105
-    SendCodeBody:
-      description: Structure to request sending a code to a phone number
-      type: object
-      properties:
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-        message:
-          $ref: '#/components/schemas/Message'
-      required:
-      - message
-      - phoneNumber
     SendCodeResponse:
       description: Structure to provide authentication identifier
       type: object
@@ -372,33 +399,6 @@ components:
       description: temporal, short code to be validated
       maxLength: 10
       example: AJY3
-    XCorrelator:
-      type: string
-      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
-      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
-    ValidateCodeBody:
-      description: Strcuture to request code verification
-      type: object
-      properties:
-        authenticationId:
-          $ref: '#/components/schemas/AuthenticationId'
-        code:
-          $ref: '#/components/schemas/Code'
-      required:
-      - authenticationId
-      - code
-  parameters:
-    x-correlator:
-      name: x-correlator
-      in: header
-      description: Correlation id for the different services
-      schema:
-        $ref: '#/components/schemas/XCorrelator'
-  headers:
-    x-correlator:
-      description: Correlation id for the different services
-      schema:
-        $ref: '#/components/schemas/XCorrelator'
   securitySchemes:
     openId:
       type: openIdConnect

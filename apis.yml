@@ -849,13 +849,11 @@ tags:
 - Network APIs
 - OpenAPI
 - Open Gateway
-- Open-Source
+- Open Source
 - Standards
 - Standards Body
-- Telco
-- Telco API Alliance
-- Telecom
 - Telecommunications
+- Telco API Alliance
 tags_raw:
 - API Standards
 - CAMARA
@@ -873,6 +871,7 @@ tags_raw:
 - Telco API Alliance
 - Telecom
 - Telecommunications
+- Open-Source
 kind: standard
 deliveryModel:
   model: unknown
