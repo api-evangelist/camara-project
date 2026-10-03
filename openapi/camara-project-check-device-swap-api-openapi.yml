@@ -72,22 +72,32 @@ paths:
         '422':
           $ref: '#/components/responses/Generic422'
 components:
-  examples:
-    CHECK_2LEGS:
-      summary: Check request without 3-legged access tokens
-      value:
-        phoneNumber: '+346661113334'
-        maxAge: 120
-    CHECK_3LEGS:
-      summary: Check request with 3-legged access tokens
-      value:
-        maxAge: 120
-  headers:
-    x-correlator:
-      description: Correlation id for the different services
-      schema:
-        $ref: '#/components/schemas/XCorrelator'
   schemas:
+    PhoneNumber:
+      type: string
+      pattern: ^\+[1-9][0-9]{4,14}$
+      example: '+34666111333'
+      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+    ErrorInfo:
+      type: object
+      required:
+      - status
+      - code
+      - message
+      properties:
+        message:
+          type: string
+          description: A human-readable description of what the event represents
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: A human-readable code to describe the error
+    XCorrelator:
+      type: string
+      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
+      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
     CheckDeviceSwapInfo:
       type: object
       required:
@@ -111,32 +121,49 @@ components:
           minimum: 1
           maximum: 2400
           default: 240
-    XCorrelator:
-      type: string
-      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
-      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
-    PhoneNumber:
-      type: string
-      pattern: ^\+[1-9][0-9]{4,14}$
-      example: '+34666111333'
-      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
-    ErrorInfo:
-      type: object
-      required:
-      - status
-      - code
-      - message
-      properties:
-        message:
-          type: string
-          description: A human-readable description of what the event represents
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: A human-readable code to describe the error
+  examples:
+    CHECK_3LEGS:
+      summary: Check request with 3-legged access tokens
+      value:
+        maxAge: 120
+    CHECK_2LEGS:
+      summary: Check request without 3-legged access tokens
+      value:
+        phoneNumber: '+346661113334'
+        maxAge: 120
   responses:
+    Generic400Check:
+      description: Bad Request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 400
+                code:
+                  enum:
+                  - INVALID_ARGUMENT
+                  - OUT_OF_RANGE
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+            GENERIC_400_OUT_OF_RANGE:
+              description: Out of Range. Specific Syntax Exception used when a given field has a pre-defined range or a invalid filter criteria combination is requested
+              value:
+                status: 400
+                code: OUT_OF_RANGE
+                message: Client specified an invalid range.
     Generic404:
       description: Not found
       headers:
@@ -169,8 +196,8 @@ components:
                 status: 404
                 code: IDENTIFIER_NOT_FOUND
                 message: Device identifier not found.
-    Generic401:
-      description: Unauthorized
+    Generic403:
+      description: Forbidden
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -183,17 +210,17 @@ components:
               properties:
                 status:
                   enum:
-                  - 401
+                  - 403
                 code:
                   enum:
-                  - UNAUTHENTICATED
+                  - PERMISSION_DENIED
           examples:
-            GENERIC_401_UNAUTHENTICATED:
-              description: Request cannot be authenticated
+            GENERIC_403_PERMISSION_DENIED:
+              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
               value:
-                status: 401
-                code: UNAUTHENTICATED
-                message: Request not authenticated due to missing, invalid, or expired credentials.
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action.
     Generic422:
       description: Unprocessable Content
       headers:
@@ -233,8 +260,8 @@ components:
                 status: 422
                 code: UNNECESSARY_IDENTIFIER
                 message: The device is already identified by the access token.
-    Generic403:
-      description: Forbidden
+    Generic401:
+      description: Unauthorized
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -247,49 +274,22 @@ components:
               properties:
                 status:
                   enum:
-                  - 403
+                  - 401
                 code:
                   enum:
-                  - PERMISSION_DENIED
+                  - UNAUTHENTICATED
           examples:
-            GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+            GENERIC_401_UNAUTHENTICATED:
+              description: Request cannot be authenticated
               value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action.
-    Generic400Check:
-      description: Bad Request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 400
-                code:
-                  enum:
-                  - INVALID_ARGUMENT
-                  - OUT_OF_RANGE
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
-            GENERIC_400_OUT_OF_RANGE:
-              description: Out of Range. Specific Syntax Exception used when a given field has a pre-defined range or a invalid filter criteria combination is requested
-              value:
-                status: 400
-                code: OUT_OF_RANGE
-                message: Client specified an invalid range.
+                status: 401
+                code: UNAUTHENTICATED
+                message: Request not authenticated due to missing, invalid, or expired credentials.
+  headers:
+    x-correlator:
+      description: Correlation id for the different services
+      schema:
+        $ref: '#/components/schemas/XCorrelator'
   parameters:
     x-correlator:
       name: x-correlator
