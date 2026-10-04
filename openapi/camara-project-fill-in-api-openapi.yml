@@ -218,8 +218,8 @@ components:
           - FEMALE
           - OTHER
   responses:
-    Generic404:
-      description: Not found
+    Generic401:
+      description: Unauthorized
       headers:
         x-correlator:
           $ref: '#/components/headers/X-Correlator'
@@ -232,42 +232,24 @@ components:
               properties:
                 status:
                   enum:
-                  - 404
+                  - 401
                 code:
                   enum:
-                  - IDENTIFIER_NOT_FOUND
+                  - UNAUTHENTICATED
+                  - AUTHENTICATION_REQUIRED
           examples:
-            GENERIC_404_IDENTIFIER_NOT_FOUND:
-              description: The phone number is not associated with a CSP customer account
+            GENERIC_401_UNAUTHENTICATED:
+              description: Request cannot be authenticated
               value:
-                status: 404
-                code: IDENTIFIER_NOT_FOUND
-                message: The phone number provided is not associated with a customer account
-    Generic403:
-      description: Forbidden
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/X-Correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 403
-                code:
-                  enum:
-                  - PERMISSION_DENIED
-          examples:
-            GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+                status: 401
+                code: UNAUTHENTICATED
+                message: Request not authenticated due to missing, invalid, or expired credentials.
+            GENERIC_401_AUTHENTICATION_REQUIRED:
+              description: New authentication is needed, authentication is no longer valid
               value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action.
+                status: 401
+                code: AUTHENTICATION_REQUIRED
+                message: New authentication is required.
     Generic422:
       description: Unprocessable Content
       headers:
@@ -307,6 +289,56 @@ components:
                 status: 422
                 code: UNNECESSARY_IDENTIFIER
                 message: An explicit phone number has been provided when one is already associated with the access token
+    Generic403:
+      description: Forbidden
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/X-Correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 403
+                code:
+                  enum:
+                  - PERMISSION_DENIED
+          examples:
+            GENERIC_403_PERMISSION_DENIED:
+              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action.
+    Generic404:
+      description: Not found
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/X-Correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 404
+                code:
+                  enum:
+                  - IDENTIFIER_NOT_FOUND
+          examples:
+            GENERIC_404_IDENTIFIER_NOT_FOUND:
+              description: The phone number is not associated with a CSP customer account
+              value:
+                status: 404
+                code: IDENTIFIER_NOT_FOUND
+                message: The phone number provided is not associated with a customer account
     Generic400:
       description: Bad Request
       headers:
@@ -332,51 +364,19 @@ components:
                 status: 400
                 code: INVALID_ARGUMENT
                 message: Client specified an invalid argument, request body or query param.
-    Generic401:
-      description: Unauthorized
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/X-Correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 401
-                code:
-                  enum:
-                  - UNAUTHENTICATED
-                  - AUTHENTICATION_REQUIRED
-          examples:
-            GENERIC_401_UNAUTHENTICATED:
-              description: Request cannot be authenticated
-              value:
-                status: 401
-                code: UNAUTHENTICATED
-                message: Request not authenticated due to missing, invalid, or expired credentials.
-            GENERIC_401_AUTHENTICATION_REQUIRED:
-              description: New authentication is needed, authentication is no longer valid
-              value:
-                status: 401
-                code: AUTHENTICATION_REQUIRED
-                message: New authentication is required.
-  headers:
-    X-Correlator:
-      description: Correlation id for the different services
-      required: false
-      schema:
-        type: string
-        pattern: ^[a-zA-Z0-9-]{1,55}$
-        example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
   parameters:
     x-correlator:
       name: x-correlator
       in: header
       description: Correlation id for the different services
+      schema:
+        type: string
+        pattern: ^[a-zA-Z0-9-]{1,55}$
+        example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
+  headers:
+    X-Correlator:
+      description: Correlation id for the different services
+      required: false
       schema:
         type: string
         pattern: ^[a-zA-Z0-9-]{1,55}$

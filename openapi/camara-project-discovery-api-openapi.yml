@@ -84,51 +84,55 @@ paths:
         device identified in the request.'
 components:
   schemas:
+    XCorrelator:
+      type: string
+      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
+      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
     SingleIpv4Addr:
       description: A single IPv4 address with no subnet mask
       type: string
       format: ipv4
       example: 84.125.93.10
-    EdgeCloudZoneId:
-      description: 'Operator-issued UUID for the Edge Cloud Zone.
-
-        '
-      type: string
-      format: uuid
-      additionalProperties: false
-    EdgeCloudZoneName:
-      description: 'Edge Cloud Zone Name - the common name for the Edge Cloud Zone.
-
-        '
-      type: string
-      additionalProperties: false
-    EdgeCloudProvider:
-      description: 'The company name of the Edge Cloud Zone provider.
-
-        '
-      type: string
-    EdgeCloudZone:
+    RequestBody:
+      description: Common request body to allow optional Device object to be passed
       type: object
-      description: 'An Edge Cloud Zone, uniquely identified by a combination
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+    Port:
+      description: TCP or UDP port number
+      type: integer
+      minimum: 1024
+      maximum: 65535
+    Device:
+      description: 'End-user equipment able to connect to a mobile network. Examples of devices include smartphones or IoT sensors/actuators.
 
-        of the value of the Edge Resource Name object and the value of the
+        The developer can choose to provide the below specified device identifiers:
 
-        Provider object (the name of the cloud provider or operator hosting that
+        * `ipv4Address`
 
-        edge cloud zone).
+        * `ipv6Address`
+
+        * `phoneNumber`
+
+        * `networkAccessIdentifier`
+
+        NOTE 1: the MNO might support only a subset of these options. The API invoker can provide multiple identifiers to be compatible across different MNOs. In this case the identifiers MUST belong to the same device.
+
+        NOTE 2: as for this Commonalities release, we are enforcing that the networkAccessIdentifier is only part of the schema for future-proofing, and CAMARA does not currently allow its use. After the CAMARA meta-release work is concluded and the relevant issues are resolved, its use will need to be explicitly documented in the guidelines.
 
         '
+      type: object
       properties:
-        edgeCloudZoneId:
-          $ref: '#/components/schemas/EdgeCloudZoneId'
-        edgeCloudZoneName:
-          $ref: '#/components/schemas/EdgeCloudZoneName'
-        edgeCloudProvider:
-          $ref: '#/components/schemas/EdgeCloudProvider'
-      required:
-      - edgeCloudZoneId
-      - edgeCloudZoneName
-      - edgeCloudProvider
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        networkAccessIdentifier:
+          $ref: '#/components/schemas/NetworkAccessIdentifier'
+        ipv4Address:
+          $ref: '#/components/schemas/DeviceIpv4Addr'
+        ipv6Address:
+          $ref: '#/components/schemas/DeviceIpv6Address'
+      minProperties: 1
     DeviceIpv4Addr:
       type: object
       description: 'The device should be identified by either the public (observed) IP address and port as seen by the application server, or the private (local) and any public (observed) IP addresses in use by the device (this information can be obtained by various means, for example from some DNS servers).
@@ -160,58 +164,12 @@ components:
       example:
         publicAddress: 84.125.93.10
         publicPort: 59765
-    RequestBody:
-      description: Common request body to allow optional Device object to be passed
-      type: object
-      properties:
-        device:
-          $ref: '#/components/schemas/Device'
-    DeviceResponse:
-      description: 'An identifier for the end-user equipment able to connect to the network that the response refers to. This parameter is only returned when the API consumer includes the `device` parameter in their request (i.e. they are using a two-legged access token), and is relevant when more than one device identifier is specified, as only one of those device identifiers is allowed in the response.
-
-
-        If the API consumer provides more than one device identifier in their request, the API provider must return a single identifier which is the one they are using to fulfil the request, even if the identifiers do not match the same device. API provider does not perform any logic to validate/correlate that the indicated device identifiers match the same device. No error should be returned if the identifiers are otherwise valid to prevent API consumers correlating different identifiers with a given end user.
-
-        '
-      allOf:
-      - $ref: '#/components/schemas/Device'
-      - maxProperties: 1
-    PhoneNumber:
-      description: 'A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with ''+''.
+    NetworkAccessIdentifier:
+      description: 'A public identifier addressing a subscription in a mobile network. In 3GPP terminology, it corresponds to the GPSI formatted with the External Identifier ({Local Identifier}@{Domain Identifier}). Unlike the telephone number, the network access identifier is not subjected to portability ruling in force, and is individually managed by each operator.
 
         '
       type: string
-      pattern: ^\+[1-9][0-9]{4,14}$
-      example: '+123456789'
-    Port:
-      description: TCP or UDP port number
-      type: integer
-      minimum: 1024
-      maximum: 65535
-    DeviceIpv6Address:
-      description: 'The device should be identified by the observed IPv6 address, or by any single IPv6 address from within the subnet allocated to the device (e.g. adding ::0 to the /64 prefix).
-
-        '
-      type: string
-      format: ipv6
-      example: 2001:db8:85a3:8d3:1319:8a2e:370:7344
-    DeviceResponseBody:
-      description: 'The optional device identifier to include in the response
-
-        '
-      properties:
-        device:
-          description: 'The device identifier that was used to fulfil the request.
-
-            If this property is not present then the device
-
-            identifier sent in the request was used.
-
-            '
-          allOf:
-          - $ref: '#/components/schemas/DeviceResponse'
-          - example:
-              phoneNumber: '+123456789'
+      example: 123456789@domain.com
     ErrorInfo:
       type: object
       description: Error information
@@ -229,46 +187,177 @@ components:
         message:
           type: string
           description: A human readable description of what the event represents
-    XCorrelator:
-      type: string
-      pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
-      example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
-    NetworkAccessIdentifier:
-      description: 'A public identifier addressing a subscription in a mobile network. In 3GPP terminology, it corresponds to the GPSI formatted with the External Identifier ({Local Identifier}@{Domain Identifier}). Unlike the telephone number, the network access identifier is not subjected to portability ruling in force, and is individually managed by each operator.
+    PhoneNumber:
+      description: 'A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with ''+''.
 
         '
       type: string
-      example: 123456789@domain.com
-    Device:
-      description: 'End-user equipment able to connect to a mobile network. Examples of devices include smartphones or IoT sensors/actuators.
-
-        The developer can choose to provide the below specified device identifiers:
-
-        * `ipv4Address`
-
-        * `ipv6Address`
-
-        * `phoneNumber`
-
-        * `networkAccessIdentifier`
-
-        NOTE 1: the MNO might support only a subset of these options. The API invoker can provide multiple identifiers to be compatible across different MNOs. In this case the identifiers MUST belong to the same device.
-
-        NOTE 2: as for this Commonalities release, we are enforcing that the networkAccessIdentifier is only part of the schema for future-proofing, and CAMARA does not currently allow its use. After the CAMARA meta-release work is concluded and the relevant issues are resolved, its use will need to be explicitly documented in the guidelines.
+      pattern: ^\+[1-9][0-9]{4,14}$
+      example: '+123456789'
+    DeviceIpv6Address:
+      description: 'The device should be identified by the observed IPv6 address, or by any single IPv6 address from within the subnet allocated to the device (e.g. adding ::0 to the /64 prefix).
 
         '
+      type: string
+      format: ipv6
+      example: 2001:db8:85a3:8d3:1319:8a2e:370:7344
+    EdgeCloudZoneName:
+      description: 'Edge Cloud Zone Name - the common name for the Edge Cloud Zone.
+
+        '
+      type: string
+      additionalProperties: false
+    DeviceResponse:
+      description: 'An identifier for the end-user equipment able to connect to the network that the response refers to. This parameter is only returned when the API consumer includes the `device` parameter in their request (i.e. they are using a two-legged access token), and is relevant when more than one device identifier is specified, as only one of those device identifiers is allowed in the response.
+
+
+        If the API consumer provides more than one device identifier in their request, the API provider must return a single identifier which is the one they are using to fulfil the request, even if the identifiers do not match the same device. API provider does not perform any logic to validate/correlate that the indicated device identifiers match the same device. No error should be returned if the identifiers are otherwise valid to prevent API consumers correlating different identifiers with a given end user.
+
+        '
+      allOf:
+      - $ref: '#/components/schemas/Device'
+      - maxProperties: 1
+    EdgeCloudZoneId:
+      description: 'Operator-issued UUID for the Edge Cloud Zone.
+
+        '
+      type: string
+      format: uuid
+      additionalProperties: false
+    EdgeCloudProvider:
+      description: 'The company name of the Edge Cloud Zone provider.
+
+        '
+      type: string
+    EdgeCloudZone:
       type: object
+      description: 'An Edge Cloud Zone, uniquely identified by a combination
+
+        of the value of the Edge Resource Name object and the value of the
+
+        Provider object (the name of the cloud provider or operator hosting that
+
+        edge cloud zone).
+
+        '
       properties:
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-        networkAccessIdentifier:
-          $ref: '#/components/schemas/NetworkAccessIdentifier'
-        ipv4Address:
-          $ref: '#/components/schemas/DeviceIpv4Addr'
-        ipv6Address:
-          $ref: '#/components/schemas/DeviceIpv6Address'
-      minProperties: 1
+        edgeCloudZoneId:
+          $ref: '#/components/schemas/EdgeCloudZoneId'
+        edgeCloudZoneName:
+          $ref: '#/components/schemas/EdgeCloudZoneName'
+        edgeCloudProvider:
+          $ref: '#/components/schemas/EdgeCloudProvider'
+      required:
+      - edgeCloudZoneId
+      - edgeCloudZoneName
+      - edgeCloudProvider
+    DeviceResponseBody:
+      description: 'The optional device identifier to include in the response
+
+        '
+      properties:
+        device:
+          description: 'The device identifier that was used to fulfil the request.
+
+            If this property is not present then the device
+
+            identifier sent in the request was used.
+
+            '
+          allOf:
+          - $ref: '#/components/schemas/DeviceResponse'
+          - example:
+              phoneNumber: '+123456789'
+  examples:
+    IdentifyDeviceByPhoneNumber:
+      description: Identifying device by phone number
+      value:
+        device:
+          phoneNumber: '+123456789'
+    IdentifyDeviceBy3LeggedToken:
+      description: Empty JSON when device is identified by access token
+      value: {}
+    IdentifyDeviceByIPAddress:
+      description: Identifying device by IP address
+      value:
+        device:
+          ipv4Address:
+            publicAddress: 84.125.93.10
+            publicPort: 59765
+    IdentifyDeviceByMultipleIdentifiers:
+      description: Identifying device by multiple device identifiers
+      value:
+        device:
+          phoneNumber: '+123456789'
+          ipv4Address:
+            publicAddress: 84.125.93.10
+            publicPort: 59765
+          networkAccessIdentifier: 123456789@domain.com
   responses:
+    Generic400:
+      description: Bad Request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 400
+                code:
+                  enum:
+                  - INVALID_ARGUMENT
+                  - OUT_OF_RANGE
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+            GENERIC_400_OUT_OF_RANGE:
+              description: Out of Range. Specific Syntax Exception used when a given field has a pre-defined range or a invalid filter criteria combination is requested
+              value:
+                status: 400
+                code: OUT_OF_RANGE
+                message: Client specified an invalid range.
+    Generic403:
+      description: Forbidden
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 403
+                code:
+                  enum:
+                  - PERMISSION_DENIED
+                  - INVALID_TOKEN_CONTEXT
+          examples:
+            GENERIC_403_PERMISSION_DENIED:
+              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action.
+            GENERIC_403_INVALID_TOKEN_CONTEXT:
+              description: Reflect some inconsistency between information in some field of the API and the related OAuth2 Token
+              value:
+                status: 403
+                code: INVALID_TOKEN_CONTEXT
+                message: '{{field}} is not consistent with access token.'
     Generic404:
       description: Not found
       headers:
@@ -301,6 +390,32 @@ components:
                 status: 404
                 code: IDENTIFIER_NOT_FOUND
                 message: Device identifier not found.
+    Generic401:
+      description: Unauthorized
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 401
+                code:
+                  enum:
+                  - UNAUTHENTICATED
+                  - AUTHENTICATION_REQUIRED
+          examples:
+            GENERIC_401_UNAUTHENTICATED:
+              description: Request cannot be authenticated
+              value:
+                status: 401
+                code: UNAUTHENTICATED
+                message: Request not authenticated due to missing, invalid, or expired credentials.
     Generic422:
       description: Unprocessable Content
       headers:
@@ -379,64 +494,6 @@ components:
                 status: 429
                 code: TOO_MANY_REQUESTS
                 message: Rate limit reached.
-    Generic403:
-      description: Forbidden
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 403
-                code:
-                  enum:
-                  - PERMISSION_DENIED
-                  - INVALID_TOKEN_CONTEXT
-          examples:
-            GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
-              value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action.
-            GENERIC_403_INVALID_TOKEN_CONTEXT:
-              description: Reflect some inconsistency between information in some field of the API and the related OAuth2 Token
-              value:
-                status: 403
-                code: INVALID_TOKEN_CONTEXT
-                message: '{{field}} is not consistent with access token.'
-    Generic401:
-      description: Unauthorized
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 401
-                code:
-                  enum:
-                  - UNAUTHENTICATED
-                  - AUTHENTICATION_REQUIRED
-          examples:
-            GENERIC_401_UNAUTHENTICATED:
-              description: Request cannot be authenticated
-              value:
-                status: 401
-                code: UNAUTHENTICATED
-                message: Request not authenticated due to missing, invalid, or expired credentials.
     200Success:
       description: 200 OK
       headers:
@@ -467,63 +524,6 @@ components:
                 edgeCloudProvider: Example Provider
                 device:
                   phoneNumber: '+123456789'
-    Generic400:
-      description: Bad Request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 400
-                code:
-                  enum:
-                  - INVALID_ARGUMENT
-                  - OUT_OF_RANGE
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
-            GENERIC_400_OUT_OF_RANGE:
-              description: Out of Range. Specific Syntax Exception used when a given field has a pre-defined range or a invalid filter criteria combination is requested
-              value:
-                status: 400
-                code: OUT_OF_RANGE
-                message: Client specified an invalid range.
-  examples:
-    IdentifyDeviceByPhoneNumber:
-      description: Identifying device by phone number
-      value:
-        device:
-          phoneNumber: '+123456789'
-    IdentifyDeviceByMultipleIdentifiers:
-      description: Identifying device by multiple device identifiers
-      value:
-        device:
-          phoneNumber: '+123456789'
-          ipv4Address:
-            publicAddress: 84.125.93.10
-            publicPort: 59765
-          networkAccessIdentifier: 123456789@domain.com
-    IdentifyDeviceByIPAddress:
-      description: Identifying device by IP address
-      value:
-        device:
-          ipv4Address:
-            publicAddress: 84.125.93.10
-            publicPort: 59765
-    IdentifyDeviceBy3LeggedToken:
-      description: Empty JSON when device is identified by access token
-      value: {}
   headers:
     x-correlator:
       description: Correlation id for the different services

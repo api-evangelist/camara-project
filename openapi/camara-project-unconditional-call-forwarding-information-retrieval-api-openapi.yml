@@ -65,18 +65,6 @@ paths:
           $ref: '#/components/responses/Generic429'
 components:
   schemas:
-    PhoneNumber:
-      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
-      type: string
-      pattern: ^\+[1-9][0-9]{4,14}$
-      example: '+123456789'
-    UnconditionalCallForwardingSignal:
-      description: resource containing the information about the Unconditional Call Forwarding Service for the given phone number (PhoneNumber)
-      type: object
-      properties:
-        active:
-          type: boolean
-          description: Indicates if the unconditional call forwarding service is active.
     ErrorInfo:
       type: object
       required:
@@ -93,10 +81,22 @@ components:
         message:
           type: string
           description: A human-readable description of what the event represents
+    PhoneNumber:
+      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+      type: string
+      pattern: ^\+[1-9][0-9]{4,14}$
+      example: '+123456789'
     XCorrelator:
       type: string
       pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
       example: b4333c46-49c0-4f62-80d7-f0ef930f1c46
+    UnconditionalCallForwardingSignal:
+      description: resource containing the information about the Unconditional Call Forwarding Service for the given phone number (PhoneNumber)
+      type: object
+      properties:
+        active:
+          type: boolean
+          description: Indicates if the unconditional call forwarding service is active.
     CreateCallForwardingSignal:
       description: resource containing the phone number (PhoneNumber) regarding which the Call Forwarding Service must be checked. To be provided/valued only in case of two-legged authentication. If provided/valued with three-legged authentication a 422-UNNECESSARY_IDENTIFIER error code is returned.
       type: object
@@ -104,8 +104,8 @@ components:
         phoneNumber:
           $ref: '#/components/schemas/PhoneNumber'
   responses:
-    Generic429:
-      description: Too Many Requests
+    Generic401:
+      description: Unauthorized
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -118,24 +118,56 @@ components:
               properties:
                 status:
                   enum:
-                  - 429
+                  - 401
                 code:
                   enum:
-                  - QUOTA_EXCEEDED
-                  - TOO_MANY_REQUESTS
+                  - UNAUTHENTICATED
           examples:
-            GENERIC_429_QUOTA_EXCEEDED:
-              description: Request is rejected due to exceeding a business quota limit
+            GENERIC_401_UNAUTHENTICATED:
+              description: Request cannot be authenticated and a new authentication is required
               value:
-                status: 429
-                code: QUOTA_EXCEEDED
-                message: Out of resource quota.
-            GENERIC_429_TOO_MANY_REQUESTS:
-              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
+                status: 401
+                code: UNAUTHENTICATED
+                message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
+    Generic422:
+      description: Unprocessable Content
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 422
+                code:
+                  enum:
+                  - SERVICE_NOT_APPLICABLE
+                  - MISSING_IDENTIFIER
+                  - UNNECESSARY_IDENTIFIER
+          examples:
+            GENERIC_422_SERVICE_NOT_APPLICABLE:
+              description: Service not applicable for the provided identifier
               value:
-                status: 429
-                code: TOO_MANY_REQUESTS
-                message: Rate limit reached.
+                status: 422
+                code: SERVICE_NOT_APPLICABLE
+                message: The service is not available for the provided identifier.
+            GENERIC_422_MISSING_IDENTIFIER:
+              description: An identifier is not included in the request and the device or phone number identification cannot be derived from the 3-legged access token
+              value:
+                status: 422
+                code: MISSING_IDENTIFIER
+                message: The phone number cannot be identified.
+            GENERIC_422_UNNECESSARY_IDENTIFIER:
+              description: An explicit identifier is provided when a device or phone number has already been identified from the access token
+              value:
+                status: 422
+                code: UNNECESSARY_IDENTIFIER
+                message: The phone number is already identified by the access token.
     Generic403:
       description: Forbidden
       headers:
@@ -193,45 +225,6 @@ components:
                 status: 404
                 code: IDENTIFIER_NOT_FOUND
                 message: Device identifier not found.
-    Generic422:
-      description: Unprocessable Content
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 422
-                code:
-                  enum:
-                  - SERVICE_NOT_APPLICABLE
-                  - MISSING_IDENTIFIER
-                  - UNNECESSARY_IDENTIFIER
-          examples:
-            GENERIC_422_SERVICE_NOT_APPLICABLE:
-              description: Service not applicable for the provided identifier
-              value:
-                status: 422
-                code: SERVICE_NOT_APPLICABLE
-                message: The service is not available for the provided identifier.
-            GENERIC_422_MISSING_IDENTIFIER:
-              description: An identifier is not included in the request and the device or phone number identification cannot be derived from the 3-legged access token
-              value:
-                status: 422
-                code: MISSING_IDENTIFIER
-                message: The phone number cannot be identified.
-            GENERIC_422_UNNECESSARY_IDENTIFIER:
-              description: An explicit identifier is provided when a device or phone number has already been identified from the access token
-              value:
-                status: 422
-                code: UNNECESSARY_IDENTIFIER
-                message: The phone number is already identified by the access token.
     Generic400:
       description: Bad Request
       headers:
@@ -257,8 +250,8 @@ components:
                 status: 400
                 code: INVALID_ARGUMENT
                 message: Client specified an invalid argument, request body or query param.
-    Generic401:
-      description: Unauthorized
+    Generic429:
+      description: Too Many Requests
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -271,17 +264,24 @@ components:
               properties:
                 status:
                   enum:
-                  - 401
+                  - 429
                 code:
                   enum:
-                  - UNAUTHENTICATED
+                  - QUOTA_EXCEEDED
+                  - TOO_MANY_REQUESTS
           examples:
-            GENERIC_401_UNAUTHENTICATED:
-              description: Request cannot be authenticated and a new authentication is required
+            GENERIC_429_QUOTA_EXCEEDED:
+              description: Request is rejected due to exceeding a business quota limit
               value:
-                status: 401
-                code: UNAUTHENTICATED
-                message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
+                status: 429
+                code: QUOTA_EXCEEDED
+                message: Out of resource quota.
+            GENERIC_429_TOO_MANY_REQUESTS:
+              description: Access to the API has been temporarily blocked due to rate or spike arrest limits being reached
+              value:
+                status: 429
+                code: TOO_MANY_REQUESTS
+                message: Rate limit reached.
   headers:
     x-correlator:
       description: Correlation id for the different services

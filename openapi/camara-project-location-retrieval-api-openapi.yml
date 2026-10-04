@@ -102,93 +102,6 @@ paths:
         - location-retrieval:read
 components:
   schemas:
-    SingleIpv4Addr:
-      description: A single IPv4 address with no subnet mask
-      type: string
-      format: ipv4
-      example: 84.125.93.10
-    RetrievalLocationRequest:
-      description: Request to retrieve the location of a device. Device is not required when using a 3-legged access token, following the rules in the description.
-      type: object
-      properties:
-        device:
-          $ref: '#/components/schemas/Device'
-        maxAge:
-          type: integer
-          minimum: 0
-          description: Maximum age of the location information which is accepted for the location retrieval (in seconds). Absence of maxAge means "any age" and maxAge=0 means a fresh calculation.
-        maxSurface:
-          type: integer
-          minimum: 1
-          description: Maximum surface in square meters which is accepted by the client for the location retrieval. Absence of maxSurface means "any surface size".
-          example: 1000000
-    LastLocationTime:
-      description: Last date and time when the device was localized. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
-      format: date-time
-      type: string
-      example: '2023-09-07T10:40:52Z'
-    AreaType:
-      type: string
-      description: 'Type of this area.
-
-        CIRCLE - The area is defined as a circle.
-
-        POLYGON - The area is defined as a polygon.
-
-        '
-      enum:
-      - CIRCLE
-      - POLYGON
-    DeviceIpv4Addr:
-      type: object
-      description: 'The device should be identified by either the public (observed) IP address and port as seen by the application server, or the private (local) and any public (observed) IP addresses in use by the device (this information can be obtained by various means, for example from some DNS servers).
-
-
-        If the allocated and observed IP addresses are the same (i.e. NAT is not in use) then  the same address should be specified for both publicAddress and privateAddress.
-
-
-        If NAT64 is in use, the device should be identified by its publicAddress and publicPort, or separately by its allocated IPv6 address (field ipv6Address of the Device object)
-
-
-        In all cases, publicAddress must be specified, along with at least one of either privateAddress or publicPort, dependent upon which is known. In general, mobile devices cannot be identified by their public IPv4 address alone.
-
-        '
-      properties:
-        publicAddress:
-          $ref: '#/components/schemas/SingleIpv4Addr'
-        privateAddress:
-          $ref: '#/components/schemas/SingleIpv4Addr'
-        publicPort:
-          $ref: '#/components/schemas/Port'
-      anyOf:
-      - required:
-        - publicAddress
-        - privateAddress
-      - required:
-        - publicAddress
-        - publicPort
-      example:
-        publicAddress: 84.125.93.10
-        publicPort: 59765
-    DeviceResponse:
-      description: 'An identifier for the end-user equipment able to connect to the network that the response refers to. This parameter is only returned when the API consumer includes the `device` parameter in their request (i.e. they are using a two-legged access token), and is relevant when more than one device identifier is specified, as only one of those device identifiers is allowed in the response.
-
-        If the API consumer provides more than one device identifier in their request, the API provider must return a single identifier which is the one they are using to fulfil the request, even if the identifiers do not match the same device. API provider does not perform any logic to validate/correlate that the indicated device identifiers match the same device. No error should be returned if the identifiers are otherwise valid to prevent API consumers correlating different identifiers with a given end user.
-
-        '
-      allOf:
-      - $ref: '#/components/schemas/Device'
-      - maxProperties: 1
-    PhoneNumber:
-      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
-      type: string
-      pattern: ^\+[1-9][0-9]{4,14}$
-      example: '+123456789'
-    Port:
-      description: TCP or UDP port number
-      type: integer
-      minimum: 0
-      maximum: 65535
     Area:
       description: Base schema for all areas
       type: object
@@ -202,30 +115,6 @@ components:
         mapping:
           CIRCLE: '#/components/schemas/Circle'
           POLYGON: '#/components/schemas/Polygon'
-    DeviceIpv6Address:
-      description: 'The device should be identified by the observed IPv6 address, or by any single IPv6 address from within the subnet allocated to the device (e.g. adding ::0 to the /64 prefix).
-
-        '
-      type: string
-      format: ipv6
-      example: 2001:db8:85a3:8d3:1319:8a2e:370:7344
-    ErrorInfo:
-      description: Common schema for errors
-      type: object
-      required:
-      - status
-      - code
-      - message
-      properties:
-        status:
-          type: integer
-          description: HTTP response status code
-        code:
-          type: string
-          description: A human-readable code to describe the error
-        message:
-          type: string
-          description: A human-readable description of what the event represents
     XCorrelator:
       type: string
       pattern: ^[a-zA-Z0-9-_:;.\/<>{}]{0,256}$
@@ -243,10 +132,21 @@ components:
           $ref: '#/components/schemas/Area'
         device:
           $ref: '#/components/schemas/DeviceResponse'
-    NetworkAccessIdentifier:
-      description: A public identifier addressing a subscription in a mobile network. In 3GPP terminology, it corresponds to the GPSI formatted with the External Identifier ({Local Identifier}@{Domain Identifier}). Unlike the telephone number, the network access identifier is not subjected to portability ruling in force, and is individually managed by each operator.
+    LastLocationTime:
+      description: Last date and time when the device was localized. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
+      format: date-time
       type: string
-      example: 123456789@domain.com
+      example: '2023-09-07T10:40:52Z'
+    SingleIpv4Addr:
+      description: A single IPv4 address with no subnet mask
+      type: string
+      format: ipv4
+      example: 84.125.93.10
+    Port:
+      description: TCP or UDP port number
+      type: integer
+      minimum: 0
+      maximum: 65535
     Device:
       description: 'End-user device able to connect to a mobile network. Examples of devices include smartphones or IoT sensors/actuators.
 
@@ -278,31 +178,107 @@ components:
         ipv6Address:
           $ref: '#/components/schemas/DeviceIpv6Address'
       minProperties: 1
-  examples:
-    RETRIEVAL_CIRCLE:
-      summary: circle-based device location retrieval
-      description: The device is localized within a circle with a center at the specified coordinates and a radius of 800 meters.
-      value:
-        lastLocationTime: '2023-10-17T13:18:23.682Z'
-        area:
-          areaType: CIRCLE
-          center:
-            latitude: 45.754114
-            longitude: 4.860374
-          radius: 800
-    LOCATION_CIRCLE_WITH_DEVICE:
-      summary: circle-based device location retrieval, returning the device identifier used by the implementation
-      description: The device is localized within a circle with a center at the specified coordinates and a radius of 800 meters. Response when the request used a 2-legged access token with multiple device identifiers, or possibly only a single device identifier.
-      value:
-        lastLocationTime: '2023-10-17T13:18:23.682Z'
-        area:
-          areaType: CIRCLE
-          center:
-            latitude: 45.754114
-            longitude: 4.860374
-          radius: 800
+    DeviceIpv4Addr:
+      type: object
+      description: 'The device should be identified by either the public (observed) IP address and port as seen by the application server, or the private (local) and any public (observed) IP addresses in use by the device (this information can be obtained by various means, for example from some DNS servers).
+
+
+        If the allocated and observed IP addresses are the same (i.e. NAT is not in use) then  the same address should be specified for both publicAddress and privateAddress.
+
+
+        If NAT64 is in use, the device should be identified by its publicAddress and publicPort, or separately by its allocated IPv6 address (field ipv6Address of the Device object)
+
+
+        In all cases, publicAddress must be specified, along with at least one of either privateAddress or publicPort, dependent upon which is known. In general, mobile devices cannot be identified by their public IPv4 address alone.
+
+        '
+      properties:
+        publicAddress:
+          $ref: '#/components/schemas/SingleIpv4Addr'
+        privateAddress:
+          $ref: '#/components/schemas/SingleIpv4Addr'
+        publicPort:
+          $ref: '#/components/schemas/Port'
+      anyOf:
+      - required:
+        - publicAddress
+        - privateAddress
+      - required:
+        - publicAddress
+        - publicPort
+      example:
+        publicAddress: 84.125.93.10
+        publicPort: 59765
+    NetworkAccessIdentifier:
+      description: A public identifier addressing a subscription in a mobile network. In 3GPP terminology, it corresponds to the GPSI formatted with the External Identifier ({Local Identifier}@{Domain Identifier}). Unlike the telephone number, the network access identifier is not subjected to portability ruling in force, and is individually managed by each operator.
+      type: string
+      example: 123456789@domain.com
+    ErrorInfo:
+      description: Common schema for errors
+      type: object
+      required:
+      - status
+      - code
+      - message
+      properties:
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: A human-readable code to describe the error
+        message:
+          type: string
+          description: A human-readable description of what the event represents
+    PhoneNumber:
+      description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+      type: string
+      pattern: ^\+[1-9][0-9]{4,14}$
+      example: '+123456789'
+    DeviceIpv6Address:
+      description: 'The device should be identified by the observed IPv6 address, or by any single IPv6 address from within the subnet allocated to the device (e.g. adding ::0 to the /64 prefix).
+
+        '
+      type: string
+      format: ipv6
+      example: 2001:db8:85a3:8d3:1319:8a2e:370:7344
+    DeviceResponse:
+      description: 'An identifier for the end-user equipment able to connect to the network that the response refers to. This parameter is only returned when the API consumer includes the `device` parameter in their request (i.e. they are using a two-legged access token), and is relevant when more than one device identifier is specified, as only one of those device identifiers is allowed in the response.
+
+        If the API consumer provides more than one device identifier in their request, the API provider must return a single identifier which is the one they are using to fulfil the request, even if the identifiers do not match the same device. API provider does not perform any logic to validate/correlate that the indicated device identifiers match the same device. No error should be returned if the identifiers are otherwise valid to prevent API consumers correlating different identifiers with a given end user.
+
+        '
+      allOf:
+      - $ref: '#/components/schemas/Device'
+      - maxProperties: 1
+    RetrievalLocationRequest:
+      description: Request to retrieve the location of a device. Device is not required when using a 3-legged access token, following the rules in the description.
+      type: object
+      properties:
         device:
-          phoneNumber: '+123456789'
+          $ref: '#/components/schemas/Device'
+        maxAge:
+          type: integer
+          minimum: 0
+          description: Maximum age of the location information which is accepted for the location retrieval (in seconds). Absence of maxAge means "any age" and maxAge=0 means a fresh calculation.
+        maxSurface:
+          type: integer
+          minimum: 1
+          description: Maximum surface in square meters which is accepted by the client for the location retrieval. Absence of maxSurface means "any surface size".
+          example: 1000000
+    AreaType:
+      type: string
+      description: 'Type of this area.
+
+        CIRCLE - The area is defined as a circle.
+
+        POLYGON - The area is defined as a polygon.
+
+        '
+      enum:
+      - CIRCLE
+      - POLYGON
+  examples:
     RETRIEVAL_POLYGON:
       summary: polygon-based device location retrieval
       description: The device is localized within a polygon delimited by the provided coordinates.
@@ -321,12 +297,90 @@ components:
             longitude: 4.861125
           - latitude: 45.751442
             longitude: 4.859827
-  headers:
+    LOCATION_CIRCLE_WITH_DEVICE:
+      summary: circle-based device location retrieval, returning the device identifier used by the implementation
+      description: The device is localized within a circle with a center at the specified coordinates and a radius of 800 meters. Response when the request used a 2-legged access token with multiple device identifiers, or possibly only a single device identifier.
+      value:
+        lastLocationTime: '2023-10-17T13:18:23.682Z'
+        area:
+          areaType: CIRCLE
+          center:
+            latitude: 45.754114
+            longitude: 4.860374
+          radius: 800
+        device:
+          phoneNumber: '+123456789'
+    RETRIEVAL_CIRCLE:
+      summary: circle-based device location retrieval
+      description: The device is localized within a circle with a center at the specified coordinates and a radius of 800 meters.
+      value:
+        lastLocationTime: '2023-10-17T13:18:23.682Z'
+        area:
+          areaType: CIRCLE
+          center:
+            latitude: 45.754114
+            longitude: 4.860374
+          radius: 800
+  parameters:
     x-correlator:
+      name: x-correlator
+      in: header
       description: Correlation id for the different services
       schema:
         $ref: '#/components/schemas/XCorrelator'
   responses:
+    Generic400:
+      description: Bad Request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 400
+                code:
+                  enum:
+                  - INVALID_ARGUMENT
+          examples:
+            GENERIC_400_INVALID_ARGUMENT:
+              summary: Invalid argument
+              description: Invalid Argument. Generic Syntax Exception
+              value:
+                status: 400
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param.
+    Generic403:
+      description: Forbidden
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorInfo'
+            - type: object
+              properties:
+                status:
+                  enum:
+                  - 403
+                code:
+                  enum:
+                  - PERMISSION_DENIED
+          examples:
+            GENERIC_403_PERMISSION_DENIED:
+              summary: Permission denied
+              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+              value:
+                status: 403
+                code: PERMISSION_DENIED
+                message: Client does not have sufficient permissions to perform this action.
     RetrieveLocationUnprocessableEntity422:
       description: Unprocessable Content
       headers:
@@ -401,8 +455,8 @@ components:
                 status: 422
                 code: LOCATION_RETRIEVAL.UNABLE_TO_LOCATE
                 message: The network is unable to locate the device
-    Generic403:
-      description: Forbidden
+    Generic401:
+      description: Unauthorized
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -415,18 +469,17 @@ components:
               properties:
                 status:
                   enum:
-                  - 403
+                  - 401
                 code:
                   enum:
-                  - PERMISSION_DENIED
+                  - UNAUTHENTICATED
           examples:
-            GENERIC_403_PERMISSION_DENIED:
-              summary: Permission denied
-              description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
+            GENERIC_401_UNAUTHENTICATED:
+              description: Request cannot be authenticated and a new authentication is required
               value:
-                status: 403
-                code: PERMISSION_DENIED
-                message: Client does not have sufficient permissions to perform this action.
+                status: 401
+                code: UNAUTHENTICATED
+                message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
     RetrieveLocationNotFound404:
       description: Not found
       headers:
@@ -453,61 +506,8 @@ components:
                 status: 404
                 code: IDENTIFIER_NOT_FOUND
                 message: Device identifier not found.
-    Generic401:
-      description: Unauthorized
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 401
-                code:
-                  enum:
-                  - UNAUTHENTICATED
-          examples:
-            GENERIC_401_UNAUTHENTICATED:
-              description: Request cannot be authenticated and a new authentication is required
-              value:
-                status: 401
-                code: UNAUTHENTICATED
-                message: Request not authenticated due to missing, invalid, or expired credentials. A new authentication is required.
-    Generic400:
-      description: Bad Request
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/ErrorInfo'
-            - type: object
-              properties:
-                status:
-                  enum:
-                  - 400
-                code:
-                  enum:
-                  - INVALID_ARGUMENT
-          examples:
-            GENERIC_400_INVALID_ARGUMENT:
-              summary: Invalid argument
-              description: Invalid Argument. Generic Syntax Exception
-              value:
-                status: 400
-                code: INVALID_ARGUMENT
-                message: Client specified an invalid argument, request body or query param.
-  parameters:
+  headers:
     x-correlator:
-      name: x-correlator
-      in: header
       description: Correlation id for the different services
       schema:
         $ref: '#/components/schemas/XCorrelator'
