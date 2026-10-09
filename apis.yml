@@ -1021,6 +1021,16 @@ common:
   - https://camaraproject.org
   - https://github.com/camaraproject
   updated: '2026-07-30'
+- type: SpectralRules
+  url: https://github.com/camaraproject/DeviceStatus/blob/a628ed797be4915dab20288e4f11a5c60327ee03/.spectral.yml
+- type: SpectralRules
+  url: https://github.com/camaraproject/EdgeCloud/blob/5dfd7fe436380a7a112510fa63571f2054e24804/.spectral.yml
+- type: SpectralRules
+  url: https://github.com/camaraproject/IoTNetworkOptimization/blob/2f51d3f21dc7496a761ef98ef8c873456a67b78a/spectral.yml
+- type: SpectralRules
+  url: https://github.com/camaraproject/SimpleEdgeDiscovery/blob/599f30bbff0d5eb9828f104efe43fcd04c7f2be3/temp/.spectral.yml
+- type: SpectralRules
+  url: https://github.com/camaraproject/tooling/blob/42da93798be5435257402eb4b0c35f9bcf7da2f8/linting/config/.spectral.yaml
 created: '2026-05-25T00:00:00.000Z'
 modified: '2026-07-30'
 position: Producing
